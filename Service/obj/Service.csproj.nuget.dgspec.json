@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\SWP391\\BackEnd\\jewelryauction\\Service\\Service.csproj": {}
+    "D:\\SWP391\\BE\\jewelryauction\\Service\\Service.csproj": {}
   },
   "projects": {
-    "D:\\SWP391\\BackEnd\\jewelryauction\\DAO\\DAL.csproj": {
+    "D:\\SWP391\\BE\\jewelryauction\\DAO\\DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\SWP391\\BackEnd\\jewelryauction\\DAO\\DAL.csproj",
+        "projectUniqueName": "D:\\SWP391\\BE\\jewelryauction\\DAO\\DAL.csproj",
         "projectName": "DAL",
-        "projectPath": "D:\\SWP391\\BackEnd\\jewelryauction\\DAO\\DAL.csproj",
+        "projectPath": "D:\\SWP391\\BE\\jewelryauction\\DAO\\DAL.csproj",
         "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "D:\\SWP391\\BackEnd\\jewelryauction\\DAO\\obj\\",
+        "outputPath": "D:\\SWP391\\BE\\jewelryauction\\DAO\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -89,14 +89,14 @@
         }
       }
     },
-    "D:\\SWP391\\BackEnd\\jewelryauction\\Repository\\Repository.csproj": {
+    "D:\\SWP391\\BE\\jewelryauction\\Repository\\Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\SWP391\\BackEnd\\jewelryauction\\Repository\\Repository.csproj",
+        "projectUniqueName": "D:\\SWP391\\BE\\jewelryauction\\Repository\\Repository.csproj",
         "projectName": "Repository",
-        "projectPath": "D:\\SWP391\\BackEnd\\jewelryauction\\Repository\\Repository.csproj",
+        "projectPath": "D:\\SWP391\\BE\\jewelryauction\\Repository\\Repository.csproj",
         "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "D:\\SWP391\\BackEnd\\jewelryauction\\Repository\\obj\\",
+        "outputPath": "D:\\SWP391\\BE\\jewelryauction\\Repository\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -113,8 +113,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\SWP391\\BackEnd\\jewelryauction\\DAO\\DAL.csproj": {
-                "projectPath": "D:\\SWP391\\BackEnd\\jewelryauction\\DAO\\DAL.csproj"
+              "D:\\SWP391\\BE\\jewelryauction\\DAO\\DAL.csproj": {
+                "projectPath": "D:\\SWP391\\BE\\jewelryauction\\DAO\\DAL.csproj"
               }
             }
           }
@@ -148,14 +148,14 @@
         }
       }
     },
-    "D:\\SWP391\\BackEnd\\jewelryauction\\Service\\Service.csproj": {
+    "D:\\SWP391\\BE\\jewelryauction\\Service\\Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\SWP391\\BackEnd\\jewelryauction\\Service\\Service.csproj",
+        "projectUniqueName": "D:\\SWP391\\BE\\jewelryauction\\Service\\Service.csproj",
         "projectName": "Service",
-        "projectPath": "D:\\SWP391\\BackEnd\\jewelryauction\\Service\\Service.csproj",
+        "projectPath": "D:\\SWP391\\BE\\jewelryauction\\Service\\Service.csproj",
         "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "D:\\SWP391\\BackEnd\\jewelryauction\\Service\\obj\\",
+        "outputPath": "D:\\SWP391\\BE\\jewelryauction\\Service\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -172,8 +172,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\SWP391\\BackEnd\\jewelryauction\\Repository\\Repository.csproj": {
-                "projectPath": "D:\\SWP391\\BackEnd\\jewelryauction\\Repository\\Repository.csproj"
+              "D:\\SWP391\\BE\\jewelryauction\\Repository\\Repository.csproj": {
+                "projectPath": "D:\\SWP391\\BE\\jewelryauction\\Repository\\Repository.csproj"
               }
             }
           }

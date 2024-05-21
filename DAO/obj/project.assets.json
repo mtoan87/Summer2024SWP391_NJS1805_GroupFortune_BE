@@ -2990,11 +2990,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\SWP391\\BackEnd\\jewelryauction\\DAO\\DAL.csproj",
+      "projectUniqueName": "D:\\SWP391\\BE\\jewelryauction\\DAO\\DAL.csproj",
       "projectName": "DAL",
-      "projectPath": "D:\\SWP391\\BackEnd\\jewelryauction\\DAO\\DAL.csproj",
+      "projectPath": "D:\\SWP391\\BE\\jewelryauction\\DAO\\DAL.csproj",
       "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-      "outputPath": "D:\\SWP391\\BackEnd\\jewelryauction\\DAO\\obj\\",
+      "outputPath": "D:\\SWP391\\BE\\jewelryauction\\DAO\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",

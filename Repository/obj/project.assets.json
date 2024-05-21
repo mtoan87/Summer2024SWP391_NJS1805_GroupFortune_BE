@@ -2906,11 +2906,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\SWP391\\BackEnd\\jewelryauction\\Repository\\Repository.csproj",
+      "projectUniqueName": "D:\\SWP391\\BE\\jewelryauction\\Repository\\Repository.csproj",
       "projectName": "Repository",
-      "projectPath": "D:\\SWP391\\BackEnd\\jewelryauction\\Repository\\Repository.csproj",
+      "projectPath": "D:\\SWP391\\BE\\jewelryauction\\Repository\\Repository.csproj",
       "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-      "outputPath": "D:\\SWP391\\BackEnd\\jewelryauction\\Repository\\obj\\",
+      "outputPath": "D:\\SWP391\\BE\\jewelryauction\\Repository\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -2927,8 +2927,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\SWP391\\BackEnd\\jewelryauction\\DAO\\DAL.csproj": {
-              "projectPath": "D:\\SWP391\\BackEnd\\jewelryauction\\DAO\\DAL.csproj"
+            "D:\\SWP391\\BE\\jewelryauction\\DAO\\DAL.csproj": {
+              "projectPath": "D:\\SWP391\\BE\\jewelryauction\\DAO\\DAL.csproj"
             }
           }
         }
