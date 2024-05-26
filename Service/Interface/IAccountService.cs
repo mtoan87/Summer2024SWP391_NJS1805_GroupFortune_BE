@@ -10,6 +10,6 @@ namespace Service.Interface
 {
     public interface IAccountService
     {
-         Task  CreateAccount(CreateAccountDTO createAccountDTO);
+       
     }
 }

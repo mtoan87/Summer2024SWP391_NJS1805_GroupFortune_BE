@@ -40,9 +40,7 @@ namespace DAL.Models
             {
                 entity.ToTable("Account");
 
-                entity.Property(e => e.AccountId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("account_id");
+                entity.Property(e => e.AccountId).HasColumnName("account_id");
 
                 entity.Property(e => e.AccountEmail)
                     .HasMaxLength(100)
@@ -72,9 +70,7 @@ namespace DAL.Models
             {
                 entity.ToTable("Auction");
 
-                entity.Property(e => e.AuctionId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("auction_id");
+                entity.Property(e => e.AuctionId).HasColumnName("auction_id");
 
                 entity.Property(e => e.AccountId).HasColumnName("account_id");
 
@@ -103,9 +99,7 @@ namespace DAL.Models
             {
                 entity.ToTable("AuctionResult");
 
-                entity.Property(e => e.AuctionresultId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("auctionresult_id");
+                entity.Property(e => e.AuctionresultId).HasColumnName("auctionresult_id");
 
                 entity.Property(e => e.AccountId).HasColumnName("account_id");
 
@@ -136,9 +130,7 @@ namespace DAL.Models
             {
                 entity.ToTable("Bid");
 
-                entity.Property(e => e.BidId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("bid_id");
+                entity.Property(e => e.BidId).HasColumnName("bid_id");
 
                 entity.Property(e => e.AccountId).HasColumnName("account_id");
 
@@ -167,9 +159,7 @@ namespace DAL.Models
             {
                 entity.ToTable("Jewelry");
 
-                entity.Property(e => e.JewelryId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("jewelry_id");
+                entity.Property(e => e.JewelryId).HasColumnName("jewelry_id");
 
                 entity.Property(e => e.AccountId).HasColumnName("account_id");
 

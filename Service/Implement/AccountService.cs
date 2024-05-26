@@ -10,6 +10,7 @@ namespace Service.Implement
        
         private  AccountRepository _accountRepository;
         
+        
         public AccountService( AccountRepository accountRepository)
         {
             
@@ -18,7 +19,6 @@ namespace Service.Implement
         public void CreateAccount(Account account)
         {
             
-
             _accountRepository.AddAccount(account);
         }
         public IEnumerable<Account> GetAllAccounts()
@@ -26,6 +26,27 @@ namespace Service.Implement
             return _accountRepository.GetAllAccounts();
         }
 
+        public async Task RegisterAccount(RegisterAccountDTO registerAccount)
+        {
+            var newAccount = new Account
+            {
+                AccountEmail = registerAccount.AccountEmail,
+                AccountPassword = registerAccount.AccountPassword,
+                AccountName = registerAccount.AccountName,
+                AccountPhone = registerAccount.AccountPhone,
+                RoleId = 2,
+            };              
+             _accountRepository.AddAccount(newAccount);
+        }
+
+        public async Task<Account>? Login(string email)
+        {
+            return await _accountRepository.GetAccountByEmailAsync(email);
+        }
+        public bool IsEmailTaken(string email)
+        {
+            return _accountRepository.GetByEmail(email) != null;
+        }
 
     }
 }

@@ -7,7 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DAL.Models;
 using Service.Implement;
-using jewelryauction.Views;
+
+using DAL.DTO.AccountDTO;
 
 namespace jewelryauction.Controllers
 {
@@ -29,13 +30,13 @@ namespace jewelryauction.Controllers
             return Ok(accounts);
         }
 
-        [HttpPost("Create Account")]
-        public IActionResult CreateAccount(RequestAccountModel requestModel)
+        [HttpPost("CreateAccount")]
+        public IActionResult CreateAccount(AdminCreateAccountDTO requestModel)
         {
 
             var newAccount = new Account
             {
-                AccountId = requestModel.AccountId,
+              
                 AccountName = requestModel.AccountName,
                 AccountEmail = requestModel.AccountEmail,
                 AccountPassword = requestModel.AccountPassword,
@@ -44,8 +45,9 @@ namespace jewelryauction.Controllers
             };
 
             _accountService.CreateAccount(newAccount);
-            return Ok("Account created successfully.");
+            return Ok(newAccount);
         }
+
 
     }
 }
