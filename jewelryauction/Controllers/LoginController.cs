@@ -25,7 +25,8 @@ namespace jewelryauction.Controllers
             _accountRepository = accountRepository;
         }
 
-        [HttpPost("login")]
+        [HttpPost]
+        [Route("login")]
         public async Task<IActionResult> Login(LoginRequest request)
         {
             
@@ -47,20 +48,18 @@ namespace jewelryauction.Controllers
             return Ok(accountInfo);
         }
 
-        [HttpPost("register")]
+        [HttpPost]
+        [Route("register")]
         public  async Task<IActionResult> Register(RegisterAccountDTO registerAccount)
         {
             if (await _accountRepository.CheckExistingGmailAsync(registerAccount.AccountEmail))
             {
                 return BadRequest("Email already exists.");
             }
-
-
             var account = _accountService.RegisterAccount(registerAccount);
             
             if (account == null)
-            {
-                
+            {               
                 return BadRequest("Register fail!");
             }
 

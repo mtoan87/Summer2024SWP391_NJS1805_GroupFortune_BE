@@ -24,30 +24,34 @@ namespace jewelryauction.Controllers
         }
 
         [HttpGet]
+        [Route("GetAllAccount")]
         public IActionResult GetAllAccounts()
         {
             var accounts = _accountService.GetAllAccounts();
             return Ok(accounts);
         }
-
-        [HttpPost("CreateAccount")]
-        public IActionResult CreateAccount(AdminCreateAccountDTO requestModel)
+        
+        [HttpPost]
+        [Route("CreateAccount")]
+        public async  Task<IActionResult> CreateAccount(AdminCreateAccountDTO adminCreateAccount)
         {
-
-            var newAccount = new Account
-            {
-              
-                AccountName = requestModel.AccountName,
-                AccountEmail = requestModel.AccountEmail,
-                AccountPassword = requestModel.AccountPassword,
-                AccountPhone = requestModel.AccountPhone,
-                RoleId = requestModel.RoleId
-            };
-
-            _accountService.CreateAccount(newAccount);
-            return Ok(newAccount);
+            var result = await _accountService.CreateAccount(adminCreateAccount);
+            return Ok(result);
         }
-
+        [HttpPut]
+        [Route("UpdateAccount")]
+        public async Task<IActionResult> UpdateAccount(int id, UpdateAccountDTO updateAccount)
+        {
+            var result = await _accountService.UpdateAccount(id, updateAccount);
+            return Ok(result);
+        }
+        [HttpDelete]
+        [Route("DeleteAccount")]
+        public async Task<IActionResult> DeleteAccount(int id)
+        {
+            var result = await _accountService.DeleteAccount(id);
+            return Ok(result);
+        }
 
     }
 }

@@ -12,30 +12,23 @@ namespace Repository.Implement
 {
     public class AccountRepository : RepositoryGeneric<Account> 
     {
+        
         public AccountRepository(JewelryAuctionContext context) : base(context)
         {
         }
-
-        public async Task<Account> GetClassByGmailAsync(string gmail)
+        public async Task<Account> GetAccountByGmailAsync(string gmail)
         {
             return await _dbSet.SingleOrDefaultAsync(c => c.AccountEmail == gmail);
         }
-        public async Task<Account> GetRoleId(int role)
-        {
-            return await _dbSet.SingleAsync(c => c.RoleId == role);
-        }
-        
-
         public async Task<bool> CheckExistingGmailAsync(string gmail)
         {
             return await _dbSet.AnyAsync(m => m.AccountEmail == gmail);
         }
-
-        public async Task<bool> UpdateClassAsync(Account _class)
+        public async Task<bool> UpdateAccountAsync(Account account)
         {
             try
             {
-                _context.Accounts.Update(_class);
+                _context.Accounts.Update(account);
                 await _context.SaveChangesAsync();
                 return true;
             }
@@ -44,32 +37,22 @@ namespace Repository.Implement
                 return false;
             }
         }
-
-        
-        public void Add(Account account)
-        {
-            throw new NotImplementedException();
-        }
-
         public void AddAccount(Account account)
         {
             _context.Accounts.Add(account);
             _context.SaveChanges();
-        }
-
+        }      
         public IEnumerable<Account> GetAllAccounts()
         {
             return _context.Accounts.ToList();
-        }
-
-        public Account? GetByEmail(string email)
-        {
-            return _context.Accounts.FirstOrDefault(a => a.AccountEmail == email);
-        }
-
+        }        
         public async Task<Account?> GetAccountByEmailAsync(string email)
         {
             return await _context.Accounts.FirstOrDefaultAsync(a => a.AccountEmail == email);
+        }
+        public async Task<Account?> GetAccountById(int id)
+        {
+            return await _context.Accounts.FirstOrDefaultAsync(a => a.AccountId == id);
         }
     }
 }
