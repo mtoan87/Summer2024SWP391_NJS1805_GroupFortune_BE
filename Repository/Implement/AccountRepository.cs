@@ -24,6 +24,10 @@ namespace Repository.Implement
         {
             return await _dbSet.AnyAsync(m => m.AccountEmail == gmail);
         }
+        public IEnumerable<Account> GetAllAccounts()
+        {
+            return _context.Accounts.ToList();
+        }
         public async Task<bool> UpdateAccountAsync(Account account)
         {
             try
@@ -42,10 +46,7 @@ namespace Repository.Implement
             _context.Accounts.Add(account);
             _context.SaveChanges();
         }      
-        public IEnumerable<Account> GetAllAccounts()
-        {
-            return _context.Accounts.ToList();
-        }        
+             
         public async Task<Account?> GetAccountByEmailAsync(string email)
         {
             return await _context.Accounts.FirstOrDefaultAsync(a => a.AccountEmail == email);

@@ -6,6 +6,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DAL.Models;
+using Service.Implement;
+using DAL.DTO.JewelryDTO;
+using Service.Interface;
+using DAL.DTO.AuctionDTO;
 
 namespace jewelryauction.Controllers
 {
@@ -13,125 +17,42 @@ namespace jewelryauction.Controllers
     [ApiController]
     public class AuctionsController : ControllerBase
     {
-        private readonly JewelryAuctionContext _context;
+        private readonly AuctionService _auctionService;
 
-        public AuctionsController(JewelryAuctionContext context)
+        public AuctionsController(AuctionService auctionService)
         {
-            _context = context;
+            _auctionService = auctionService;
         }
 
-        // GET: api/Auctions
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Auction>>> GetAuctions()
+        [Route("GetAllAuctions")]
+        public async Task<ActionResult<Auction>> GetAllAuctions()
         {
-          if (_context.Auctions == null)
-          {
-              return NotFound();
-          }
-            return await _context.Auctions.ToListAsync();
+            var rs = _auctionService.GetAllAuctions();
+            return Ok(rs);
         }
-
-        // GET: api/Auctions/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Auction>> GetAuction(int id)
+        [HttpPut]
+        [Route("UpdateAuction")]
+        public async Task<IActionResult> UpdateAuction(int id, UpdateAuctionDTO updateAuction)
         {
-          if (_context.Auctions == null)
-          {
-              return NotFound();
-          }
-            var auction = await _context.Auctions.FindAsync(id);
-
-            if (auction == null)
-            {
-                return NotFound();
-            }
-
-            return auction;
+            var rs = await _auctionService.UpdateAuction(id, updateAuction);
+            return Ok(rs);
         }
-
-        // PUT: api/Auctions/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutAuction(int id, Auction auction)
-        {
-            if (id != auction.AuctionId)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(auction).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!AuctionExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/Auctions
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Auction>> PostAuction(Auction auction)
+        [Route("CreateAuction")]
+        public async Task<ActionResult<Auction>> CreateAuction(CreateAuctionDTO createAuction)
         {
-          if (_context.Auctions == null)
-          {
-              return Problem("Entity set 'JewelryAuctionContext.Auctions'  is null.");
-          }
-            _context.Auctions.Add(auction);
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (AuctionExists(auction.AuctionId))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return CreatedAtAction("GetAuction", new { id = auction.AuctionId }, auction);
+            var rs = await _auctionService.CreateAuction(createAuction);
+            return Ok(rs);
         }
-
-        // DELETE: api/Auctions/5
-        [HttpDelete("{id}")]
+        [HttpDelete]
+        [Route("DeleteAuction")]
         public async Task<IActionResult> DeleteAuction(int id)
         {
-            if (_context.Auctions == null)
-            {
-                return NotFound();
-            }
-            var auction = await _context.Auctions.FindAsync(id);
-            if (auction == null)
-            {
-                return NotFound();
-            }
-
-            _context.Auctions.Remove(auction);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            var rs = await _auctionService.DeleteAuction(id);
+            return Ok(rs);
         }
 
-        private bool AuctionExists(int id)
-        {
-            return (_context.Auctions?.Any(e => e.AuctionId == id)).GetValueOrDefault();
-        }
+
     }
 }

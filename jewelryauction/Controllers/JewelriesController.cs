@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DAL.Models;
+using Service.Implement;
+using Repository.Implement;
+using DAL.DTO.JewelryDTO;
 
 namespace jewelryauction.Controllers
 {
@@ -13,125 +16,39 @@ namespace jewelryauction.Controllers
     [ApiController]
     public class JewelriesController : ControllerBase
     {
-        private readonly JewelryAuctionContext _context;
+        private readonly JewelryService _jewelryService;
 
-        public JewelriesController(JewelryAuctionContext context)
+        public JewelriesController(JewelryService jewelryService)
         {
-            _context = context;
-        }
-
-        // GET: api/Jewelries
+            _jewelryService = jewelryService;
+        }        
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Jewelry>>> GetJewelries()
+        public async Task<ActionResult<Jewelry>> GetAllJewelries()
         {
-          if (_context.Jewelries == null)
-          {
-              return NotFound();
-          }
-            return await _context.Jewelries.ToListAsync();
+          var jewelry = _jewelryService.GetAllJewelries();
+            return Ok(jewelry);
         }
-
-        // GET: api/Jewelries/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Jewelry>> GetJewelry(int id)
+        [HttpPut]
+        [Route("UpdateJewelry")]
+        public async Task<IActionResult> UpdateJewelry(int id, UpdateJewelryDTO updateJewelry)
         {
-          if (_context.Jewelries == null)
-          {
-              return NotFound();
-          }
-            var jewelry = await _context.Jewelries.FindAsync(id);
-
-            if (jewelry == null)
-            {
-                return NotFound();
-            }
-
-            return jewelry;
-        }
-
-        // PUT: api/Jewelries/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutJewelry(int id, Jewelry jewelry)
-        {
-            if (id != jewelry.JewelryId)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(jewelry).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!JewelryExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/Jewelries
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+            var rs = await _jewelryService.UpdateJewelry(id, updateJewelry);
+            return Ok(rs);
+        }        
         [HttpPost]
-        public async Task<ActionResult<Jewelry>> PostJewelry(Jewelry jewelry)
+        [Route("CreateJewelry")]
+        public async Task<ActionResult<Jewelry>> CreateJewelry(CreateJewelryDTO jewelry)
         {
-          if (_context.Jewelries == null)
-          {
-              return Problem("Entity set 'JewelryAuctionContext.Jewelries'  is null.");
-          }
-            _context.Jewelries.Add(jewelry);
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (JewelryExists(jewelry.JewelryId))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return CreatedAtAction("GetJewelry", new { id = jewelry.JewelryId }, jewelry);
-        }
-
-        // DELETE: api/Jewelries/5
-        [HttpDelete("{id}")]
+            var rs = await _jewelryService.CreateJewelry(jewelry);
+            return Ok(rs );
+        }              
+        [HttpDelete]
+        [Route("DeleteJewelry")]
         public async Task<IActionResult> DeleteJewelry(int id)
         {
-            if (_context.Jewelries == null)
-            {
-                return NotFound();
-            }
-            var jewelry = await _context.Jewelries.FindAsync(id);
-            if (jewelry == null)
-            {
-                return NotFound();
-            }
-
-            _context.Jewelries.Remove(jewelry);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            var rs = await _jewelryService.DeleteJewelry(id);
+            return Ok(rs);
         }
 
-        private bool JewelryExists(int id)
-        {
-            return (_context.Jewelries?.Any(e => e.JewelryId == id)).GetValueOrDefault();
-        }
     }
 }

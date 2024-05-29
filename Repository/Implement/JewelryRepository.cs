@@ -13,5 +13,23 @@ namespace Repository.Implement
         {
 
         }
+
+        public IEnumerable<Jewelry> GetAllJewelries()
+        {
+            return _context.Jewelries.ToList();
+        }
+        public async Task<bool> UpdateJewelryAsync(Jewelry jewelry)
+        {
+            try
+            {
+                _context.Jewelries.Update(jewelry);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

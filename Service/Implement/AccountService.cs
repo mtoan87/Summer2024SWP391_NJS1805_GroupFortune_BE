@@ -17,11 +17,7 @@ namespace Service.Implement
             
             _accountRepository = accountRepository;
         }
-        public void CreateAccount(Account account)
-        {
-            
-            _accountRepository.AddAccount(account);
-        }
+        
         public IEnumerable<Account> GetAllAccounts()
         {
             return _accountRepository.GetAllAccounts();
@@ -82,10 +78,7 @@ namespace Service.Implement
             await _accountRepository.RemoveAsync(account);
             return account;
         }
-        public async Task<Account>? Login(string email)
-        {
-            return await _accountRepository.GetAccountByEmailAsync(email);
-        }
+        
         
     }
 }

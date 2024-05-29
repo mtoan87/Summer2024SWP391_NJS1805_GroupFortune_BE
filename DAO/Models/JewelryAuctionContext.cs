@@ -74,11 +74,15 @@ namespace DAL.Models
 
                 entity.Property(e => e.AccountId).HasColumnName("account_id");
 
-                entity.Property(e => e.Endtime).HasColumnName("endtime");
+                entity.Property(e => e.Endtime)
+                    .HasColumnType("datetime")
+                    .HasColumnName("endtime");
 
                 entity.Property(e => e.JewelryId).HasColumnName("jewelry_id");
 
-                entity.Property(e => e.Starttime).HasColumnName("starttime");
+                entity.Property(e => e.Starttime)
+                    .HasColumnType("datetime")
+                    .HasColumnName("starttime");
 
                 entity.Property(e => e.Status)
                     .HasMaxLength(20)
