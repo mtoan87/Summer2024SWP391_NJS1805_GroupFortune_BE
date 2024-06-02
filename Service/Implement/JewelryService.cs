@@ -38,6 +38,7 @@ namespace Service.Implement
                 Collection = createjew.Collection,
             };
             _jewelryrepository.AddAsync(newjewelry);
+            _jewelryrepository.SaveChangesAsync();
             return newjewelry;
         }
         public async Task<Jewelry> UpdateJewelry(int id, UpdateJewelryDTO updateJewelry)

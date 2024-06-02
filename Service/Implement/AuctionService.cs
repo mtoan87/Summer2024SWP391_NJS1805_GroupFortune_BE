@@ -36,6 +36,7 @@ namespace Service.Implement
                 Status = createAuction.Status,
             };
             _auctionRepository.AddAsync(newAuction);
+            _auctionRepository.SaveChangesAsync();
             return newAuction;
         }
         public async Task<Auction> UpdateAuction(int id, UpdateAuctionDTO updateAuction)

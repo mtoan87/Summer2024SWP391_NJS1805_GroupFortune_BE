@@ -36,6 +36,7 @@ namespace Service.Implement
 
             };
             _repository.AddAsync(newAuctionRs);
+            _repository.SaveChangesAsync();
             return newAuctionRs;
         }
         public async Task<AuctionResult> UpdateAuctionRs(int id, UpdateAuctionRsDTO updateAuctionRs)
