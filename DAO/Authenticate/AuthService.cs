@@ -1,4 +1,5 @@
 ﻿using DAL.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -14,10 +15,12 @@ namespace DAL.Authenticate
     public class AuthService
     {
         private readonly IConfiguration _configuration;
+        private readonly JewelryAuctionContext _context;
 
-        public AuthService(IConfiguration configuration)
+        public AuthService(IConfiguration configuration, JewelryAuctionContext context)
         {
             _configuration = configuration;
+            _context = context;
         }
 
         public string GenerateJwtToken(Account account)
@@ -26,11 +29,10 @@ namespace DAL.Authenticate
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
             var claims = new[]
             {
-            new Claim(JwtRegisteredClaimNames.Sub, account.AccountEmail),
-            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-            new Claim(JwtRegisteredClaimNames.NameId, account.AccountId.ToString()),
-
-        };
+        new Claim(JwtRegisteredClaimNames.Sub, account.AccountEmail),
+        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+        new Claim(JwtRegisteredClaimNames.NameId, account.AccountId.ToString()),
+    };
 
             var token = new JwtSecurityToken(
                 issuer: _configuration["Jwt:Issuer"],
@@ -39,6 +41,12 @@ namespace DAL.Authenticate
                 signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+        public async Task<Account> ValidateUserCredentials(string email, string password)
+        {
+            return await _context.Accounts
+                .FirstOrDefaultAsync(a => a.AccountEmail == email && a.AccountPassword == password);
         }
     }
 }

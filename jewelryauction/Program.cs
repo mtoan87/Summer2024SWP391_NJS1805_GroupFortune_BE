@@ -8,11 +8,12 @@ using Service.Implement;
 using Service.Interface;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using DAL.Authenticate;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
-builder.Services.AddDbContext<DAL.Models.JewelryAuctionContext>(options =>
+builder.Services.AddDbContext<JewelryAuctionContext>(options =>
 {
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnectionString");
     options.UseSqlServer(connectionString);
@@ -51,6 +52,7 @@ builder.Services.AddScoped<AuctionRepository>();
 builder.Services.AddScoped<AuctionService>();
 builder.Services.AddScoped<AuctionResultRepository>();
 builder.Services.AddScoped<AuctionResultService>();
+builder.Services.AddScoped<AuthService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();

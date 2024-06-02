@@ -11,6 +11,9 @@ D:\SWP391\BE\jewelryauction\jewelryauction\bin\Debug\net6.0\BCrypt.Net-Next.dll
 D:\SWP391\BE\jewelryauction\jewelryauction\bin\Debug\net6.0\Humanizer.dll
 D:\SWP391\BE\jewelryauction\jewelryauction\bin\Debug\net6.0\MessagePack.dll
 D:\SWP391\BE\jewelryauction\jewelryauction\bin\Debug\net6.0\MessagePack.Annotations.dll
+D:\SWP391\BE\jewelryauction\jewelryauction\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\SWP391\BE\jewelryauction\jewelryauction\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
+D:\SWP391\BE\jewelryauction\jewelryauction\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 D:\SWP391\BE\jewelryauction\jewelryauction\bin\Debug\net6.0\Microsoft.AspNetCore.Razor.Language.dll
 D:\SWP391\BE\jewelryauction\jewelryauction\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
 D:\SWP391\BE\jewelryauction\jewelryauction\bin\Debug\net6.0\Microsoft.Build.dll
@@ -58,6 +61,7 @@ D:\SWP391\BE\jewelryauction\jewelryauction\bin\Debug\net6.0\Microsoft.VisualStud
 D:\SWP391\BE\jewelryauction\jewelryauction\bin\Debug\net6.0\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
 D:\SWP391\BE\jewelryauction\jewelryauction\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
 D:\SWP391\BE\jewelryauction\jewelryauction\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\SWP391\BE\jewelryauction\jewelryauction\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
 D:\SWP391\BE\jewelryauction\jewelryauction\bin\Debug\net6.0\NuGet.Common.dll
 D:\SWP391\BE\jewelryauction\jewelryauction\bin\Debug\net6.0\NuGet.Configuration.dll
 D:\SWP391\BE\jewelryauction\jewelryauction\bin\Debug\net6.0\NuGet.DependencyResolver.Core.dll
@@ -299,7 +303,3 @@ D:\SWP391\BE\jewelryauction\jewelryauction\obj\Debug\net6.0\refint\jewelryauctio
 D:\SWP391\BE\jewelryauction\jewelryauction\obj\Debug\net6.0\jewelryauction.pdb
 D:\SWP391\BE\jewelryauction\jewelryauction\obj\Debug\net6.0\jewelryauction.genruntimeconfig.cache
 D:\SWP391\BE\jewelryauction\jewelryauction\obj\Debug\net6.0\ref\jewelryauction.dll
-D:\SWP391\BE\jewelryauction\jewelryauction\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
-D:\SWP391\BE\jewelryauction\jewelryauction\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
-D:\SWP391\BE\jewelryauction\jewelryauction\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
-D:\SWP391\BE\jewelryauction\jewelryauction\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
