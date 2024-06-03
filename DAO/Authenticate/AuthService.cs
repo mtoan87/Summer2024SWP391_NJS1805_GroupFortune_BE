@@ -32,6 +32,7 @@ namespace DAL.Authenticate
         new Claim(JwtRegisteredClaimNames.Sub, account.AccountEmail),
         new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
         new Claim(JwtRegisteredClaimNames.NameId, account.AccountId.ToString()),
+        new Claim(JwtRegisteredClaimNames.Sub, account.RoleId.ToString()),
     };
 
             var token = new JwtSecurityToken(
