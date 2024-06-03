@@ -51,6 +51,7 @@ namespace jewelryauction.Controllers
             var accountInfo = new
             {
 
+                AccountId = account.AccountId,
                 Email = account.AccountEmail,
                 Phone = account.AccountPhone,
                 Name = account.AccountName,
