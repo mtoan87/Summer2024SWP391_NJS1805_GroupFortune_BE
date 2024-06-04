@@ -41,7 +41,7 @@ namespace Service.Implement
                 JewelryId = createAuction.JewelryId,
                 Starttime = createAuction.Starttime,
                 Endtime = createAuction.Endtime,
-                Status = createAuction.Status,
+                Status = "UnActive"
             };
             _auctionRepository.AddAsync(newAuction);
             _auctionRepository.SaveChangesAsync();

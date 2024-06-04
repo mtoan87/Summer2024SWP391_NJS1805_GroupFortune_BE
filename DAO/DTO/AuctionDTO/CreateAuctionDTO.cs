@@ -15,7 +15,7 @@ namespace DAL.DTO.AuctionDTO
         public int? JewelryId { get; set; }
         public DateTime Starttime { get; set; }
         public DateTime Endtime { get; set; }
-        public string Status { get; set; } = null!;
+       
 
         
     }
