@@ -16,10 +16,7 @@ namespace Repository.Implement
         public AccountRepository(JewelryAuctionContext context) : base(context)
         {
         }
-        public async Task<Account> GetAccountByGmailAsync(string gmail)
-        {
-            return await _dbSet.SingleOrDefaultAsync(c => c.AccountEmail == gmail);
-        }
+        
         public async Task<bool> CheckExistingGmailAsync(string gmail)
         {
             return await _dbSet.AnyAsync(m => m.AccountEmail == gmail);

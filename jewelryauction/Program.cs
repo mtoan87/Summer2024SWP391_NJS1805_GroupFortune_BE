@@ -53,6 +53,8 @@ builder.Services.AddScoped<AuctionService>();
 builder.Services.AddScoped<AuctionResultRepository>();
 builder.Services.AddScoped<AuctionResultService>();
 builder.Services.AddScoped<AuthService>();
+builder.Services.AddScoped<RequestAuctionService>();
+builder.Services.AddScoped<RequestAuctionRepository>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();

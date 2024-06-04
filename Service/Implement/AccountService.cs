@@ -9,7 +9,7 @@ namespace Service.Implement
     public class AccountService 
     {
        
-        private  AccountRepository _accountRepository;
+        private  readonly AccountRepository _accountRepository;
         
         
         public AccountService( AccountRepository accountRepository)
