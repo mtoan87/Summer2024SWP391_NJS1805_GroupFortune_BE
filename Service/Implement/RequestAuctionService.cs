@@ -15,7 +15,7 @@ namespace Service.Implement
 {
     public class RequestAuctionService
     {
-        private readonly JewelryAuctionContext _dbContext;
+       
         private readonly RequestAuctionRepository _repo;
         private readonly JewelryRepository _jewelryRepository;
         private readonly AuctionRepository _auctionRepository;
@@ -29,11 +29,9 @@ namespace Service.Implement
         }
         public async Task<Auction> CreateAuctionAsync(RequestAuctionDTO requestAuction)
         {
-            using (var transaction = await _dbContext.Database.BeginTransactionAsync())
-            {
-                try
-                {
-                    // Tạo Jewelry mới
+           
+                
+                    
                     var newJewelry = new Jewelry
                     {
                         AccountId = requestAuction.AccountId,
@@ -61,16 +59,13 @@ namespace Service.Implement
                     await _auctionRepository.AddAsync(newAuction);
                     await _auctionRepository.SaveChangesAsync();
 
-                    await transaction.CommitAsync();
+                    
 
                     return newAuction;
                 }
-                catch (Exception ex)
-                {
-                    await transaction.RollbackAsync();
-                    throw ex;
-                }
+                
             }
         }
-    }
-}
+
+    
+

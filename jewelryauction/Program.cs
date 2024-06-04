@@ -53,8 +53,12 @@ builder.Services.AddScoped<AuctionService>();
 builder.Services.AddScoped<AuctionResultRepository>();
 builder.Services.AddScoped<AuctionResultService>();
 builder.Services.AddScoped<AuthService>();
-builder.Services.AddScoped<RequestAuctionService>();
 builder.Services.AddScoped<RequestAuctionRepository>();
+builder.Services.AddScoped<RequestAuctionService>();
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+});
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();

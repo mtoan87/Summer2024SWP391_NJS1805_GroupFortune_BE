@@ -1,18 +1,19 @@
 ﻿using DAL.DTO.AuctionDTO;
-using DAL.DTO.JewelryDTO;
 using DAL.Models;
 using Microsoft.AspNetCore.Mvc;
 using Service.Implement;
 
 namespace jewelryauction.Controllers
 {
-    
-    public class RequestAuctionController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class RequestAuctionController : ControllerBase
     {
         private readonly RequestAuctionService _requestAuctionService;
-        public IActionResult Index()
+
+        public RequestAuctionController(RequestAuctionService requestAuctionService)
         {
-            return View();
+            _requestAuctionService = requestAuctionService ?? throw new ArgumentNullException(nameof(requestAuctionService));
         }
 
         [HttpPost]
