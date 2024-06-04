@@ -7,7 +7,6 @@ namespace DAL.Models
     {
         public Account()
         {
-            AccountWallets = new HashSet<AccountWallet>();
             AuctionResults = new HashSet<AuctionResult>();
             Auctions = new HashSet<Auction>();
             Bids = new HashSet<Bid>();
@@ -24,7 +23,6 @@ namespace DAL.Models
         public int? RoleId { get; set; }
 
         public virtual Role? Role { get; set; }
-        public virtual ICollection<AccountWallet> AccountWallets { get; set; }
         public virtual ICollection<AuctionResult> AuctionResults { get; set; }
         public virtual ICollection<Auction> Auctions { get; set; }
         public virtual ICollection<Bid> Bids { get; set; }

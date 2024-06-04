@@ -23,6 +23,10 @@ namespace Service.Implement
         {
             return _auctionRepository.GetAllAuctions();
         }
+        public IEnumerable<Auction> GetAllActiveAuctions()
+        {
+            return _auctionRepository.GetActiveAuctions();
+        }
         public async Task<Auction> CreateAuction(CreateAuctionDTO createAuction)
         {
 

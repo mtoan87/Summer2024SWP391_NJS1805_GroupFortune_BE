@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DAL.DTO.JewelryDTO;
+using DAL.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,5 +16,7 @@ namespace DAL.DTO.AuctionDTO
         public DateTime Starttime { get; set; }
         public DateTime Endtime { get; set; }
         public string Status { get; set; } = null!;
+
+        
     }
 }

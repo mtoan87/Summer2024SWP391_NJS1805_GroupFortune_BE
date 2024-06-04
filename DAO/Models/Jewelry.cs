@@ -13,11 +13,9 @@ namespace DAL.Models
 
         public int JewelryId { get; set; }
         public int? AccountId { get; set; }
-        public string? JewelryImg { get; set; }
         public string Name { get; set; } = null!;
         public string Materials { get; set; } = null!;
         public string Description { get; set; } = null!;
-        public int Price { get; set; }
         public string Weight { get; set; } = null!;
         public string? Goldage { get; set; }
         public string? Collection { get; set; }

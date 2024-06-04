@@ -23,12 +23,19 @@ namespace jewelryauction.Controllers
         {
             _auctionService = auctionService;
         }
-
+        
         [HttpGet]
         [Route("GetAllAuctions")]
         public async Task<ActionResult<Auction>> GetAllAuctions()
         {
             var rs = _auctionService.GetAllAuctions();
+            return Ok(rs);
+        }
+        [HttpGet]
+        [Route("GetAllActiveAuctions")]
+        public async Task<ActionResult<Auction>> GetAllActiveAuctions()
+        {
+            var rs = _auctionService.GetAllActiveAuctions();
             return Ok(rs);
         }
         [HttpPut]

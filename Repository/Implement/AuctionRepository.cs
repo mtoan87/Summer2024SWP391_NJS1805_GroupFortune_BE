@@ -17,6 +17,11 @@ namespace Repository.Implement
         {
             return _context.Auctions.ToList();
         }
+        public IEnumerable<Auction> GetActiveAuctions()
+        {
+            return _context.Auctions.Where(a => a.Status == "Active").ToList();
+        }
+        
         public async Task<bool> UpdateAuctionAsync(Auction auction)
         {
             try
