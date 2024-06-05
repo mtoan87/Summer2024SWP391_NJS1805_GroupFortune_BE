@@ -68,6 +68,11 @@ namespace Service.Implement
             await _jewelryrepository.RemoveAsync(account);
             return account;
         }
+        public async Task<IEnumerable<Jewelry>> GetAuctionAndJewelryByAccountIdAsync(int accountId)
+        {
+            return await _jewelryrepository.GetAuctionAndJewelryByAccountId(accountId);
+        }
     }
+
     }
 

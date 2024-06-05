@@ -28,6 +28,12 @@ namespace jewelryauction.Controllers
           var jewelry = _jewelryService.GetAllJewelries();
             return Ok(jewelry);
         }
+        [HttpGet("GetAuctionAndJewelryByAccountId/{accountId}")]
+        public async Task<IActionResult> GetAuctionAndJewelryByAccountId(int accountId)
+        {
+            var result = await _jewelryService.GetAuctionAndJewelryByAccountIdAsync(accountId);
+            return Ok(result);
+        }
         [HttpPut]
         [Route("UpdateJewelry")]
         public async Task<IActionResult> UpdateJewelry(int id, UpdateJewelryDTO updateJewelry)

@@ -1,4 +1,5 @@
 ﻿using DAL.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,13 @@ namespace Repository.Implement
             {
                 return false;
             }
+        }
+        public async Task<IEnumerable<Jewelry>> GetAuctionAndJewelryByAccountId(int accountId)
+        {
+            return await _context.Jewelries
+                .Include(a => a.Auctions)
+                .Where(a => a.AccountId == accountId)
+                .ToListAsync();
         }
     }
 }
