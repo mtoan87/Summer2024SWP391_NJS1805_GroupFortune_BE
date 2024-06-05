@@ -48,9 +48,10 @@ namespace Repository.Implement
         {
             return await _dbSet.ToListAsync();
         }
+        
         public async Task<T> GetByIdAsync(int id)
         {
-            return await _dbSet.FindAsync(id);
+            return await _context.Set<T>().FindAsync(id);
         }
         public void Update(T entity)
         {

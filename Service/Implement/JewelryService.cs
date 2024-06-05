@@ -23,6 +23,10 @@ namespace Service.Implement
         {
             return _jewelryrepository.GetAllJewelries();
         }
+        public async Task<Jewelry> GetJewelryById(int id)
+        {
+            return await _jewelryrepository.GetByIdAsync(id);
+        }
         public async Task<Jewelry> CreateJewelry(CreateJewelryDTO createjew)
         {
 

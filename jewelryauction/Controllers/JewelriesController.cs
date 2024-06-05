@@ -9,6 +9,7 @@ using DAL.Models;
 using Service.Implement;
 using Repository.Implement;
 using DAL.DTO.JewelryDTO;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace jewelryauction.Controllers
 {
@@ -28,7 +29,18 @@ namespace jewelryauction.Controllers
           var jewelry = _jewelryService.GetAllJewelries();
             return Ok(jewelry);
         }
+        [HttpGet("GetById/{Id}")]
+        public async Task<IActionResult> GetJewelryById(int Id)
+        {
+            var jewelry = await _jewelryService.GetJewelryById(Id);
+            if (jewelry == null)
+            {
+                return BadRequest("Not found!");
+            }
+            return Ok(jewelry);
+        }
         [HttpGet("GetAuctionAndJewelryByAccountId/{accountId}")]
+
         public async Task<IActionResult> GetAuctionAndJewelryByAccountId(int accountId)
         {
             var result = await _jewelryService.GetAuctionAndJewelryByAccountIdAsync(accountId);
