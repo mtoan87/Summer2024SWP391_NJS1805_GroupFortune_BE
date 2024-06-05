@@ -72,5 +72,10 @@ namespace Service.Implement
             await _auctionRepository.RemoveAsync(auction);
             return auction;
         }
+
+        public async Task<IEnumerable<Auction>> GetAuctionAndJewelryByAccountIdAsync(int accountId)
+        {
+            return await _auctionRepository.GetAuctionAndJewelryByAccountId(accountId);
+        }
     }
 }
