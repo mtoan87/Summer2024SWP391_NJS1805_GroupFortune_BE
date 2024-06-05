@@ -22,6 +22,10 @@ namespace Service.Implement
         {
             return _accountRepository.GetAllAccounts();
         }
+        public async Task<Account> GetAccountById(int id)
+        {
+            return await _accountRepository.GetByIdAsync(id);
+        }
         public async Task<Account> CreateAccount(AdminCreateAccountDTO adminCreateAccountDTO)
         {
             var account = await _accountRepository.CheckExistingGmailAsync(adminCreateAccountDTO.AccountEmail);

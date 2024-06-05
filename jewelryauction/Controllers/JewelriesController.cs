@@ -33,10 +33,6 @@ namespace jewelryauction.Controllers
         public async Task<IActionResult> GetJewelryById(int Id)
         {
             var jewelry = await _jewelryService.GetJewelryById(Id);
-            if (jewelry == null)
-            {
-                return BadRequest("Not found!");
-            }
             return Ok(jewelry);
         }
         [HttpGet("GetAuctionAndJewelryByAccountId/{accountId}")]

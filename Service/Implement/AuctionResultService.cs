@@ -2,6 +2,7 @@
 using DAL.DTO.AuctionResultDTO;
 using DAL.Models;
 using Repository.Implement;
+using Repository.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,10 @@ namespace Service.Implement
         public IEnumerable<AuctionResult> GetAllAuctionResults()
         {
             return _repository.GetAllAuctionResults();
+        }
+        public async Task<AuctionResult> GetAuctionResultById(int id)
+        {
+            return await _repository.GetByIdAsync(id);
         }
         public async Task<AuctionResult> CreateAuctionRs(CreateAuctionRsDTO createAuctionRs)
         {

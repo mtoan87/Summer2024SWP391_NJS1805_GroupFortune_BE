@@ -31,6 +31,10 @@ namespace Service.Implement
         {
             return _auctionRepository.GetUnActiveAuctions();
         }
+        public async Task<Auction> GetAuctionById(int id)
+        {
+            return await _auctionRepository.GetByIdAsync(id);
+        }
         public async Task<Auction> CreateAuction(CreateAuctionDTO createAuction)
         {
 

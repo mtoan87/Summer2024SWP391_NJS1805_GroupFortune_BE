@@ -9,6 +9,7 @@ using DAL.Models;
 using Service.Implement;
 
 using DAL.DTO.AccountDTO;
+using Service.Interface;
 
 namespace jewelryauction.Controllers
 {
@@ -30,7 +31,13 @@ namespace jewelryauction.Controllers
             var accounts = _accountService.GetAllAccounts();
             return Ok(accounts);
         }
-        
+        [HttpGet("GetById/{Id}")]
+        public async Task<IActionResult> GetAccountById(int Id)
+        {
+            var jewelry = await _accountService.GetAccountById(Id);
+            return Ok(jewelry);
+        }
+
         [HttpPost]
         [Route("CreateAccount")]
         public async  Task<IActionResult> CreateAccount(AdminCreateAccountDTO adminCreateAccount)
