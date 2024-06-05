@@ -4,6 +4,7 @@ using DAL.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Service.Implement;
+using Service.Interface;
 
 namespace jewelryauction.Controllers
 {
@@ -22,6 +23,12 @@ namespace jewelryauction.Controllers
         {
             var rs = _service.GetAllAuctionResults();
             return Ok(rs);
+        }
+        [HttpGet("GetById/{Id}")]
+        public async Task<IActionResult> GetAuctionResultById(int Id)
+        {
+            var jewelry = await _service.GetAuctionResultById(Id);
+            return Ok(jewelry);
         }
         [HttpPut]
         [Route("UpdateAuctionResult")]
