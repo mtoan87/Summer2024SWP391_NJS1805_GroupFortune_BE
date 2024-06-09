@@ -1,4 +1,6 @@
-﻿using DAL.Models;
+﻿using DAL.DTO.JewelryDTO;
+using DAL.DTO.JoinAuctionDTO;
+using DAL.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Service.Implement;
@@ -21,6 +23,15 @@ namespace jewelryauction.Controllers
         {
             var jewelry = _joinAuctionService.GetAllJoinAuctions();
             return Ok(jewelry);
+        }
+
+        [HttpPost]
+        [Route("CreateJoinAuction")]
+        public async Task<ActionResult<JoinAuction>> CreateJoinAuction(CreateJoinAuctionDTO joinauction)
+        {
+
+            var rs = await _joinAuctionService.CreateJoinAuction(joinauction);
+            return Ok(rs);
         }
     }
 }

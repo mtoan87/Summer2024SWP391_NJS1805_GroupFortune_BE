@@ -1,5 +1,9 @@
-﻿using DAL.Models;
+﻿using DAL.DTO.AuctionDTO;
+using DAL.DTO.JewelryDTO;
+using DAL.DTO.JoinAuctionDTO;
+using DAL.Models;
 using Repository.Implement;
+using Repository.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +22,22 @@ namespace Service.Implement
         public IEnumerable<JoinAuction> GetAllJoinAuctions()
         {
             return _joinAuctionRepository.GetAllJoinAuction();
+        }
+
+        public async Task<JoinAuction> CreateJoinAuction(CreateJoinAuctionDTO createJoinAuction)
+        {
+
+
+            var newJoinAuction = new JoinAuction
+            {
+                AccountId = createJoinAuction.AccountId,
+                BidId = createJoinAuction.BidId,
+                AuctionId = createJoinAuction.AuctionId,
+                Joindate = DateTime.Now,
+            };
+            _joinAuctionRepository.AddAsync(newJoinAuction);
+            _joinAuctionRepository.SaveChangesAsync();
+            return newJoinAuction;
         }
     }
 }
