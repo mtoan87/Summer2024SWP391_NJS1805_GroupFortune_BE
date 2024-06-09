@@ -1,4 +1,5 @@
-﻿using Repository.Implement;
+﻿using DAL.Models;
+using Repository.Implement;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,10 @@ namespace Service.Implement
         public BidService(BidRepository bidRepository)
         {
             _bidRepository = bidRepository;
+        }
+        public async Task<IEnumerable<Bid>> GetBidByAccountIdAsync(int accountId)
+        {
+            return await _bidRepository.GetBidByAccountId(accountId);
         }
     }
 }

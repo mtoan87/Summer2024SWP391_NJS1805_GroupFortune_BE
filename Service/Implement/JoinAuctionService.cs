@@ -26,8 +26,6 @@ namespace Service.Implement
 
         public async Task<JoinAuction> CreateJoinAuction(CreateJoinAuctionDTO createJoinAuction)
         {
-
-
             var newJoinAuction = new JoinAuction
             {
                 AccountId = createJoinAuction.AccountId,

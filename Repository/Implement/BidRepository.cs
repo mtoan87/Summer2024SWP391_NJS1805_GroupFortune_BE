@@ -1,4 +1,5 @@
 ﻿using DAL.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,15 @@ namespace Repository.Implement
     {
         public BidRepository(JewelryAuctionContext context) : base(context)
         {
-            
+
+
+
+        }
+        public async Task<IEnumerable<Bid>> GetBidByAccountId(int accountId)
+        {
+            return await _context.Bids
+                .Where(a => a.AccountId == accountId)
+                .ToListAsync();
         }
     }
 }

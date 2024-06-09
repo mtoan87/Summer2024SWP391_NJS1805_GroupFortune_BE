@@ -13,5 +13,11 @@ namespace jewelryauction.Controllers
         {
             _bidService = bidService;
         }
+        [HttpGet("GetBidByAccountId/{accountId}")]
+        public async Task<IActionResult> GetBidByAccountId(int accountId)
+        {
+            var result = await _bidService.GetBidByAccountIdAsync(accountId);
+            return Ok(result);
+        }
     }
 }
