@@ -34,12 +34,14 @@ namespace Service.Implement
             var newjewelry = new Jewelry
             {
                 AccountId = createjew.AccountId,
+                JewelryImg = createjew.JewelryImg,
                 Name = createjew.Name,
                 Materials = createjew.Materials,
                 Description = createjew.Description,
                 Weight = createjew.Weight,
                 Goldage = createjew.Goldage,
                 Collection = createjew.Collection,
+                Price = createjew.Price,
             };
             _jewelryrepository.AddAsync(newjewelry);
             _jewelryrepository.SaveChangesAsync();
@@ -53,12 +55,14 @@ namespace Service.Implement
                 throw new Exception($"Jewelry with ID {id} not found.");
             }
             updjewelry.AccountId = updateJewelry.AccountId;
+            updateJewelry.JewelryImg = updateJewelry.JewelryImg;
             updjewelry.Name = updateJewelry.Name;
             updjewelry.Materials = updateJewelry.Materials;
             updjewelry.Description = updateJewelry.Description;
             updjewelry.Weight = updateJewelry.Weight;
             updjewelry.Goldage = updateJewelry.Goldage;
             updjewelry.Collection = updateJewelry.Collection;
+            updjewelry.Price = updateJewelry.Price;
             await _jewelryrepository.UpdateJewelryAsync(updjewelry);
             return updjewelry;
         }

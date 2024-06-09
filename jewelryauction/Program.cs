@@ -55,6 +55,8 @@ builder.Services.AddScoped<AuctionResultService>();
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<RequestAuctionRepository>();
 builder.Services.AddScoped<RequestAuctionService>();
+builder.Services.AddScoped<JoinAuctionRepository>();
+builder.Services.AddScoped<JoinAuctionService>();
 builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;

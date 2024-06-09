@@ -15,6 +15,7 @@ namespace Repository.Implement
         
         public AccountRepository(JewelryAuctionContext context) : base(context)
         {
+
         }
         
         public async Task<bool> CheckExistingGmailAsync(string gmail)

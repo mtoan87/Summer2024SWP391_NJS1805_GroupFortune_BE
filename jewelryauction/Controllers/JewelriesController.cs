@@ -23,39 +23,50 @@ namespace jewelryauction.Controllers
         {
             _jewelryService = jewelryService;
         }        
+
         [HttpGet]
         public async Task<ActionResult<Jewelry>> GetAllJewelries()
         {
           var jewelry = _jewelryService.GetAllJewelries();
             return Ok(jewelry);
         }
+
         [HttpGet("GetById/{Id}")]
         public async Task<IActionResult> GetJewelryById(int Id)
         {
             var jewelry = await _jewelryService.GetJewelryById(Id);
             return Ok(jewelry);
         }
-        [HttpGet("GetAuctionAndJewelryByAccountId/{accountId}")]
 
+        [HttpGet("GetAuctionAndJewelryByAccountId/{accountId}")]
         public async Task<IActionResult> GetAuctionAndJewelryByAccountId(int accountId)
         {
             var result = await _jewelryService.GetAuctionAndJewelryByAccountIdAsync(accountId);
             return Ok(result);
         }
+
         [HttpPut]
         [Route("UpdateJewelry")]
         public async Task<IActionResult> UpdateJewelry(int id, UpdateJewelryDTO updateJewelry)
         {
             var rs = await _jewelryService.UpdateJewelry(id, updateJewelry);
             return Ok(rs);
-        }        
+        }
+
         [HttpPost]
         [Route("CreateJewelry")]
         public async Task<ActionResult<Jewelry>> CreateJewelry(CreateJewelryDTO jewelry)
         {
+
             var rs = await _jewelryService.CreateJewelry(jewelry);
-            return Ok(rs );
-        }              
+            return Ok(rs);
+        }
+        [HttpPost("CreateJewelryWithImg")]
+        public async Task<IActionResult> CreateJewelryWithImg(CreateJewelryDTO jewelryDTO)
+        {
+            var createdJewelry = await _jewelryService.CreateJewelry(jewelryDTO);
+            return Ok(createdJewelry);
+        }
         [HttpDelete]
         [Route("DeleteJewelry")]
         public async Task<IActionResult> DeleteJewelry(int id)
