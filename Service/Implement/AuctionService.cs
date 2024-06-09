@@ -81,5 +81,9 @@ namespace Service.Implement
         {
             return await _auctionRepository.GetAuctionAndJewelryByAccountId(accountId);
         }
+        public int GetAccountCountInAuction(int auctionId)
+        {
+            return _auctionRepository.GetAccountCountInAuction(auctionId);
+        }
     }
 }

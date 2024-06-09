@@ -78,7 +78,20 @@ namespace jewelryauction.Controllers
             var rs = await _auctionService.DeleteAuction(id);
             return Ok(rs);
         }
-
+        [HttpGet("{auctionId}/account-count")]
+        public IActionResult GetAccountCountInAuction(int auctionId)
+        {
+            try
+            {
+                var count = _auctionService.GetAccountCountInAuction(auctionId);
+                return Ok(new { AuctionId = auctionId, AccountCount = count });
+            }
+            catch (Exception ex)
+            {
+                
+                return StatusCode(500, "Internal server error");
+            }
+        }
 
     }
 }

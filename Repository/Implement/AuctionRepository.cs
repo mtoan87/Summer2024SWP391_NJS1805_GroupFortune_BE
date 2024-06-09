@@ -48,5 +48,13 @@ namespace Repository.Implement
                 .Where(a => a.AccountId == accountId)
                 .ToListAsync();
         }
+        public int GetAccountCountInAuction(int auctionId)
+        {
+            return _context.JoinAuctions
+                           .Where(ja => ja.AuctionId == auctionId)
+                           .Select(ja => ja.AccountId)
+                           .Distinct()
+                           .Count();
+        }
     }
 }
