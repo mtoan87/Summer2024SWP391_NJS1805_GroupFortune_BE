@@ -46,7 +46,7 @@ namespace Service.Implement
                     await _jewelryRepository.AddAsync(newJewelry);
                     await _jewelryRepository.SaveChangesAsync();
 
-                    // Tạo Auction mới
+                   
                     var newAuction = new Auction
                     {
                         AccountId = requestAuction.AccountId,
