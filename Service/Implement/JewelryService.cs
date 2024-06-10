@@ -27,7 +27,7 @@ namespace Service.Implement
         {
             return await _jewelryrepository.GetByIdAsync(id);
         }
-        public async Task<Jewelry> CreateJewelry(CreateJewelryDTO createjew)
+        public async Task<Jewelry> CreateJewelry(CreateJewelryDTO createjew, string imagePath)
         {
 
 
@@ -43,8 +43,25 @@ namespace Service.Implement
                 Collection = createjew.Collection,
                 Price = createjew.Price,
             };
-            _jewelryrepository.AddAsync(newjewelry);
-            _jewelryrepository.SaveChangesAsync();
+            if (!string.IsNullOrEmpty(imagePath))
+            {
+                var directory = Path.Combine("wwwroot/images");
+                if (!Directory.Exists(directory))
+                {
+                    Directory.CreateDirectory(directory);
+                }
+
+                var filePath = Path.Combine(directory, Path.GetFileName(imagePath));
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await File.WriteAllBytesAsync(filePath, File.ReadAllBytes(imagePath));
+                }
+                createjew.JewelryImg = $"/images/{Path.GetFileName(imagePath)}";
+            }
+
+             await _jewelryrepository.AddAsync(newjewelry);
+            
+             await _jewelryrepository.SaveChangesAsync();
             return newjewelry;
         }
         public async Task<Jewelry> UpdateJewelry(int id, UpdateJewelryDTO updateJewelry)
