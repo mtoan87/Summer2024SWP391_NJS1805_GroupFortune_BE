@@ -33,8 +33,8 @@ namespace Service.Implement
                 AuctionId = createJoinAuction.AuctionId,
                 Joindate = DateTime.Now,
             };
-            _joinAuctionRepository.AddAsync(newJoinAuction);
-            _joinAuctionRepository.SaveChangesAsync();
+            await _joinAuctionRepository.AddAsync(newJoinAuction);
+            await _joinAuctionRepository.SaveChangesAsync();
             return newJoinAuction;
         }
     }
