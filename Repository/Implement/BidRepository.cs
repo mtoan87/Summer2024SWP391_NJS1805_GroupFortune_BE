@@ -16,6 +16,10 @@ namespace Repository.Implement
 
 
         }
+        public IEnumerable<Bid> GetAllBids()
+        {
+            return _context.Bids.ToList();
+        }
         public async Task<IEnumerable<Bid>> GetBidByAccountId(int accountId)
         {
             return await _context.Bids

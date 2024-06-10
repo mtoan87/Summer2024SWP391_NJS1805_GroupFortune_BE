@@ -19,6 +19,7 @@ namespace jewelryauction.Controllers
         }
 
         [HttpGet]
+        
         public async Task<ActionResult<JoinAuction>> GetAllJoinAuctions()
         {
             var jewelry = _joinAuctionService.GetAllJoinAuctions();

@@ -19,5 +19,10 @@ namespace Service.Implement
         {
             return await _bidRepository.GetBidByAccountId(accountId);
         }
+
+        public IEnumerable<Bid> GetAllBids()
+        {
+            return _bidRepository.GetAllBids();
+        }
     }
 }

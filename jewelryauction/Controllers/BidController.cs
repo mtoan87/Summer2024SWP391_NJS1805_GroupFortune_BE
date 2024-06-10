@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using DAL.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Service.Implement;
+using Service.Interface;
 
 namespace jewelryauction.Controllers
 {
@@ -12,6 +14,14 @@ namespace jewelryauction.Controllers
         public BidController(BidService bidService)
         {
             _bidService = bidService;
+        }
+
+        [HttpGet]
+        [Route("GetAllBids")]
+        public async Task<ActionResult<Bid>> GetAllBids()
+        {
+            var jewelry = _bidService.GetAllBids();
+            return Ok(jewelry);
         }
         [HttpGet("GetBidByAccountId/{accountId}")]
         public async Task<IActionResult> GetBidByAccountId(int accountId)
