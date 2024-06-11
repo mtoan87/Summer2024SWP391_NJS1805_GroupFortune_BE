@@ -24,6 +24,10 @@ namespace Service.Implement
             return _joinAuctionRepository.GetAllJoinAuction();
         }
 
+        public async Task<JoinAuction> GetJoinAuctionById(int id)
+        {
+            return await _joinAuctionRepository.GetByIdAsync(id);
+        }
         public async Task<JoinAuction> CreateJoinAuction(CreateJoinAuctionDTO createJoinAuction)
         {
             var newJoinAuction = new JoinAuction
