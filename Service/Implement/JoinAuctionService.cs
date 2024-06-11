@@ -37,5 +37,20 @@ namespace Service.Implement
             await _joinAuctionRepository.SaveChangesAsync();
             return newJoinAuction;
         }
+
+        public async Task<JoinAuction> UpdateJoinAuction(int id, UpdateJoinAuctionDTO updateJoinAuction)
+        {
+            var auction = await _joinAuctionRepository.GetByIdAsync(id);
+            if (auction == null)
+            {
+                throw new Exception($"JoinAuction with ID {id} not found.");
+            }
+
+            auction.AuctionId = updateJoinAuction.AuctionId;
+            auction.AccountId = updateJoinAuction.AccountId;
+            auction.BidId = updateJoinAuction.BidId;
+             await _joinAuctionRepository.UpdateJoinAuctionAsync(auction);
+            return auction;
+        }
     }
 }

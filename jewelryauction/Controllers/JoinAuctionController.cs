@@ -34,5 +34,15 @@ namespace jewelryauction.Controllers
             var rs = await _joinAuctionService.CreateJoinAuction(joinauction);
             return Ok(rs);
         }
+
+        [HttpPut]
+        [Route("UpdateJoinAuction")]
+        public async Task<IActionResult> UpdateJoinAuction(int id, UpdateJoinAuctionDTO updateJoinAuction)
+        {
+            var rs = await _joinAuctionService.UpdateJoinAuction(id, updateJoinAuction);
+            return Ok(rs);
+        }
+
+
     }
 }

@@ -1,4 +1,6 @@
-﻿using DAL.Models;
+﻿using DAL.DTO.JewelryDTO;
+using DAL.DTO.JoinAuctionDTO;
+using DAL.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Service.Implement;
@@ -29,5 +31,7 @@ namespace jewelryauction.Controllers
             var result = await _bidService.GetBidByAccountIdAsync(accountId);
             return Ok(result);
         }
+
+        
     }
 }
