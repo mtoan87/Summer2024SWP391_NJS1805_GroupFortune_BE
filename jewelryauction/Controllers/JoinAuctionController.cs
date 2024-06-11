@@ -43,6 +43,13 @@ namespace jewelryauction.Controllers
             return Ok(rs);
         }
 
+        [HttpDelete]
+        [Route("DeleteJoinAuction")]
+        public async Task<IActionResult> DeleteJoinAuction(int id)
+        {
+            var rs = await _joinAuctionService.DeleteJoinAuction(id);
+            return Ok(rs);
+        }
 
     }
 }

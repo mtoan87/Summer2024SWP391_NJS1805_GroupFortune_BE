@@ -52,5 +52,16 @@ namespace Service.Implement
              await _joinAuctionRepository.UpdateJoinAuctionAsync(auction);
             return auction;
         }
+
+        public async Task<JoinAuction> DeleteJoinAuction(int id)
+        {
+            var account = await _joinAuctionRepository.GetByIdAsync(id);
+            if (account == null)
+            {
+                throw new Exception($"Account with ID {id} not found.");
+            }
+            await _joinAuctionRepository.RemoveAsync(account);
+            return account;
+        }
     }
 }
