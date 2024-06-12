@@ -53,13 +53,14 @@ namespace jewelryauction.Controllers
             return Ok(rs);
         }
 
+        
         [HttpPost]
         [Route("CreateJewelry")]
         public async Task<ActionResult<Jewelry>> CreateJewelry([FromForm] CreateJewelryDTO jewelryDTO, IFormFile jewelryImg)
         {
             if (jewelryImg != null)
             {
-                var folderPath = Path.Combine("wwwroot", "upload");
+                var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "assets");
                 if (!Directory.Exists(folderPath))
                 {
                     Directory.CreateDirectory(folderPath);
@@ -69,14 +70,13 @@ namespace jewelryauction.Controllers
                 {
                     await jewelryImg.CopyToAsync(stream);
                 }
-                jewelryDTO.JewelryImg = $"upload/{jewelryImg.FileName}";
+                jewelryDTO.JewelryImg = $"assets/{jewelryImg.FileName}";
             }
 
-            await _jewelryService.CreateJewelry(jewelryDTO);
-            return Ok(new { message = "Jewelry created successfully" });
-
+            var createdJewelry = await _jewelryService.CreateJewelry(jewelryDTO);
+            return Ok(createdJewelry);
         }
-        
+
         [HttpDelete]
         [Route("DeleteJewelry")]
         public async Task<IActionResult> DeleteJewelry(int id)
