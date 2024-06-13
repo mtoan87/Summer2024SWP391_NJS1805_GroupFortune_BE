@@ -24,5 +24,12 @@ namespace jewelryauction.Controllers
             return Ok(jewelry);
         }
 
+        [HttpGet("GetById/{Id}")]
+        public async Task<IActionResult> GetJewelrySilverById(int Id)
+        {
+            var jewelry = await _jewelrySilverService.GetJewelryById(Id);
+            return Ok(jewelry);
+        }
+
     }
 }
