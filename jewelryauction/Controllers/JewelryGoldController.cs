@@ -83,6 +83,7 @@ namespace jewelryauction.Controllers
             var createdJewelry = await _jewelryGoldService.CreateJewelry(jewelryDTO);
             return Ok(createdJewelry);
         }
+
         [HttpDelete]
         [Route("DeleteJewelryGold")]
         public async Task<IActionResult> DeleteSilverJewelry(int id)

@@ -17,6 +17,12 @@ namespace jewelryauction.Controllers
             _jewelrySilverService = jewelrySilverService;
         }
 
-        
+        [HttpGet]
+        public async Task<ActionResult<JewelrySilver>> GetAllSilverJewelries()
+        {
+            var jewelry = _jewelrySilverService.GetAllSilverJewelries();
+            return Ok(jewelry);
+        }
+
     }
 }
