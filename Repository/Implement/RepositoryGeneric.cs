@@ -1,4 +1,5 @@
 ﻿using DAL.Models;
+using DAL.Models;
 using Microsoft.EntityFrameworkCore;
 using Repository.Interface;
 using System;
@@ -13,11 +14,15 @@ namespace Repository.Implement
     {
         public JewelryAuctionContext _context;
         public DbSet<T> _dbSet;
+        private JewelryAuctionContext context;
+
         public RepositoryGeneric(JewelryAuctionContext context)
         {
             _context = context;
             _dbSet = _context.Set<T>();
         }
+
+
         public async Task AddAsync(T entity)
         {
             await _dbSet.AddAsync(entity);

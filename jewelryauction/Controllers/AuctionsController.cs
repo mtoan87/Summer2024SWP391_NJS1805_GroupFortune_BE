@@ -37,10 +37,10 @@ namespace jewelryauction.Controllers
             var jewelry = await _auctionService.GetAuctionById(Id);
             return Ok(jewelry);
         }
-        [HttpGet("GetAuctionAndJewelryByAccountId/{accountId}")]
-        public async Task<IActionResult> GetAuctionAndJewelryByAccountId(int accountId)
+        [HttpGet("GetAuctionAndJewelrySilverByAccountId/{accountId}")]
+        public async Task<IActionResult> GetAuctionAndJewelrySilverByAccountId(int accountId)
         {
-            var result = await _auctionService.GetAuctionAndJewelryByAccountIdAsync(accountId);
+            var result = await _auctionService.GetAuctionAndJewelrySilverByAccountIdAsync(accountId);
             return Ok(result);
         }
         [HttpGet]
@@ -65,10 +65,17 @@ namespace jewelryauction.Controllers
             return Ok(rs);
         }
         [HttpPost]
-        [Route("CreateAuction")]
-        public async Task<ActionResult<Auction>> CreateAuction(CreateAuctionDTO createAuction)
+        [Route("CreateGoldJewelryAuction")]
+        public async Task<ActionResult<Auction>> CreateJewelryGoldAuction(CreateAuctionDTO createAuction)
         {
-            var rs = await _auctionService.CreateAuction(createAuction);
+            var rs = await _auctionService.CreateJewelryGoldAuction(createAuction);
+            return Ok(rs);
+        }
+        [HttpPost]
+        [Route("CreateSilverJewelryAuction")]
+        public async Task<ActionResult<Auction>> CreateJewelrySilverAuction(CreateAuctionDTO createAuction)
+        {
+            var rs = await _auctionService.CreateJewelrySilverAuction(createAuction);
             return Ok(rs);
         }
         [HttpDelete]

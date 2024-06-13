@@ -8,7 +8,8 @@ namespace DAL.Models
         public int PaymentId { get; set; }
         public int? AccountId { get; set; }
         public int? JoinauctionId { get; set; }
-        public int? JewelryId { get; set; }
+        public int? JewelryGoldId { get; set; }
+        public int? JewelrySilverId { get; set; }
         public string Status { get; set; } = null!;
         public string Paymentmethod { get; set; } = null!;
         public DateTime Date { get; set; }
@@ -17,7 +18,8 @@ namespace DAL.Models
         public double Fee { get; set; }
 
         public virtual Account? Account { get; set; }
-        public virtual Jewelry? Jewelry { get; set; }
+        public virtual JewelryGold? JewelryGold { get; set; }
+        public virtual JewelrySilver? JewelrySilver { get; set; }
         public virtual JoinAuction? Joinauction { get; set; }
     }
 }

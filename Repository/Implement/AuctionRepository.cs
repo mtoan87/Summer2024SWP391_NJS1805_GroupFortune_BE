@@ -41,10 +41,17 @@ namespace Repository.Implement
                 return false;
             }
         }
-        public async Task<IEnumerable<Auction>> GetAuctionAndJewelryByAccountId(int accountId)
+        public async Task<IEnumerable<Auction>> GetAuctionAndJewelrySilverByAccountId(int accountId)
         {
             return await _context.Auctions
-                .Include(a => a.Jewelry)
+                .Include(a => a.JewelrySilver)
+                .Where(a => a.AccountId == accountId)
+                .ToListAsync();
+        }
+        public async Task<IEnumerable<Auction>> GetAuctionAndJewelryGoldByAccountId(int accountId)
+        {
+            return await _context.Auctions
+                .Include(a => a.JewelryGold)
                 .Where(a => a.AccountId == accountId)
                 .ToListAsync();
         }

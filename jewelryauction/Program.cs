@@ -44,17 +44,18 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddScoped<JewelryGoldRepository>();
+builder.Services.AddScoped<JewelryGoldService>();
+builder.Services.AddScoped<JewelrySilverRepository>();
+builder.Services.AddScoped<JewelrySilverService>();
 builder.Services.AddScoped<AccountRepository>();
 builder.Services.AddScoped<AccountService>();
-builder.Services.AddScoped<JewelryRepository>();
-builder.Services.AddScoped<JewelryService>();
 builder.Services.AddScoped<AuctionRepository>();
 builder.Services.AddScoped<AuctionService>();
 builder.Services.AddScoped<AuctionResultRepository>();
 builder.Services.AddScoped<AuctionResultService>();
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<RequestAuctionRepository>();
-builder.Services.AddScoped<RequestAuctionService>();
 builder.Services.AddScoped<JoinAuctionRepository>();
 builder.Services.AddScoped<JoinAuctionService>();
 builder.Services.AddScoped<BidRepository>();
