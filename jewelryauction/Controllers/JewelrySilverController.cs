@@ -38,6 +38,29 @@ namespace jewelryauction.Controllers
             return Ok(result);
         }
 
+        [HttpPost]
+        [Route("CreateSilverJewelry")]
+        public async Task<ActionResult<JewelrySilver>> CreateSilverJewelry([FromForm] CreateJewelrySilverDTO jewelryDTO, IFormFile jewelryImg)
+        {
+            if (jewelryImg != null)
+            {
+                var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "assets");
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+                var filePath = Path.Combine(folderPath, jewelryImg.FileName);
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await jewelryImg.CopyToAsync(stream);
+                }
+                jewelryDTO.JewelryImg = $"assets/{jewelryImg.FileName}";
+            }
+
+            var createdJewelry = await _jewelrySilverService.CreateJewelry(jewelryDTO);
+            return Ok(createdJewelry);
+        }
+
         [HttpPut]
         [Route("UpdateJewelrySilver")]
         public async Task<IActionResult> UpdateSilverJewelry(int id, [FromForm] UpdateJewelrySilverDTO updateJewelry, IFormFile jewelryImg)
