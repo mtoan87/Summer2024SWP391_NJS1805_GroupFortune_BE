@@ -1,4 +1,5 @@
 ﻿using DAL.DTO.AuctionDTO;
+
 using DAL.DTO.JewelryDTO;
 using DAL.Models;
 using Microsoft.Extensions.DependencyInjection;
@@ -36,7 +37,7 @@ namespace Service.Implement
         {
             return await _auctionRepository.GetByIdAsync(id);
         }
-        public async Task<Auction> CreateJewelrySilverAuction(CreateAuctionDTO createAuction)
+        public async Task<Auction> CreateJewelrySilverAuction(CreateSilverAuctionDTO createAuction)
         {
 
 
@@ -53,7 +54,7 @@ namespace Service.Implement
             await _auctionRepository.SaveChangesAsync();
             return newAuction;
         }
-        public async Task<Auction> CreateJewelryGoldAuction(CreateAuctionDTO createAuction)
+        public async Task<Auction> CreateJewelryGoldAuction(CreateGoldAuctionDTO createAuction)
         {
 
 
@@ -70,7 +71,7 @@ namespace Service.Implement
             await _auctionRepository.SaveChangesAsync();
             return newAuction;
         }
-        public async Task<Auction> UpdateAuction(int id, UpdateAuctionDTO updateAuction)
+        public async Task<Auction> UpdateSilverAuction(int id, UpdateSilverAuctionDTO updateAuction)
         {
             var auction = await _auctionRepository.GetByIdAsync(id);
             if (auction == null)
@@ -79,7 +80,23 @@ namespace Service.Implement
             }
             
             auction.JewelrySilverId = updateAuction.JewelrySilverId;
-            auction.JewelryGoldId = updateAuction.JewelryGoldId;
+         
+            auction.Starttime = updateAuction.Starttime;
+            auction.Endtime = updateAuction.Endtime;
+            auction.Status = updateAuction.Status;
+            await _auctionRepository.UpdateAuctionAsync(auction);
+            return auction;
+        }
+        public async Task<Auction> UpdateGoldAuction(int id, UpdateGoldAuctionDTO updateAuction)
+        {
+            var auction = await _auctionRepository.GetByIdAsync(id);
+            if (auction == null)
+            {
+                throw new Exception($"Auction with ID {id} not found.");
+            }
+
+            auction.JewelrySilverId = updateAuction.JewelryGoldId;
+
             auction.Starttime = updateAuction.Starttime;
             auction.Endtime = updateAuction.Endtime;
             auction.Status = updateAuction.Status;

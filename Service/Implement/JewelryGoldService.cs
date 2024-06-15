@@ -55,7 +55,7 @@ namespace Service.Implement
             }
 
             updjewelry.AccountId = updateJewelry.AccountId;
-            updjewelry.JewelryImg = updateJewelry.JewelryImg ?? updjewelry.JewelryImg; // Update only if new image is provided
+            updjewelry.JewelryImg = updateJewelry.JewelryImg;
             updjewelry.Name = updateJewelry.Name;
             updjewelry.Materials = updateJewelry.Materials;
             updjewelry.Description = updateJewelry.Description;

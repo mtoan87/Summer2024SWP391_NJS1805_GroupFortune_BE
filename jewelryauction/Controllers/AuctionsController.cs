@@ -59,21 +59,21 @@ namespace jewelryauction.Controllers
         }
         [HttpPut]
         [Route("UpdateAuction")]
-        public async Task<IActionResult> UpdateAuction(int id, UpdateAuctionDTO updateAuction)
+        public async Task<IActionResult> UpdateSilverAuction(int id, UpdateSilverAuctionDTO updateAuction)
         {
-            var rs = await _auctionService.UpdateAuction(id, updateAuction);
+            var rs = await _auctionService.UpdateSilverAuction(id, updateAuction);
             return Ok(rs);
         }
         [HttpPost]
         [Route("CreateGoldJewelryAuction")]
-        public async Task<ActionResult<Auction>> CreateJewelryGoldAuction(CreateAuctionDTO createAuction)
+        public async Task<ActionResult<Auction>> CreateJewelryGoldAuction(CreateGoldAuctionDTO createAuction)
         {
             var rs = await _auctionService.CreateJewelryGoldAuction(createAuction);
             return Ok(rs);
         }
         [HttpPost]
         [Route("CreateSilverJewelryAuction")]
-        public async Task<ActionResult<Auction>> CreateJewelrySilverAuction(CreateAuctionDTO createAuction)
+        public async Task<ActionResult<Auction>> CreateJewelrySilverAuction(CreateSilverAuctionDTO createAuction)
         {
             var rs = await _auctionService.CreateJewelrySilverAuction(createAuction);
             return Ok(rs);

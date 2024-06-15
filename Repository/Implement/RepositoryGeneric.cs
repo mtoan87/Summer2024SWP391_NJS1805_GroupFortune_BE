@@ -14,7 +14,7 @@ namespace Repository.Implement
     {
         public JewelryAuctionContext _context;
         public DbSet<T> _dbSet;
-        private JewelryAuctionContext context;
+        
 
         public RepositoryGeneric(JewelryAuctionContext context)
         {
