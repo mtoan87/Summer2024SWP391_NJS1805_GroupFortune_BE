@@ -18,6 +18,10 @@ namespace Repository.Implement
         {
             return _context.JewelrySilvers.ToList();
         }
+        public IEnumerable<JewelrySilver> GetAll()
+        {
+            return _context.Set<JewelrySilver>().ToList();
+        }
         public async Task<bool> UpdateJewelryAsync(JewelrySilver jewelrySilver)
         {
             try
