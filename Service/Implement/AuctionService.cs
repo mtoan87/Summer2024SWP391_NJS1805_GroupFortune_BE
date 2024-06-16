@@ -45,7 +45,7 @@ namespace Service.Implement
             {
                 AccountId = createAuction.AccountId,
                 JewelrySilverId = createAuction.JewelrySilverId,
-                DateofAuction = createAuction.DateofAuction,
+               
                 Starttime = createAuction.Starttime,
                 Endtime = createAuction.Endtime,
                 Status = "UnActive"
@@ -62,7 +62,7 @@ namespace Service.Implement
             {
                 AccountId = createAuction.AccountId,
                 JewelryGoldId = createAuction.JewelryGoldId,
-                DateofAuction = createAuction.DateofAuction,
+               
                 Starttime = createAuction.Starttime,
                 Endtime = createAuction.Endtime,
                 Status = "UnActive"

@@ -15,9 +15,8 @@ namespace DAL.Models
         public int? AccountId { get; set; }
         public int? JewelrySilverId { get; set; }
         public int? JewelryGoldId { get; set; }
-        public DateTime DateofAuction { get; set; }
-        public TimeSpan Starttime { get; set; }
-        public TimeSpan Endtime { get; set; }
+        public DateTime Starttime { get; set; }
+        public DateTime Endtime { get; set; }
         public string Status { get; set; } = null!;
 
         public virtual Account? Account { get; set; }

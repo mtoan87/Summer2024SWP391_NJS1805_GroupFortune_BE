@@ -8,8 +8,8 @@ namespace DAL.Models
         public int AccountwalletId { get; set; }
         public int? AccountId { get; set; }
         public string BankName { get; set; } = null!;
-        public double BankNo { get; set; }
-        public double Budget { get; set; }
+        public int BankNo { get; set; }
+        public int Budget { get; set; }
 
         public virtual Account? Account { get; set; }
     }
