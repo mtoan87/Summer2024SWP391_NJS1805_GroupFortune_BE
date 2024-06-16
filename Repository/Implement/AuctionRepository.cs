@@ -51,7 +51,7 @@ namespace Repository.Implement
         public async Task<IEnumerable<Auction>> GetAuctionAndJewelryGoldByAccountId(int accountId)
         {
             return await _context.Auctions
-                .Include(a => a.JewelryGold)
+                .Include(a => a.JewelryGold)              
                 .Where(a => a.AccountId == accountId)
                 .ToListAsync();
         }
