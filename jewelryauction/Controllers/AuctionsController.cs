@@ -63,6 +63,13 @@ namespace jewelryauction.Controllers
             var rs = _auctionService.GetAllUnActiveAuctions();
             return Ok(rs);
         }
+        [HttpGet]
+        [Route("GetJewelryActiveAuctions")]
+        public async Task<ActionResult<Auction>> GetJewelryActiveAuctions()
+        {
+            var rs = _auctionService.GetJewelryActiveAuctions();
+            return Ok(rs);
+        }
         [HttpPut]
         [Route("UpdateAuction")]
         public async Task<IActionResult> UpdateSilverAuction(int id, UpdateSilverAuctionDTO updateAuction)

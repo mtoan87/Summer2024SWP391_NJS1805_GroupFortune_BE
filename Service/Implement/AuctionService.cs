@@ -126,5 +126,9 @@ namespace Service.Implement
         {
             return _auctionRepository.GetAccountCountInAuction(auctionId);
         }
+        public IEnumerable<Auction> GetJewelryActiveAuctions()
+        {
+            return  _auctionRepository.GetJewelryActiveAuctions();
+        }
     }
 }

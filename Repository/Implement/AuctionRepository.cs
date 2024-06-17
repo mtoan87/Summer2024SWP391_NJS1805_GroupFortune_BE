@@ -63,5 +63,13 @@ namespace Repository.Implement
                            .Distinct()
                            .Count();
         }
+        public IEnumerable<Auction> GetJewelryActiveAuctions()
+        {
+            return   _context.Auctions
+                .Where(a => a.Status == "Active")
+                .Include(a => a.JewelryGold)
+                .Include(a => a.JewelrySilver)
+                .ToList();
+        }
     }
 }
