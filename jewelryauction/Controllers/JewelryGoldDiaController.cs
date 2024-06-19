@@ -30,5 +30,12 @@ namespace jewelryauction.Controllers
             var jewelry = await _jewelryGoldDiaService.GetJewelryById(Id);
             return Ok(jewelry);
         }
+
+        [HttpGet("GetAuctionAndJewelryGoldDiamondByAccountId/{accountId}")]
+        public async Task<IActionResult> GetAuctionAndJewelryGoldDiamondByAccountId(int accountId)
+        {
+            var result = await _jewelryGoldDiaService.GetAuctionAndJewelryGoldDiaByAccountIdAsync(accountId);
+            return Ok(result);
+        }
     }
 }
