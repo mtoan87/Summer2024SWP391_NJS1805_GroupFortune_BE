@@ -27,7 +27,7 @@ namespace jewelryauction.Controllers
         [HttpGet]
         public IActionResult GetAllJewelry()
         {
-            var (silvers, golds) = _jewelryService.GetAllJewelry();
+            var (silvers, golds, golddias) = _jewelryService.GetAllJewelry();
 
             if (!silvers.Any() && !golds.Any())
             {
@@ -37,7 +37,8 @@ namespace jewelryauction.Controllers
             return Ok(new
             {
                 JewelrySilver = silvers,
-                JewelryGold = golds
+                JewelryGold = golds,
+                JewelryGoldDiamond = golddias
             });
         }
 

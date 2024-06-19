@@ -40,7 +40,7 @@ namespace jewelryauction.Controllers
 
         [HttpPost]
         [Route("CreateJewelryGold")]
-        public async Task<ActionResult<JewelrySilver>> CreateGoldJewelry([FromForm] CreateJewelryGoldDTO jewelryDTO, IFormFile jewelryImg)
+        public async Task<ActionResult<JewelryGold>> CreateGoldJewelry([FromForm] CreateJewelryGoldDTO jewelryDTO, IFormFile jewelryImg)
         {
             if (jewelryImg != null)
             {

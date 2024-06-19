@@ -15,17 +15,20 @@ namespace Service.Implement
     {
         private readonly JewelryGoldRepository _jewelryGoldRepository;
         private readonly JewelrySilverRepository _jewelrySilverRepository;
-        public JewelryService(JewelryGoldRepository jewelryGoldRepository, JewelrySilverRepository jewelrySilverRepository)
+        private readonly JewelryGoldDiaRepository _jewelryGoldDiaRepository;
+        public JewelryService(JewelryGoldRepository jewelryGoldRepository, JewelrySilverRepository jewelrySilverRepository, JewelryGoldDiaRepository jewelryGoldDiaRepository)
         {
             _jewelryGoldRepository = jewelryGoldRepository;
             _jewelrySilverRepository = jewelrySilverRepository;
+            _jewelryGoldDiaRepository = jewelryGoldDiaRepository;   
         }
 
-        public (IEnumerable<JewelrySilver>, IEnumerable<JewelryGold>) GetAllJewelry()
+        public (IEnumerable<JewelrySilver>, IEnumerable<JewelryGold>, IEnumerable<JewelryGoldDiamond>) GetAllJewelry()
         {
             var silvers = _jewelrySilverRepository.GetAll();
             var golds = _jewelryGoldRepository.GetAll();
-            return (silvers, golds);
+            var golddias = _jewelryGoldDiaRepository.GetAll();
+            return (silvers, golds, golddias);
         }
     }
 
