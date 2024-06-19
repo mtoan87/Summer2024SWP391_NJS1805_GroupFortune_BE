@@ -83,5 +83,28 @@ namespace jewelryauction.Controllers
             var rs = await _jewelryGoldDiaService.UpdateJewelryMember(id, updateJewelry);
             return Ok(rs);
         }
+
+        [HttpPut]
+        [Route("UpdateJewelryGoldDiamondStaff")]
+        public async Task<IActionResult> UpdateJewelryGoldDiamondStaff(int id, [FromForm] UpdateJewelryGoldDiamondStaffDTO updateJewelry, IFormFile jewelryImg)
+        {
+            if (jewelryImg != null)
+            {
+                var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "assets");
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+                var filePath = Path.Combine(folderPath, jewelryImg.FileName);
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await jewelryImg.CopyToAsync(stream);
+                }
+                updateJewelry.JewelryImg = $"assets/{jewelryImg.FileName}";
+            }
+
+            var rs = await _jewelryGoldDiaService.UpdateJewelryStaff(id, updateJewelry);
+            return Ok(rs);
+        }
     }
 }
