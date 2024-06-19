@@ -16,7 +16,7 @@ namespace DAL.DTO.JewelryDTO
         public string Materials { get; set; } = null!;
         public string Description { get; set; } = null!;
         public string GoldAge { get; set; } = null!;
-        public double Price { get; set; }
+        public string? Status { get; set; }
         public string Weight { get; set; } = null!;
     }
 }

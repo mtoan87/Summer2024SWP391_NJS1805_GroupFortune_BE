@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DAL.DTO.JewelryDTO
 {
-    public class UpdateJewelrySilverDTO
+    public class UpdateJewelrySilverStaffDTO
     {
         public int? AccountId { get; set; }
         public string? JewelryImg { get; set; }
@@ -16,6 +16,6 @@ namespace DAL.DTO.JewelryDTO
         public string Description { get; set; } = null!;
         public string Weight { get; set; } = null!;
         public string Purity { get; set; } = null!;
-       
+        public double Price { get; set; }
     }
 }

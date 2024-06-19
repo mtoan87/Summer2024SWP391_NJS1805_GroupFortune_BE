@@ -3,21 +3,22 @@ using System.Collections.Generic;
 
 namespace DAL.Models
 {
-    public partial class JewelryGold
+    public partial class JewelryGoldDiamond
     {
-        public JewelryGold()
+        public JewelryGoldDiamond()
         {
             Auctions = new HashSet<Auction>();
-            Payments = new HashSet<Payment>();
         }
 
-        public int JewelryGoldId { get; set; }
+        public int JewelryGolddiaId { get; set; }
         public int? AccountId { get; set; }
         public string? JewelryImg { get; set; }
         public string Name { get; set; } = null!;
         public string Category { get; set; } = null!;
         public string Materials { get; set; } = null!;
         public string Description { get; set; } = null!;
+        public string Clarity { get; set; } = null!;
+        public string Carat { get; set; } = null!;
         public string GoldAge { get; set; } = null!;
         public double? Price { get; set; }
         public string Weight { get; set; } = null!;
@@ -25,6 +26,5 @@ namespace DAL.Models
 
         public virtual Account? Account { get; set; }
         public virtual ICollection<Auction> Auctions { get; set; }
-        public virtual ICollection<Payment> Payments { get; set; }
     }
 }

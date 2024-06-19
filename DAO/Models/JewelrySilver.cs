@@ -19,8 +19,9 @@ namespace DAL.Models
         public string Category { get; set; } = null!;
         public string Description { get; set; } = null!;
         public string Purity { get; set; } = null!;
-        public double Price { get; set; }
+        public double? Price { get; set; }
         public string Weight { get; set; } = null!;
+        public string? Status { get; set; }
 
         public virtual Account? Account { get; set; }
         public virtual ICollection<Auction> Auctions { get; set; }

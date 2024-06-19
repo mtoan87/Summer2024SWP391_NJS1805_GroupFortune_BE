@@ -15,12 +15,14 @@ namespace DAL.Models
         public int? AccountId { get; set; }
         public int? JewelrySilverId { get; set; }
         public int? JewelryGoldId { get; set; }
+        public int? JewelryGolddiaId { get; set; }
         public DateTime Starttime { get; set; }
         public DateTime Endtime { get; set; }
         public string Status { get; set; } = null!;
 
         public virtual Account? Account { get; set; }
         public virtual JewelryGold? JewelryGold { get; set; }
+        public virtual JewelryGoldDiamond? JewelryGolddia { get; set; }
         public virtual JewelrySilver? JewelrySilver { get; set; }
         public virtual ICollection<Bid> Bids { get; set; }
         public virtual ICollection<JoinAuction> JoinAuctions { get; set; }

@@ -11,6 +11,7 @@ namespace DAL.Models
             AuctionResults = new HashSet<AuctionResult>();
             Auctions = new HashSet<Auction>();
             Bids = new HashSet<Bid>();
+            JewelryGoldDiamonds = new HashSet<JewelryGoldDiamond>();
             JewelryGolds = new HashSet<JewelryGold>();
             JewelrySilvers = new HashSet<JewelrySilver>();
             JoinAuctions = new HashSet<JoinAuction>();
@@ -29,6 +30,7 @@ namespace DAL.Models
         public virtual ICollection<AuctionResult> AuctionResults { get; set; }
         public virtual ICollection<Auction> Auctions { get; set; }
         public virtual ICollection<Bid> Bids { get; set; }
+        public virtual ICollection<JewelryGoldDiamond> JewelryGoldDiamonds { get; set; }
         public virtual ICollection<JewelryGold> JewelryGolds { get; set; }
         public virtual ICollection<JewelrySilver> JewelrySilvers { get; set; }
         public virtual ICollection<JoinAuction> JoinAuctions { get; set; }

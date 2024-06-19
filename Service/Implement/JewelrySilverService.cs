@@ -38,14 +38,34 @@ namespace Service.Implement
                 Description = createjew.Description,
                 Weight = createjew.Weight,
                 Purity = createjew.Purity,
-                Price = createjew.Price,
+                Status = "UnVerified",
             };
             await _jewelrySilverRepository.AddAsync(newjewelry);
 
             await _jewelrySilverRepository.SaveChangesAsync();
             return newjewelry;
         }
-        public async Task<JewelrySilver> UpdateJewelry(int id, UpdateJewelrySilverDTO updateJewelry)
+        public async Task<JewelrySilver> UpdateJewelryMember(int id, UpdateJewelrySilverDTO updateJewelry)
+        {
+            var updjewelry = await _jewelrySilverRepository.GetByIdAsync(id);
+            if (updjewelry == null)
+            {
+                throw new Exception($"Jewelry with ID {id} not found.");
+            }
+            updjewelry.AccountId = updateJewelry.AccountId;
+            updjewelry.JewelryImg = updateJewelry.JewelryImg; 
+
+            updjewelry.Name = updateJewelry.Name;
+            updjewelry.Materials = updateJewelry.Materials;
+            updjewelry.Description = updateJewelry.Description;
+            updjewelry.Category = updateJewelry.Category;
+            updjewelry.Weight = updateJewelry.Weight;
+            updjewelry.Purity = updateJewelry.Purity;
+            
+            await _jewelrySilverRepository.UpdateJewelryAsync(updjewelry);
+            return updjewelry;
+        }
+        public async Task<JewelrySilver> UpdateJewelryStaff(int id, UpdateJewelrySilverStaffDTO updateJewelry)
         {
             var updjewelry = await _jewelrySilverRepository.GetByIdAsync(id);
             if (updjewelry == null)
@@ -62,6 +82,27 @@ namespace Service.Implement
             updjewelry.Weight = updateJewelry.Weight;
             updjewelry.Purity = updateJewelry.Purity;
             updjewelry.Price = updateJewelry.Price;
+            await _jewelrySilverRepository.UpdateJewelryAsync(updjewelry);
+            return updjewelry;
+        }
+        public async Task<JewelrySilver> UpdateJewelryManager(int id, UpdateJewelrySilverManagerDTO updateJewelry)
+        {
+            var updjewelry = await _jewelrySilverRepository.GetByIdAsync(id);
+            if (updjewelry == null)
+            {
+                throw new Exception($"Jewelry with ID {id} not found.");
+            }
+            updjewelry.AccountId = updateJewelry.AccountId;
+            updjewelry.JewelryImg = updateJewelry.JewelryImg; // Update only if new image is provided
+
+            updjewelry.Name = updateJewelry.Name;
+            updjewelry.Materials = updateJewelry.Materials;
+            updjewelry.Description = updateJewelry.Description;
+            updjewelry.Category = updateJewelry.Category;
+            updjewelry.Weight = updateJewelry.Weight;
+            updjewelry.Purity = updateJewelry.Purity;
+            updjewelry.Price = updateJewelry.Price;
+            updjewelry.Status = updateJewelry.Status;
             await _jewelrySilverRepository.UpdateJewelryAsync(updjewelry);
             return updjewelry;
         }
