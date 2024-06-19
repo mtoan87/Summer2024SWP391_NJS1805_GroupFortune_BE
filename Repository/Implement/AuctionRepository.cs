@@ -48,10 +48,18 @@ namespace Repository.Implement
                 .Where(a => a.AccountId == accountId)
                 .ToListAsync();
         }
+
         public async Task<IEnumerable<Auction>> GetAuctionAndJewelryGoldByAccountId(int accountId)
         {
             return await _context.Auctions
                 .Include(a => a.JewelryGold)              
+                .Where(a => a.AccountId == accountId)
+                .ToListAsync();
+        }
+        public async Task<IEnumerable<Auction>> GetAuctionAndJewelryGoldDiamondByAccountId(int accountId)
+        {
+            return await _context.Auctions
+                .Include(a => a.JewelryGolddia)
                 .Where(a => a.AccountId == accountId)
                 .ToListAsync();
         }
@@ -69,6 +77,7 @@ namespace Repository.Implement
                 .Where(a => a.Status == "Active")
                 .Include(a => a.JewelryGold)
                 .Include(a => a.JewelrySilver)
+                .Include(a => a.JewelryGolddia)
                 .ToList();
         }
     }

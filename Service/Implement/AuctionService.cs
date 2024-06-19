@@ -45,7 +45,6 @@ namespace Service.Implement
             {
                 AccountId = createAuction.AccountId,
                 JewelrySilverId = createAuction.JewelrySilverId,
-               
                 Starttime = createAuction.Starttime,
                 Endtime = createAuction.Endtime,
                 Status = "UnActive"
@@ -61,8 +60,23 @@ namespace Service.Implement
             var newAuction = new Auction
             {
                 AccountId = createAuction.AccountId,
-                JewelryGoldId = createAuction.JewelryGoldId,
-               
+                JewelryGoldId = createAuction.JewelryGoldId,             
+                Starttime = createAuction.Starttime,
+                Endtime = createAuction.Endtime,
+                Status = "UnActive"
+            };
+            await _auctionRepository.AddAsync(newAuction);
+            await _auctionRepository.SaveChangesAsync();
+            return newAuction;
+        }
+        public async Task<Auction> CreateJewelryGoldDiamondAuction(CreateGoldDiamondAuctionDTO createAuction)
+        {
+
+
+            var newAuction = new Auction
+            {
+                AccountId = createAuction.AccountId,
+                JewelryGolddiaId = createAuction.JewelryGolddiaId,
                 Starttime = createAuction.Starttime,
                 Endtime = createAuction.Endtime,
                 Status = "UnActive"
@@ -95,7 +109,23 @@ namespace Service.Implement
                 throw new Exception($"Auction with ID {id} not found.");
             }
 
-            auction.JewelrySilverId = updateAuction.JewelryGoldId;
+            auction.JewelryGoldId = updateAuction.JewelryGoldId;
+
+            auction.Starttime = updateAuction.Starttime;
+            auction.Endtime = updateAuction.Endtime;
+            auction.Status = updateAuction.Status;
+            await _auctionRepository.UpdateAuctionAsync(auction);
+            return auction;
+        }
+        public async Task<Auction> UpdateGoldDiamondAuction(int id, UpdateGoldDiamondAuctionDTO updateAuction)
+        {
+            var auction = await _auctionRepository.GetByIdAsync(id);
+            if (auction == null)
+            {
+                throw new Exception($"Auction with ID {id} not found.");
+            }
+
+            auction.JewelryGolddiaId = updateAuction.JewelryGolddiaId;
 
             auction.Starttime = updateAuction.Starttime;
             auction.Endtime = updateAuction.Endtime;
@@ -117,6 +147,10 @@ namespace Service.Implement
         public async Task<IEnumerable<Auction>> GetAuctionAndJewelryGoldByAccountIdAsync(int accountId)
         {
             return await _auctionRepository.GetAuctionAndJewelryGoldByAccountId(accountId);
+        }
+        public async Task<IEnumerable<Auction>> GetAuctionAndJewelryGoldDiamondByAccountIdAsync(int accountId)
+        {
+            return await _auctionRepository.GetAuctionAndJewelryGoldDiamondByAccountId(accountId);
         }
         public async Task<IEnumerable<Auction>> GetAuctionAndJewelrySilverByAccountIdAsync(int accountId)
         {
