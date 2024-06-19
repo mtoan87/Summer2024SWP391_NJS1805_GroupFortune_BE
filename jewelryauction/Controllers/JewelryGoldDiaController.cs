@@ -130,5 +130,13 @@ namespace jewelryauction.Controllers
             var rs = await _jewelryGoldDiaService.UpdateJewelryManager(id, updateJewelry);
             return Ok(rs);
         }
+
+        [HttpDelete]
+        [Route("DeleteJewelryGoldDiamond")]
+        public async Task<IActionResult> DeleteSilverJewelry(int id)
+        {
+            var rs = await _jewelryGoldDiaService.DeleteJewelry(id);
+            return Ok(rs);
+        }
     }
 }
