@@ -17,6 +17,6 @@ namespace DAL.DTO.JewelryDTO
         public string Weight { get; set; } = null!;
         public string Purity { get; set; } = null!;
 
-        public string? Status { get; set; }
+        
     }
 }
