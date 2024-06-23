@@ -74,6 +74,11 @@ namespace jewelryauction.Controllers
         [Route("UpdateJewelryGoldDiamondManager")]
         public async Task<IActionResult> UpdateJewelryGoldDiamondManager(int id, [FromForm] UpdateJewelryGoldDiamondManagerDTO updateJewelry, IFormFile jewelryImg)
         {
+            var existingJewelry = await _jewelryGoldDiaService.GetJewelryById(id);
+            if (existingJewelry != null)
+            {
+                updateJewelry.JewelryImg = existingJewelry.JewelryImg;
+            }
             var rs = await _jewelryGoldDiaService.UpdateJewelryManager(id, updateJewelry);
             return Ok(rs);
         }
