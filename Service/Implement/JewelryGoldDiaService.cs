@@ -114,16 +114,7 @@ namespace Service.Implement
                 throw new Exception($"Jewelry with ID {id} not found.");
             }
 
-            updjewelry.AccountId = updateJewelry.AccountId;
-            updjewelry.JewelryImg = updateJewelry.JewelryImg;
-            updjewelry.Name = updateJewelry.Name;
-            updjewelry.Materials = updateJewelry.Materials;
-            updjewelry.Description = updateJewelry.Description;
-            updjewelry.Category = updateJewelry.Category;
-            updjewelry.Carat = updjewelry.Carat;
-            updjewelry.Clarity = updateJewelry.Clarity;
-            updjewelry.Weight = updateJewelry.Weight;
-            updjewelry.GoldAge = updateJewelry.GoldAge;
+            
             updjewelry.Price = updateJewelry.Price;
             updjewelry.Status = updateJewelry.Status;
             await _jewelryGoldDiaRepository.UpdateJewelryAsync(updjewelry);
