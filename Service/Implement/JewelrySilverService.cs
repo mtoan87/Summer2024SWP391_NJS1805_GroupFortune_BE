@@ -101,14 +101,7 @@ namespace Service.Implement
             {
                 throw new Exception($"Jewelry with ID {id} not found.");
             }
-            updjewelry.AccountId = updateJewelry.AccountId;
-            updjewelry.JewelryImg = updateJewelry.JewelryImg;
-            updjewelry.Name = updateJewelry.Name;
-            updjewelry.Materials = updateJewelry.Materials;
-            updjewelry.Description = updateJewelry.Description;
-            updjewelry.Category = updateJewelry.Category;
-            updjewelry.Weight = updateJewelry.Weight;
-            updjewelry.Purity = updateJewelry.Purity;
+            
             updjewelry.Price = updateJewelry.Price;
             updjewelry.Status = updateJewelry.Status;
             await _jewelrySilverRepository.UpdateJewelryAsync(updjewelry);
