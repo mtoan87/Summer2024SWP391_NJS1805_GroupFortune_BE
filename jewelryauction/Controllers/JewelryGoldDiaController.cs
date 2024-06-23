@@ -41,22 +41,7 @@ namespace jewelryauction.Controllers
         [HttpPost]
         [Route("CreateJewelryGoldDiamond")]
         public async Task<ActionResult<JewelryGoldDiamond>> CreateGoldDiamondJewelry([FromForm] CreateJewelryGoldDiamondDTO jewelryDTO, IFormFile jewelryImg)
-        {
-            if (jewelryImg != null)
-            {
-                var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "assets");
-                if (!Directory.Exists(folderPath))
-                {
-                    Directory.CreateDirectory(folderPath);
-                }
-                var filePath = Path.Combine(folderPath, jewelryImg.FileName);
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    await jewelryImg.CopyToAsync(stream);
-                }
-                jewelryDTO.JewelryImg = $"assets/{jewelryImg.FileName}";
-            }
-
+        {         
             var createdJewelry = await _jewelryGoldDiaService.CreateJewelry(jewelryDTO);
             return Ok(createdJewelry);
         }
@@ -65,21 +50,10 @@ namespace jewelryauction.Controllers
         [Route("UpdateJewelryGoldDiamondMember")]
         public async Task<IActionResult> UpdateJewelryGoldDiamondMember(int id, [FromForm] UpdateJewelryGoldDiaDTO updateJewelry, IFormFile jewelryImg)
         {
-            if (jewelryImg != null)
+            if (updateJewelry.JewelryImg == null)
             {
-                var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "assets");
-                if (!Directory.Exists(folderPath))
-                {
-                    Directory.CreateDirectory(folderPath);
-                }
-                var filePath = Path.Combine(folderPath, jewelryImg.FileName);
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    await jewelryImg.CopyToAsync(stream);
-                }
-                updateJewelry.JewelryImg = $"assets/{jewelryImg.FileName}";
+                updateJewelry.JewelryImg = null;
             }
-
             var rs = await _jewelryGoldDiaService.UpdateJewelryMember(id, updateJewelry);
             return Ok(rs);
         }
@@ -87,22 +61,7 @@ namespace jewelryauction.Controllers
         [HttpPut]
         [Route("UpdateJewelryGoldDiamondStaff")]
         public async Task<IActionResult> UpdateJewelryGoldDiamondStaff(int id, [FromForm] UpdateJewelryGoldDiamondStaffDTO updateJewelry, IFormFile jewelryImg)
-        {
-            if (jewelryImg != null)
-            {
-                var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "assets");
-                if (!Directory.Exists(folderPath))
-                {
-                    Directory.CreateDirectory(folderPath);
-                }
-                var filePath = Path.Combine(folderPath, jewelryImg.FileName);
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    await jewelryImg.CopyToAsync(stream);
-                }
-                updateJewelry.JewelryImg = $"assets/{jewelryImg.FileName}";
-            }
-
+        {          
             var rs = await _jewelryGoldDiaService.UpdateJewelryStaff(id, updateJewelry);
             return Ok(rs);
         }
@@ -111,22 +70,7 @@ namespace jewelryauction.Controllers
         [HttpPut]
         [Route("UpdateJewelryGoldDiamondManager")]
         public async Task<IActionResult> UpdateJewelryGoldDiamondManager(int id, [FromForm] UpdateJewelryGoldDiamondManagerDTO updateJewelry, IFormFile jewelryImg)
-        {
-            if (jewelryImg != null)
-            {
-                var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "assets");
-                if (!Directory.Exists(folderPath))
-                {
-                    Directory.CreateDirectory(folderPath);
-                }
-                var filePath = Path.Combine(folderPath, jewelryImg.FileName);
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    await jewelryImg.CopyToAsync(stream);
-                }
-                updateJewelry.JewelryImg = $"assets/{jewelryImg.FileName}";
-            }
-
+        {        
             var rs = await _jewelryGoldDiaService.UpdateJewelryManager(id, updateJewelry);
             return Ok(rs);
         }

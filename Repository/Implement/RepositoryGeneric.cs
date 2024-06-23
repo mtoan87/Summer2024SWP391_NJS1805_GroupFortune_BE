@@ -5,6 +5,7 @@ using Repository.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -56,7 +57,7 @@ namespace Repository.Implement
         
         public async Task<T> GetByIdAsync(int id)
         {
-            return await _context.Set<T>().FindAsync(id);
+            return await _dbSet.FindAsync(id);
         }
         public void Update(T entity)
         {
@@ -66,6 +67,6 @@ namespace Repository.Implement
         {
             await _context.SaveChangesAsync();
         }
-
+        
     }
 }

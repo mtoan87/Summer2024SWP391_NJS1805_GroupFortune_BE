@@ -23,6 +23,12 @@ namespace Repository.Implement
         {
             return _context.Set<JewelryGold>().ToList();
         }
+
+        public async Task<JewelryGold> GetById(int id)
+        {
+            return await _context.JewelryGolds.FirstOrDefaultAsync(x =>x.JewelryGoldId == id);
+        }
+
         public async Task<bool> UpdateJewelryAsync(JewelryGold jewelryGold)
         {
             try

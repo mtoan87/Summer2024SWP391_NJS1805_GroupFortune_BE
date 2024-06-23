@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace DAL.DTO.JewelryDTO
     public class CreateJewelrySilverStaffDTO
     {
         public int? AccountId { get; set; }
-        public string? JewelryImg { get; set; }
+        public IFormFile JewelryImg { get; set; }
         public string Name { get; set; } = null!;
         public string Materials { get; set; } = null!;
         public string Category { get; set; } = null!;

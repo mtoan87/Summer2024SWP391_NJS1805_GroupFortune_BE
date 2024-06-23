@@ -1,5 +1,6 @@
 D:\SWP391\BE\jewelryauction\jewelryauction\bin\Debug\net6.0\appsettings.Development.json
 D:\SWP391\BE\jewelryauction\jewelryauction\bin\Debug\net6.0\appsettings.json
+D:\SWP391\BE\jewelryauction\jewelryauction\bin\Debug\net6.0\jewelryauction.staticwebassets.runtime.json
 D:\SWP391\BE\jewelryauction\jewelryauction\bin\Debug\net6.0\jewelryauction.exe
 D:\SWP391\BE\jewelryauction\jewelryauction\bin\Debug\net6.0\jewelryauction.deps.json
 D:\SWP391\BE\jewelryauction\jewelryauction\bin\Debug\net6.0\jewelryauction.runtimeconfig.json
@@ -303,4 +304,3 @@ D:\SWP391\BE\jewelryauction\jewelryauction\obj\Debug\net6.0\refint\jewelryauctio
 D:\SWP391\BE\jewelryauction\jewelryauction\obj\Debug\net6.0\jewelryauction.pdb
 D:\SWP391\BE\jewelryauction\jewelryauction\obj\Debug\net6.0\jewelryauction.genruntimeconfig.cache
 D:\SWP391\BE\jewelryauction\jewelryauction\obj\Debug\net6.0\ref\jewelryauction.dll
-D:\SWP391\BE\jewelryauction\jewelryauction\bin\Debug\net6.0\jewelryauction.staticwebassets.runtime.json

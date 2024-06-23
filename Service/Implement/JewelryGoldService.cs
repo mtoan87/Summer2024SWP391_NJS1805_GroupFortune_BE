@@ -19,20 +19,38 @@ namespace Service.Implement
         }
         public IEnumerable<JewelryGold> GetAllGoldJewelries()
         {
-            return _jewelryGoldRepository.GetAllJewelries();
+            return _jewelryGoldRepository.GetAll();
         }
         public async Task<JewelryGold> GetJewelryById(int id)
         {
-            return await _jewelryGoldRepository.GetByIdAsync(id);
+            return await _jewelryGoldRepository.GetById(id);
         }
         public async Task<JewelryGold> CreateJewelry(CreateJewelryGoldDTO createjew)
         {
+            string imagePath = null;
 
+            if (createjew.JewelryImg != null && createjew.JewelryImg.Length > 0)
+            {
+                // Define the path to save the image
+                var uploads = Path.Combine("wwwroot", "assets");
+                Directory.CreateDirectory(uploads); // Ensure the directory exists
+
+                // Set the file name as the original file name
+                var fileName = createjew.JewelryImg.FileName;
+                imagePath = Path.Combine("assets", fileName); // Relative path to save in database
+
+                // Save the file to the specified path
+                var fullPath = Path.Combine(uploads, fileName);
+                using (var fileStream = new FileStream(fullPath, FileMode.Create))
+                {
+                    await createjew.JewelryImg.CopyToAsync(fileStream);
+                }
+            }
 
             var newjewelry = new JewelryGold
             {
                 AccountId = createjew.AccountId,
-                JewelryImg = createjew.JewelryImg,
+                JewelryImg = imagePath,
                 Name = createjew.Name,
                 Materials = createjew.Materials,
                 Category = createjew.Category,
@@ -41,11 +59,12 @@ namespace Service.Implement
                 GoldAge = createjew.GoldAge,
                 Status = "UnVerified",
             };
-            await _jewelryGoldRepository.AddAsync(newjewelry);
 
+            await _jewelryGoldRepository.AddAsync(newjewelry);
             await _jewelryGoldRepository.SaveChangesAsync();
             return newjewelry;
         }
+
         public async Task<JewelryGold> UpdateJewelryMember(int id, UpdateJewelryDTO updateJewelry)
         {
             var updjewelry = await _jewelryGoldRepository.GetByIdAsync(id);
@@ -53,7 +72,11 @@ namespace Service.Implement
             {
                 throw new Exception($"Jewelry with ID {id} not found.");
             }
-
+            // Keep the existing image if no new image is provided
+            if (updateJewelry.JewelryImg == null)
+            {
+                updateJewelry.JewelryImg = updjewelry.JewelryImg;
+            }
             updjewelry.AccountId = updateJewelry.AccountId;
             updjewelry.JewelryImg = updateJewelry.JewelryImg;
             updjewelry.Name = updateJewelry.Name;
@@ -62,14 +85,14 @@ namespace Service.Implement
             updjewelry.Category = updateJewelry.Category;
             updjewelry.Weight = updateJewelry.Weight;
             updjewelry.GoldAge = updateJewelry.Goldage;
-       
 
+      
             await _jewelryGoldRepository.UpdateJewelryAsync(updjewelry);
             return updjewelry;
         }
         public async Task<JewelryGold> UpdateJewelryStaff(int id, UpdateJewelryStaffDTO updateJewelry)
         {
-            var updjewelry = await _jewelryGoldRepository.GetByIdAsync(id);
+            var updjewelry = await _jewelryGoldRepository.GetById(id);
             if (updjewelry == null)
             {
                 throw new Exception($"Jewelry with ID {id} not found.");
@@ -91,7 +114,7 @@ namespace Service.Implement
 
         public async Task<JewelryGold> UpdateJewelryManager(int id, UpdateJewelryManagerDTO updateJewelry)
         {
-            var updjewelry = await _jewelryGoldRepository.GetByIdAsync(id);
+            var updjewelry = await _jewelryGoldRepository.GetById(id);
             if (updjewelry == null)
             {
                 throw new Exception($"Jewelry with ID {id} not found.");
@@ -112,7 +135,7 @@ namespace Service.Implement
         }
         public async Task<JewelryGold> DeleteJewelry(int id)
         {
-            var account = await _jewelryGoldRepository.GetByIdAsync(id);
+            var account = await _jewelryGoldRepository.GetById(id);
             if (account == null)
             {
                 throw new Exception($"Account with ID {id} not found.");

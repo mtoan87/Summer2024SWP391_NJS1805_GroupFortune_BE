@@ -26,24 +26,42 @@ namespace Service.Implement
         }
         public async Task<JewelryGoldDiamond> CreateJewelry(CreateJewelryGoldDiamondDTO createjew)
         {
+            string imagePath = null;
 
+            if (createjew.JewelryImg != null && createjew.JewelryImg.Length > 0)
+            {
+                // Define the path to save the image
+                var uploads = Path.Combine("wwwroot", "assets");
+                Directory.CreateDirectory(uploads); // Ensure the directory exists
+
+                // Set the file name as the original file name
+                var fileName = createjew.JewelryImg.FileName;
+                imagePath = Path.Combine("assets", fileName); // Relative path to save in database
+
+                // Save the file to the specified path
+                var fullPath = Path.Combine(uploads, fileName);
+                using (var fileStream = new FileStream(fullPath, FileMode.Create))
+                {
+                    await createjew.JewelryImg.CopyToAsync(fileStream);
+                }
+            }
 
             var newjewelry = new JewelryGoldDiamond
             {
                 AccountId = createjew.AccountId,
-                JewelryImg = createjew.JewelryImg,
+                JewelryImg = imagePath,
                 Name = createjew.Name,
                 Materials = createjew.Materials,
                 Category = createjew.Category,
                 Description = createjew.Description,
-                Clarity = createjew.Clarity,
-                Carat = createjew.Carat,
                 Weight = createjew.Weight,
                 GoldAge = createjew.GoldAge,
+                Clarity = createjew.Clarity,
+                Carat  = createjew.Carat,
                 Status = "UnVerified",
             };
-            await _jewelryGoldDiaRepository.AddAsync(newjewelry);
 
+            await _jewelryGoldDiaRepository.AddAsync(newjewelry);
             await _jewelryGoldDiaRepository.SaveChangesAsync();
             return newjewelry;
         }
@@ -53,6 +71,12 @@ namespace Service.Implement
             if (updjewelry == null)
             {
                 throw new Exception($"Jewelry with ID {id} not found.");
+            }
+
+            // Keep the existing image if no new image is provided
+            if (updateJewelry.JewelryImg == null)
+            {
+                updateJewelry.JewelryImg = updjewelry.JewelryImg;
             }
 
             updjewelry.AccountId = updateJewelry.AccountId;
