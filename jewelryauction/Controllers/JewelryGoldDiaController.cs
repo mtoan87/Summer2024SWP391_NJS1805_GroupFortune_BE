@@ -45,7 +45,18 @@ namespace jewelryauction.Controllers
             var createdJewelry = await _jewelryGoldDiaService.CreateJewelry(jewelryDTO);
             return Ok(createdJewelry);
         }
-
+        [HttpPut]
+        [Route("UpdateJewelryGoldDiamondMember")]
+        public async Task<IActionResult> UpdateJewelryGoldDiamondMember(int id, [FromForm] UpdateJewelryGoldDiaDTO updateJewelry, IFormFile jewelryImg)
+        {
+            var existingJewelry = await _jewelryGoldDiaService.GetJewelryById(id);
+            if (existingJewelry != null)
+            {
+                updateJewelry.JewelryImg = existingJewelry.JewelryImg;
+            }
+            var rs = await _jewelryGoldDiaService.UpdateJewelryMember(id, updateJewelry);
+            return Ok(rs);
+        }
         [HttpDelete]
         [Route("DeleteJewelryGoldDiamond")]
         public async Task<IActionResult> DeleteSilverJewelry(int id)
