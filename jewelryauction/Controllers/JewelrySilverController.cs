@@ -70,6 +70,18 @@ namespace jewelryauction.Controllers
             var rs = await _jewelrySilverService.UpdateJewelryStaff(id, updateJewelry);
             return Ok(rs);
         }
+        [HttpPut]
+        [Route("UpdateJewelrySilverManager")]
+        public async Task<IActionResult> UpdateSilverJewelryManager(int id, [FromForm] UpdateJewelrySilverManagerDTO updateJewelry, IFormFile jewelryImg)
+        {
+            var existingJewelry = await _jewelrySilverService.GetJewelryById(id);
+            if (existingJewelry != null)
+            {
+                updateJewelry.JewelryImg = existingJewelry.JewelryImg;
+            }
+            var rs = await _jewelrySilverService.UpdateJewelryManager(id, updateJewelry);
+            return Ok(rs);
+        }
 
         [HttpDelete]
         [Route("DeleteJewelrySilver")]
