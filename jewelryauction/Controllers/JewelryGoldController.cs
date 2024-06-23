@@ -72,7 +72,7 @@ namespace jewelryauction.Controllers
         }
         [HttpPut]
         [Route("UpdateJewelryGoldManager")]
-        public async Task<IActionResult> UpdateJewelryGoldManager(int id, [FromForm] UpdateJewelryManagerDTO updateJewelry)
+        public async Task<IActionResult> UpdateJewelryGoldManager(int id, [FromBody] UpdateJewelryManagerDTO updateJewelry)
         {
             var existingJewelry = await _jewelryGoldService.GetJewelryById(id);
             if (existingJewelry != null)

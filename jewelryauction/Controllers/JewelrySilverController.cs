@@ -60,7 +60,7 @@ namespace jewelryauction.Controllers
         }
         [HttpPut]
         [Route("UpdateJewelrySilverStaff")]
-        public async Task<IActionResult> UpdateSilverJewelryStaff(int id, [FromForm] UpdateJewelrySilverStaffDTO updateJewelry, IFormFile? jewelryImg)
+        public async Task<IActionResult> UpdateSilverJewelryStaff(int id, [FromForm] UpdateJewelrySilverStaffDTO updateJewelry)
         {
             var existingJewelry = await _jewelrySilverService.GetJewelryById(id);
             if (existingJewelry != null)
@@ -72,7 +72,7 @@ namespace jewelryauction.Controllers
         }
         [HttpPut]
         [Route("UpdateJewelrySilverManager")]
-        public async Task<IActionResult> UpdateSilverJewelryManager(int id, [FromForm] UpdateJewelrySilverManagerDTO updateJewelry, IFormFile jewelryImg)
+        public async Task<IActionResult> UpdateSilverJewelryManager(int id, [FromForm] UpdateJewelrySilverManagerDTO updateJewelry)
         {
             var existingJewelry = await _jewelrySilverService.GetJewelryById(id);
             if (existingJewelry != null)
