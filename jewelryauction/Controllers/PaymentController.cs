@@ -34,7 +34,13 @@ namespace jewelryauction.Controllers
             }
             return Ok(rs);
         }
-        
+        [HttpPost]
+        [Route("CreatePayment")]
+        public async Task<IActionResult> CreatePayment(CreatePaymentDTO createPayment)
+        {
+            var rs = await _service.CreatePayment(createPayment);
+            return Ok(rs);
+        }
 
     }
 }
