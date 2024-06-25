@@ -62,7 +62,24 @@ namespace jewelryauction.Controllers
             });
         }
 
-        
+        [HttpGet]
+        [Route("GetVerified")]
+        public IActionResult GetVerifiedJewelry()
+        {
+            var (silvers, golds, golddias) = _jewelryService.GetVerified();
+
+            if (!silvers.Any() && !golds.Any() && !golddias.Any())
+            {
+                return NoContent();
+            }
+
+            return Ok(new
+            {
+                JewelrySilver = silvers,
+                JewelryGold = golds,
+                JewelryGoldDiamond = golddias
+            });
+        }
 
     }
 }
