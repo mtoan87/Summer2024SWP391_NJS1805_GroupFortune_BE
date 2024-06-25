@@ -36,5 +36,12 @@ namespace jewelryauction.Controllers
             var result = await _accountWalletService.CreateAccountWallet(createAccountWalletDTO);
             return Ok(result);
         }
+        [HttpPut]
+        [Route("UpdateAccountWallet")]
+        public async Task<IActionResult> UpdateAccountWallet(int id, UpdateAccountWalletDTO updateAccount)
+        {
+            var result = await _accountWalletService.UpdateAccountWallet(id, updateAccount);
+            return Ok(result);
+        }
     }
 }
