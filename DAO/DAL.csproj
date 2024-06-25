@@ -23,7 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DTO\BidDTO\" />
     <Folder Include="DTO\PaymentDTO\" />
   </ItemGroup>
 

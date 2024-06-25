@@ -54,6 +54,8 @@ builder.Services.AddScoped<JewelrySilverService>();
 builder.Services.AddScoped<AccountRepository>();
 builder.Services.AddScoped<AccountService>();
 builder.Services.AddScoped<AuctionRepository>();
+builder.Services.AddScoped<AccountWalletService>();
+builder.Services.AddScoped<AccountWalletRepository>();
 builder.Services.AddScoped<AuctionService>();
 builder.Services.AddScoped<AuctionResultRepository>();
 builder.Services.AddScoped<AuctionResultService>();

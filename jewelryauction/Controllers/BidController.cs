@@ -1,4 +1,5 @@
-﻿using DAL.DTO.JewelryDTO;
+﻿using DAL.DTO.BidDTO;
+using DAL.DTO.JewelryDTO;
 using DAL.DTO.JoinAuctionDTO;
 using DAL.Models;
 using Microsoft.AspNetCore.Http;
@@ -31,7 +32,12 @@ namespace jewelryauction.Controllers
             var result = await _bidService.GetBidByAccountIdAsync(accountId);
             return Ok(result);
         }
-
-        
+        [HttpPost]
+        [Route("CreateBid")]
+        public async Task<ActionResult<Bid>> CreateBid(CreateBidDTO createBid)
+        {
+            var rs = await _bidService.CreateBid(createBid);
+            return Ok(rs);
+        }
     }
 }

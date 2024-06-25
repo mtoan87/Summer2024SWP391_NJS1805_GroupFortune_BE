@@ -26,5 +26,19 @@ namespace Repository.Implement
                 .Where(a => a.AccountId == accountId)
                 .ToListAsync();
         }
+
+        public async Task<bool> UpdateBidAsync(Bid bid)
+        {
+            try
+            {
+                _context.Bids.Update(bid);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }
