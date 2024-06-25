@@ -21,6 +21,10 @@ namespace Repository.Implement
             return await _context.Bids
                 .Where(a => a.AccountId == accountId)
                 .ToListAsync();
-        }    
+        }
+        public async Task<Bid> GetByAccountIdAndAuctionId(int accountId, int auctionId)
+        {
+            return  _context.Bids.FirstOrDefault(b => b.AccountId == accountId && b.AuctionId == auctionId);
+        }
     }
 }

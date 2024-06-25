@@ -14,8 +14,16 @@ namespace Service.Implement
     public class BidService
     {
         private readonly BidRepository _bidRepository;
-        public BidService(BidRepository bidRepository)
+        private readonly JewelryGoldRepository _jewelryGoldRepository;
+        private readonly JewelrySilverRepository _jewelrySilverRepository;
+        private readonly JewelryGoldDiaRepository _jewelryGoldDiaRepository;
+        private readonly BidRecordRepository _bidRecordRepository;
+        public BidService(BidRepository bidRepository, JewelryGoldRepository jewelryGoldRepository, JewelrySilverRepository jewelrySilverRepository, JewelryGoldDiaRepository jewelryGoldDiaRepository, BidRecordRepository bidRecordRepository)
         {
+            _jewelryGoldRepository = jewelryGoldRepository;
+            _jewelrySilverRepository = jewelrySilverRepository;
+            _jewelryGoldDiaRepository = jewelryGoldDiaRepository;
+            _bidRecordRepository = bidRecordRepository;
             _bidRepository = bidRepository;
         }
         public async Task<IEnumerable<Bid>> GetBidByAccountIdAsync(int accountId)
@@ -59,5 +67,82 @@ namespace Service.Implement
             return bid;
 
         }
+        public async Task<bool> PlaceBid(BiddingDTO bidDto)
+        {
+            // Retrieve the auction item
+            var jewelryGold = await _jewelryGoldRepository.GetByIdAsync(bidDto.AuctionId);
+            var jewelryGoldDiamond = await _jewelryGoldDiaRepository.GetByIdAsync(bidDto.AuctionId);
+            var jewelrySilver = await _jewelrySilverRepository.GetByIdAsync(bidDto.AuctionId);
+
+            double minPrice = 0;
+            if (jewelryGold != null)
+            {
+                minPrice = jewelryGold.Price ?? 0;
+            }
+            else if (jewelryGoldDiamond != null)
+            {
+                minPrice = jewelryGoldDiamond.Price ?? 0;
+            }
+            else if (jewelrySilver != null)
+            {
+                minPrice = jewelrySilver.Price ?? 0;
+            }
+            else
+            {
+                return false;
+            }
+
+            // Fetch the existing bid for the user and auction, if any
+            var existingBid = await _bidRepository.GetByAccountIdAndAuctionId(bidDto.AccountId, bidDto.AuctionId);
+
+            double newMaxPrice;
+            if (existingBid == null)
+            {
+                // No existing bid, create a new one with initial Minprice and Maxprice
+                newMaxPrice = minPrice + bidDto.BidStep;
+                var newBid = new Bid
+                {
+                    AccountId = bidDto.AccountId,
+                    AuctionId = bidDto.AuctionId,
+                    Minprice = minPrice,
+                    Maxprice = newMaxPrice,
+                    Datetime = DateTime.Now
+                };
+
+                await _bidRepository.AddAsync(newBid);
+                await _bidRepository.SaveChangesAsync(); // Save changes to get the new BidId
+
+                var bidRecord = new BidRecord
+                {
+                    BidId = newBid.BidId,
+                    BidAmount = newMaxPrice,
+                    BidStep = bidDto.BidStep
+                };
+
+                await _bidRecordRepository.AddAsync(bidRecord);
+            }
+            else
+            {
+                
+                newMaxPrice = existingBid.Maxprice + bidDto.BidStep;
+                existingBid.Maxprice = newMaxPrice;
+                existingBid.Datetime = DateTime.Now;
+
+                var bidRecord = new BidRecord
+                {
+                    BidId = existingBid.BidId,
+                    BidAmount = newMaxPrice,
+                    BidStep = bidDto.BidStep
+                };
+
+                await _bidRecordRepository.AddAsync(bidRecord);
+            }
+
+            await _bidRepository.SaveChangesAsync();
+            await _bidRecordRepository.SaveChangesAsync();
+
+            return true;
+        }
+
     }
 }

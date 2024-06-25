@@ -209,6 +209,8 @@ namespace DAL.Models
 
                 entity.Property(e => e.BidId).HasColumnName("bid_id");
 
+                entity.Property(e => e.BidStep).HasColumnName("bid_step");
+
                 entity.HasOne(d => d.Bid)
                     .WithMany(p => p.BidRecords)
                     .HasForeignKey(d => d.BidId)
@@ -266,7 +268,7 @@ namespace DAL.Models
             modelBuilder.Entity<JewelryGoldDiamond>(entity =>
             {
                 entity.HasKey(e => e.JewelryGolddiaId)
-                    .HasName("PK__JewelryG__97244312922B0398");
+                    .HasName("PK__JewelryG__97244312F876C281");
 
                 entity.ToTable("JewelryGoldDiamond");
 
