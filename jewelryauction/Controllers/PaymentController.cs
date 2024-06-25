@@ -42,5 +42,13 @@ namespace jewelryauction.Controllers
             return Ok(rs);
         }
 
+        [HttpPut]
+        [Route("UpdatePayment")]
+        public async Task<IActionResult> UpdatePayment(int id, UpdatePaymentDTO updatePayment)
+        {
+            var rs = await _service.UpdatePayment(id, updatePayment);
+            return Ok(rs);
+        }
+
     }
 }
