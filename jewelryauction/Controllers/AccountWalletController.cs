@@ -16,6 +16,12 @@ namespace jewelryauction.Controllers
         {
             _accountWalletService = accountWalletService;
         }
-        
+        [HttpGet]
+        [Route("GetAccountWallet")]
+        public IActionResult GetAccountWallets()
+        {
+            var accounts = _accountWalletService.GetAccountWallet();
+            return Ok(accounts);
+        }
     }
 }
