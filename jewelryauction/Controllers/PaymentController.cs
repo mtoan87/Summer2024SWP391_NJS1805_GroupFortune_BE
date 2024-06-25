@@ -23,6 +23,17 @@ namespace jewelryauction.Controllers
             var rs = await _service.GetAllPayments();
             return Ok(rs);
         }
+        [HttpGet]
+        [Route("GetPaymentById")]
+        public async Task<IActionResult> GetPaymentById(int id)
+        {
+            var rs = await _service.GetPaymentById(id);
+            if(rs == null)
+            {
+                throw new Exception($"Payment with {id} not found!");
+            }
+            return Ok(rs);
+        }
         
 
     }
