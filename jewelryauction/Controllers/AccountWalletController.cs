@@ -23,5 +23,11 @@ namespace jewelryauction.Controllers
             var accounts = _accountWalletService.GetAccountWallet();
             return Ok(accounts);
         }
+        [HttpGet("GetById/{Id}")]
+        public async Task<IActionResult> GetAccountWalletById(int Id)
+        {
+            var jewelry = await _accountWalletService.GetAccountWalletById(Id);
+            return Ok(jewelry);
+        }
     }
 }
