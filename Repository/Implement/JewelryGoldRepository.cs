@@ -15,10 +15,7 @@ namespace Repository.Implement
         {
 
         }
-        public IEnumerable<JewelryGold> GetAllJewelries()
-        {
-            return _context.JewelryGolds.ToList();
-        }
+        
         public IEnumerable<JewelryGold> GetAll()
         {
             return _context.Set<JewelryGold>().ToList();
@@ -29,19 +26,16 @@ namespace Repository.Implement
             return await _context.JewelryGolds.FirstOrDefaultAsync(x =>x.JewelryGoldId == id);
         }
 
-        public async Task<bool> UpdateJewelryAsync(JewelryGold jewelryGold)
+        public IEnumerable<JewelryGold> GetUnVerified()
         {
-            try
-            {
-                _context.JewelryGolds.Update(jewelryGold);
-                await _context.SaveChangesAsync();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            return _context.JewelryGolds.Where(a =>a.Status == "UnVerified").ToList();
         }
+        public IEnumerable<JewelryGold> GetVerified()
+        {
+            return _context.JewelryGolds.Where(a => a.Status == "Verified").ToList();
+        }
+
+
         public async Task<IEnumerable<JewelryGold>> GetAuctionAndJewelryGoldByAccountId(int accountId)
         {
             return await _context.JewelryGolds

@@ -19,9 +19,9 @@ namespace Service.Implement
         {
             _joinAuctionRepository = joinAuctionRepository;
         }
-        public IEnumerable<JoinAuction> GetAllJoinAuctions()
+        public async Task<IEnumerable<JoinAuction>> GetAllJoinAuctions()
         {
-            return _joinAuctionRepository.GetAllJoinAuction();
+            return  await _joinAuctionRepository.GetAllAsync();
         }
 
         public async Task<JoinAuction> GetJoinAuctionById(int id)
@@ -38,7 +38,7 @@ namespace Service.Implement
                 Joindate = DateTime.Now,
             };
             await _joinAuctionRepository.AddAsync(newJoinAuction);
-            await _joinAuctionRepository.SaveChangesAsync();
+            
             return newJoinAuction;
         }
 
@@ -53,7 +53,7 @@ namespace Service.Implement
             auction.AuctionId = updateJoinAuction.AuctionId;
             auction.AccountId = updateJoinAuction.AccountId;
             auction.BidId = updateJoinAuction.BidId;
-             await _joinAuctionRepository.UpdateJoinAuctionAsync(auction);
+             await _joinAuctionRepository.UpdateAsync(auction);
             return auction;
         }
 

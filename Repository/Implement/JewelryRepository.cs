@@ -32,13 +32,7 @@
 //                return false;
 //            }
 //        }
-//        public async Task<IEnumerable<Jewelry>> GetAuctionAndJewelryByAccountId(int accountId)
-//        {
-//            return await _context.Jewelries
-//                .Include(a => a.Auctions)
-//                .Where(a => a.AccountId == accountId)
-//                .ToListAsync();
-//        }
+        
 
 //    }
 //}

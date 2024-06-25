@@ -23,9 +23,9 @@ namespace Service.Implement
             return await _bidRepository.GetBidByAccountId(accountId);
         }
 
-        public IEnumerable<Bid> GetAllBids()
+        public async Task<IEnumerable<Bid>> GetAllBids()
         {
-            return _bidRepository.GetAllBids();
+            return await _bidRepository.GetAllAsync();
         }
 
         public async Task<Bid> CreateBid(CreateBidDTO createBid)
@@ -54,8 +54,8 @@ namespace Service.Implement
             bid.AccountId = updateBid.AccountId;
             bid.Minprice = updateBid.Minprice;
             bid.Maxprice = updateBid.Maxprice;
-            await _bidRepository.UpdateBidAsync(bid);
-            await _bidRepository.SaveChangesAsync();
+            await _bidRepository.UpdateAsync(bid);
+           
             return bid;
 
         }

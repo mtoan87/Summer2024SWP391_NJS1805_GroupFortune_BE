@@ -23,11 +23,11 @@ namespace Repository.Implement
             _dbSet = _context.Set<T>();
         }
 
-
-        public async Task AddAsync(T entity)
+        
+        public async Task<int> AddAsync(T entity)
         {
-            await _dbSet.AddAsync(entity);
-
+            _context.Add(entity);
+            return await _context.SaveChangesAsync();
         }
         public void Delete(T entity)
         {
@@ -67,6 +67,17 @@ namespace Repository.Implement
         {
             await _context.SaveChangesAsync();
         }
-        
+        public async Task<int> UpdateAsync(T entity)
+        {
+            var tracker = _context.Attach(entity);
+            tracker.State = EntityState.Modified;
+
+            return await _context.SaveChangesAsync();
+        }
+
+        Task IRepositoryGeneric<T>.AddAsync(T entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -13,22 +13,7 @@ namespace Repository.Implement
         {
            
         }
-        public IEnumerable<AccountWallet> GetAccountWallets()
-        {
-            return _context.AccountWallets.ToList();
-        }
-        public async Task<bool> UpdateAccountWalletAsync(AccountWallet accountWallet)
-        {
-            try
-            {
-                _context.AccountWallets.Update(accountWallet);
-                await _context.SaveChangesAsync();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
+        
+        
     }
 }

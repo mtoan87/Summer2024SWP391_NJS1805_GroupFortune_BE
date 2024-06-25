@@ -17,9 +17,9 @@ namespace Service.Implement
         {
             _jewelryGoldRepository = jewelryGoldRepository;
         }
-        public IEnumerable<JewelryGold> GetAllGoldJewelries()
+        public async Task<IEnumerable<JewelryGold>> GetAllGoldJewelries()
         {
-            return _jewelryGoldRepository.GetAll();
+            return await _jewelryGoldRepository.GetAllAsync();
         }
         public async Task<JewelryGold> GetJewelryById(int id)
         {
@@ -57,7 +57,7 @@ namespace Service.Implement
             };
 
             await _jewelryGoldRepository.AddAsync(newjewelry);
-            await _jewelryGoldRepository.SaveChangesAsync();
+          
             return newjewelry;
         }
 
@@ -82,7 +82,7 @@ namespace Service.Implement
             updjewelry.Weight = updateJewelry.Weight;
             updjewelry.GoldAge = updateJewelry.Goldage;
       
-            await _jewelryGoldRepository.UpdateJewelryAsync(updjewelry);
+            await _jewelryGoldRepository.UpdateAsync(updjewelry);
             return updjewelry;
         }
         public async Task<JewelryGold> UpdateJewelryStaff(int id, UpdateJewelryStaffDTO updateJewelry)
@@ -93,7 +93,7 @@ namespace Service.Implement
                 throw new Exception($"Jewelry with ID {id} not found.");
             }            
             updjewelry.Price = updateJewelry.Price;
-            await _jewelryGoldRepository.UpdateJewelryAsync(updjewelry);
+            await _jewelryGoldRepository.UpdateAsync(updjewelry);
             return updjewelry;
         }
 
@@ -106,7 +106,7 @@ namespace Service.Implement
             }           
             updjewelry.Price = updateJewelry.Price;
             updjewelry.Status = updateJewelry.Status;
-            await _jewelryGoldRepository.UpdateJewelryAsync(updjewelry);
+            await _jewelryGoldRepository.UpdateAsync(updjewelry);
             return updjewelry;
         }
         public async Task<JewelryGold> DeleteJewelry(int id)

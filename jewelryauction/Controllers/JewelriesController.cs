@@ -29,7 +29,7 @@ namespace jewelryauction.Controllers
         {
             var (silvers, golds, golddias) = _jewelryService.GetAllJewelry();
 
-            if (!silvers.Any() && !golds.Any())
+            if (!silvers.Any() && !golds.Any() && !golddias.Any())
             {
                 return NoContent();
             }
@@ -42,6 +42,27 @@ namespace jewelryauction.Controllers
             });
         }
 
+
+        [HttpGet]
+        [Route("GetUnVerified")]
+        public IActionResult GetUnverifiedJewelry()
+        {
+            var (silvers, golds, golddias) = _jewelryService.GetUnVerified();
+
+            if (!silvers.Any() && !golds.Any() && !golddias.Any())
+            {
+                return NoContent();
+            }
+
+            return Ok(new
+            {
+                JewelrySilver = silvers,
+                JewelryGold = golds,
+                JewelryGoldDiamond = golddias
+            });
+        }
+
+        
 
     }
 }

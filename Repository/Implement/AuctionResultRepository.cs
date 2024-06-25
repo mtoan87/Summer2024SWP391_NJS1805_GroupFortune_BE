@@ -13,22 +13,7 @@ namespace Repository.Implement
         {
             
         }
-        public IEnumerable<AuctionResult> GetAllAuctionResults()
-        {
-            return _context.AuctionResults.ToList();
-        }
-        public async Task<bool> UpdateAuctionRsAsync(AuctionResult auctionrs)
-        {
-            try
-            {
-                _context.AuctionResults.Update(auctionrs);
-                await _context.SaveChangesAsync();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
+       
+        
     }
 }

@@ -16,9 +16,9 @@ namespace Service.Implement
         {
             _jewelryGoldDiaRepository = jewelryGoldDiaRepository;
         }
-        public IEnumerable<JewelryGoldDiamond> GetAllGoldDiaJewelries()
+        public async Task<IEnumerable<JewelryGoldDiamond>> GetAllGoldDiaJewelries()
         {
-            return _jewelryGoldDiaRepository.GetAllJewelries();
+            return await _jewelryGoldDiaRepository.GetAllAsync();
         }
         public async Task<JewelryGoldDiamond> GetJewelryById(int id)
         {
@@ -62,7 +62,7 @@ namespace Service.Implement
             };
 
             await _jewelryGoldDiaRepository.AddAsync(newjewelry);
-            await _jewelryGoldDiaRepository.SaveChangesAsync();
+            
             return newjewelry;
         }
         public async Task<JewelryGoldDiamond> UpdateJewelryMember(int id, UpdateJewelryGoldDiaDTO updateJewelry)
@@ -89,7 +89,7 @@ namespace Service.Implement
             updjewelry.Carat = updateJewelry.Carat;
             updjewelry.Weight = updateJewelry.Weight;
             updjewelry.GoldAge = updateJewelry.GoldAge;
-            await _jewelryGoldDiaRepository.UpdateJewelryAsync(updjewelry);
+            await _jewelryGoldDiaRepository.UpdateAsync(updjewelry);
             return updjewelry;
         }
         public async Task<JewelryGoldDiamond> UpdateJewelryStaff(int id, UpdateJewelryGoldDiamondStaffDTO updateJewelry)
@@ -102,7 +102,7 @@ namespace Service.Implement
 
             
             updjewelry.Price = updateJewelry.Price;
-            await _jewelryGoldDiaRepository.UpdateJewelryAsync(updjewelry);
+            await _jewelryGoldDiaRepository.UpdateAsync(updjewelry);
             return updjewelry;
         }
 
@@ -117,7 +117,7 @@ namespace Service.Implement
             
             updjewelry.Price = updateJewelry.Price;
             updjewelry.Status = updateJewelry.Status;
-            await _jewelryGoldDiaRepository.UpdateJewelryAsync(updjewelry);
+            await _jewelryGoldDiaRepository.UpdateAsync(updjewelry);
             return updjewelry;
         }
         public async Task<JewelryGoldDiamond> DeleteJewelry(int id)

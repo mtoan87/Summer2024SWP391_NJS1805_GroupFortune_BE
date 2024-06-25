@@ -30,6 +30,21 @@ namespace Service.Implement
             var golddias = _jewelryGoldDiaRepository.GetAll();
             return (silvers, golds, golddias);
         }
+        public (IEnumerable<JewelrySilver>, IEnumerable<JewelryGold>, IEnumerable<JewelryGoldDiamond>) GetUnVerified()
+        {
+            var silvers = _jewelrySilverRepository.GetUnVerified();
+            var golds = _jewelryGoldRepository.GetUnVerified();
+            var golddias = _jewelryGoldDiaRepository.GetUnVerified();
+            return (silvers, golds, golddias);
+        }
+        public (IEnumerable<JewelrySilver>, IEnumerable<JewelryGold>, IEnumerable<JewelryGoldDiamond>) GetVerified()
+        {
+            var silvers = _jewelrySilverRepository.GetVerified();
+            var golds = _jewelryGoldRepository.GetVerified();
+            var golddias = _jewelryGoldDiaRepository.GetVerified();
+            return (silvers, golds, golddias);
+        }
+
     }
 
 }

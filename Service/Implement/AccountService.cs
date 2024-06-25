@@ -18,9 +18,9 @@ namespace Service.Implement
             _accountRepository = accountRepository;
         }
         
-        public IEnumerable<Account> GetAllAccounts()
+        public async Task<IEnumerable<Account>> GetAllAccounts()
         {
-            return _accountRepository.GetAllAccounts();
+            return await _accountRepository.GetAllAsync();
         }
         public async Task<Account> GetAccountById(int id)
         {
@@ -69,7 +69,7 @@ namespace Service.Implement
             account.AccountEmail = updateAccount.AccountEmail;
             account.AccountPassword = updateAccount.AccountPassword;
             account.AccountPhone = updateAccount.AccountPhone;          
-           await _accountRepository.UpdateAccountAsync(account);
+           await _accountRepository.UpdateAsync(account);
             return account;
         }
         public async Task<Account> DeleteAccount(int id)

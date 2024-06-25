@@ -18,9 +18,9 @@ namespace jewelryauction.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<JewelrySilver>> GetAllSilverJewelries()
+        public async Task<IActionResult> GetAllSilverJewelries()
         {
-            var jewelry = _jewelrySilverService.GetAllSilverJewelries();
+            var jewelry = await _jewelrySilverService.GetAllSilverJewelries();
             return Ok(jewelry);
         }
 

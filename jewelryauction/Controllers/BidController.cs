@@ -21,9 +21,9 @@ namespace jewelryauction.Controllers
 
         [HttpGet]
         [Route("GetAllBids")]
-        public async Task<ActionResult<Bid>> GetAllBids()
+        public async Task<IActionResult> GetAllBids()
         {
-            var jewelry = _bidService.GetAllBids();
+            var jewelry = await _bidService.GetAllBids();
             return Ok(jewelry);
         }
         [HttpGet("GetBidByAccountId/{accountId}")]
@@ -39,12 +39,11 @@ namespace jewelryauction.Controllers
             var rs = await _bidService.CreateBid(createBid);
             return Ok(rs);
         }
-
-        [HttpPut]
+        [HttpPost]
         [Route("UpdateBid")]
-        public async Task<IActionResult> UpdateBid(int id, UpdateBidDTO updateBid)
+        public async Task<ActionResult<Bid>> UpdateBid(int id,UpdateBidDTO update)
         {
-            var rs = await _bidService.UpdateBid(id, updateBid);
+            var rs = await _bidService.UpdateBid(id,update);
             return Ok(rs);
         }
     }

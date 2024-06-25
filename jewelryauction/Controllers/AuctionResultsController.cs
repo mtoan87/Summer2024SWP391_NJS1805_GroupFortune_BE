@@ -19,9 +19,9 @@ namespace jewelryauction.Controllers
         }
         [HttpGet]
         [Route("GetAllAuctionResults")]
-        public async Task<ActionResult<AuctionResult>> GetAllAuctions()
+        public async Task<IActionResult> GetAllAuctions()
         {
-            var rs = _service.GetAllAuctionResults();
+            var rs = await _service.GetAllAuctionResults();
             return Ok(rs);
         }
         [HttpGet("GetById/{Id}")]

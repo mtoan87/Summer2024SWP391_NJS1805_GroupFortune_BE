@@ -13,22 +13,7 @@ namespace Repository.Implement
         {
             
         }
-        public IEnumerable<JoinAuction> GetAllJoinAuction()
-        {
-            return _context.JoinAuctions.ToList();
-        }
-        public async Task<bool> UpdateJoinAuctionAsync(JoinAuction joinAuction)
-        {
-            try
-            {
-                _context.JoinAuctions.Update(joinAuction);
-                await _context.SaveChangesAsync();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
+        
+        
     }
 }

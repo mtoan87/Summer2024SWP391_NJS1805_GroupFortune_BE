@@ -14,10 +14,7 @@ namespace Repository.Implement
         {
             
         }
-        public IEnumerable<Auction> GetAllAuctions()
-        {
-            return _context.Auctions.ToList();
-        }
+        
         public IEnumerable<Auction> GetActiveAuctions()
         {
             return _context.Auctions.Where(a => a.Status == "Active").ToList();
@@ -28,19 +25,7 @@ namespace Repository.Implement
         }
 
 
-        public async Task<bool> UpdateAuctionAsync(Auction auction)
-        {
-            try
-            {
-                _context.Auctions.Update(auction);
-                await _context.SaveChangesAsync();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
+        
         public async Task<IEnumerable<Auction>> GetAuctionAndJewelrySilverByAccountId(int accountId)
         {
             return await _context.Auctions

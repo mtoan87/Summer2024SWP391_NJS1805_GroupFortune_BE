@@ -21,9 +21,9 @@ namespace Service.Implement
             _auctionRepository = auctionRepository;
         }
 
-        public IEnumerable<Auction> GetAllAuctions()
+        public async Task<IEnumerable<Auction>> GetAllAuctions()
         {
-            return _auctionRepository.GetAllAuctions();
+            return await _auctionRepository.GetAllAsync();
         }
         public IEnumerable<Auction> GetAllActiveAuctions()
         {
@@ -65,8 +65,7 @@ namespace Service.Implement
                 Endtime = createAuction.Endtime,
                 Status = "UnActive"
             };
-            await _auctionRepository.AddAsync(newAuction);
-            await _auctionRepository.SaveChangesAsync();
+            await _auctionRepository.AddAsync(newAuction);          
             return newAuction;
         }
         public async Task<Auction> CreateJewelryGoldDiamondAuction(CreateGoldDiamondAuctionDTO createAuction)
@@ -82,7 +81,7 @@ namespace Service.Implement
                 Status = "UnActive"
             };
             await _auctionRepository.AddAsync(newAuction);
-            await _auctionRepository.SaveChangesAsync();
+           
             return newAuction;
         }
         public async Task<Auction> UpdateSilverAuction(int id, UpdateSilverAuctionDTO updateAuction)
@@ -98,7 +97,7 @@ namespace Service.Implement
             auction.Starttime = updateAuction.Starttime;
             auction.Endtime = updateAuction.Endtime;
             auction.Status = updateAuction.Status;
-            await _auctionRepository.UpdateAuctionAsync(auction);
+            await _auctionRepository.UpdateAsync(auction);
             return auction;
         }
         public async Task<Auction> UpdateGoldAuction(int id, UpdateGoldAuctionDTO updateAuction)
@@ -114,7 +113,7 @@ namespace Service.Implement
             auction.Starttime = updateAuction.Starttime;
             auction.Endtime = updateAuction.Endtime;
             auction.Status = updateAuction.Status;
-            await _auctionRepository.UpdateAuctionAsync(auction);
+            await _auctionRepository.UpdateAsync(auction);
             return auction;
         }
         public async Task<Auction> UpdateGoldDiamondAuction(int id, UpdateGoldDiamondAuctionDTO updateAuction)
@@ -130,7 +129,7 @@ namespace Service.Implement
             auction.Starttime = updateAuction.Starttime;
             auction.Endtime = updateAuction.Endtime;
             auction.Status = updateAuction.Status;
-            await _auctionRepository.UpdateAuctionAsync(auction);
+            await _auctionRepository.UpdateAsync(auction);
             return auction;
         }
         public async Task<Auction> DeleteAuction(int id)

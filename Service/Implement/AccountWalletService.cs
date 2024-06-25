@@ -19,9 +19,9 @@ namespace Service.Implement
             _accountWalletRepository = accountWalletRepository;
         }
 
-        public IEnumerable<AccountWallet> GetAccountWallet()
+        public async Task<IEnumerable<AccountWallet>> GetAccountWallet()
         {
-            return _accountWalletRepository.GetAccountWallets();
+            return await _accountWalletRepository.GetAllAsync();
         }
 
         public async Task<AccountWallet> GetAccountWalletById(int id)
@@ -55,7 +55,7 @@ namespace Service.Implement
             account.BankName = updateAccountWallet.BankName;
             account.BankNo = updateAccountWallet.BankNo;
             account.Budget = updateAccountWallet.Budget;
-            await _accountWalletRepository.UpdateAccountWalletAsync(account);
+            await _accountWalletRepository.UpdateAsync(account);
             return account;
             
         }        

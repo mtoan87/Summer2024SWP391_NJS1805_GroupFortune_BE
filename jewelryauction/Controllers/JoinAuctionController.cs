@@ -20,9 +20,9 @@ namespace jewelryauction.Controllers
 
         [HttpGet]
         
-        public async Task<ActionResult<JoinAuction>> GetAllJoinAuctions()
+        public async Task<IActionResult> GetAllJoinAuctions()
         {
-            var jewelry = _joinAuctionService.GetAllJoinAuctions();
+            var jewelry = await _joinAuctionService.GetAllJoinAuctions();
             return Ok(jewelry);
         }
 

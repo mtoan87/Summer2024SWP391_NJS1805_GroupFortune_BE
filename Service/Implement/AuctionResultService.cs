@@ -18,9 +18,9 @@ namespace Service.Implement
         {
             _repository = repository;
         }
-        public IEnumerable<AuctionResult> GetAllAuctionResults()
+        public async Task<IEnumerable<AuctionResult>> GetAllAuctionResults()
         {
-            return _repository.GetAllAuctionResults();
+            return await _repository.GetAllAsync();
         }
         public async Task<AuctionResult> GetAuctionResultById(int id)
         {
@@ -40,8 +40,8 @@ namespace Service.Implement
 
 
             };
-            _repository.AddAsync(newAuctionRs);
-            _repository.SaveChangesAsync();
+            await _repository.AddAsync(newAuctionRs);
+           
             return newAuctionRs;
         }
         public async Task<AuctionResult> UpdateAuctionRs(int id, UpdateAuctionRsDTO updateAuctionRs)
@@ -58,7 +58,7 @@ namespace Service.Implement
             auctionRs.Price = updateAuctionRs.Price;
             auctionRs.AccountId = updateAuctionRs.AccountId;
 
-            await _repository.UpdateAuctionRsAsync(auctionRs);
+            await _repository.UpdateAsync(auctionRs);
             return auctionRs;
         }
         public async Task<AuctionResult> DeleteAuction(int id)

@@ -22,23 +22,7 @@ namespace Repository.Implement
         {
             return await _dbSet.AnyAsync(m => m.AccountEmail == gmail);
         }
-        public IEnumerable<Account> GetAllAccounts()
-        {
-            return _context.Accounts.ToList();
-        }
-        public async Task<bool> UpdateAccountAsync(Account account)
-        {
-            try
-            {
-                _context.Accounts.Update(account);
-                await _context.SaveChangesAsync();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
+        
         public void AddAccount(Account account)
         {
             _context.Accounts.Add(account);

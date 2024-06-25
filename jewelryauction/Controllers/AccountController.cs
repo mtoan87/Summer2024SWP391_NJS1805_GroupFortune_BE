@@ -26,9 +26,9 @@ namespace jewelryauction.Controllers
 
         [HttpGet]
         [Route("GetAllAccount")]
-        public IActionResult GetAllAccounts()
+        public async Task<IActionResult> GetAllAccounts()
         {
-            var accounts = _accountService.GetAllAccounts();
+            var accounts = await _accountService.GetAllAccounts();
             return Ok(accounts);
         }
         [HttpGet("GetById/{Id}")]

@@ -14,26 +14,18 @@ namespace Repository.Implement
         {
             
         }
-        public IEnumerable<JewelryGoldDiamond> GetAllJewelries()
-        {
-            return _context.JewelryGoldDiamonds.ToList();
-        }
+        
         public IEnumerable<JewelryGoldDiamond> GetAll()
         {
             return _context.Set<JewelryGoldDiamond>().ToList();
         }
-        public async Task<bool> UpdateJewelryAsync(JewelryGoldDiamond jewelryGoldDiamond)
+        public IEnumerable<JewelryGoldDiamond> GetUnVerified()
         {
-            try
-            {
-                _context.JewelryGoldDiamonds.Update(jewelryGoldDiamond);
-                await _context.SaveChangesAsync();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            return _context.JewelryGoldDiamonds.Where(a => a.Status == "UnVerified").ToList();
+        }
+        public IEnumerable<JewelryGoldDiamond> GetVerified()
+        {
+            return _context.JewelryGoldDiamonds.Where(a => a.Status == "Verified").ToList();
         }
         public async Task<IEnumerable<JewelryGoldDiamond>> GetAuctionAndJewelryGoldDiamondByAccountId(int accountId)
         {
