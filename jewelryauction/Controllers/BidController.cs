@@ -39,5 +39,13 @@ namespace jewelryauction.Controllers
             var rs = await _bidService.CreateBid(createBid);
             return Ok(rs);
         }
+
+        [HttpPut]
+        [Route("UpdateBid")]
+        public async Task<IActionResult> UpdateBid(int id, UpdateBidDTO updateBid)
+        {
+            var rs = await _bidService.UpdateBid(id, updateBid);
+            return Ok(rs);
+        }
     }
 }
