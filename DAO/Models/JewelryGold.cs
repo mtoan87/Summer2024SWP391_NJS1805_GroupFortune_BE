@@ -8,7 +8,6 @@ namespace DAL.Models
         public JewelryGold()
         {
             Auctions = new HashSet<Auction>();
-            Payments = new HashSet<Payment>();
         }
 
         public int JewelryGoldId { get; set; }
@@ -25,6 +24,5 @@ namespace DAL.Models
 
         public virtual Account? Account { get; set; }
         public virtual ICollection<Auction> Auctions { get; set; }
-        public virtual ICollection<Payment> Payments { get; set; }
     }
 }

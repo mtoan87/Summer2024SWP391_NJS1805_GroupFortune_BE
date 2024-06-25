@@ -7,6 +7,7 @@ namespace DAL.Models
     {
         public Bid()
         {
+            BidRecords = new HashSet<BidRecord>();
             JoinAuctions = new HashSet<JoinAuction>();
         }
 
@@ -19,6 +20,7 @@ namespace DAL.Models
 
         public virtual Account? Account { get; set; }
         public virtual Auction? Auction { get; set; }
+        public virtual ICollection<BidRecord> BidRecords { get; set; }
         public virtual ICollection<JoinAuction> JoinAuctions { get; set; }
     }
 }

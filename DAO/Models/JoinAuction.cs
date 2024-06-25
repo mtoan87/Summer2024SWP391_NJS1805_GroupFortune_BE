@@ -8,7 +8,6 @@ namespace DAL.Models
         public JoinAuction()
         {
             AuctionResults = new HashSet<AuctionResult>();
-            Payments = new HashSet<Payment>();
         }
 
         public int Id { get; set; }
@@ -21,6 +20,5 @@ namespace DAL.Models
         public virtual Auction? Auction { get; set; }
         public virtual Bid? Bid { get; set; }
         public virtual ICollection<AuctionResult> AuctionResults { get; set; }
-        public virtual ICollection<Payment> Payments { get; set; }
     }
 }

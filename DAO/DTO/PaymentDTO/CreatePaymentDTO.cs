@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace DAL.Models
+namespace DAL.DTO.PaymentDTO
 {
-    public partial class Payment
+    public class CreatePaymentDTO
     {
-        public int PaymentId { get; set; }
         public int? AccountId { get; set; }
         public int? AuctionResultId { get; set; }
         public string Status { get; set; } = null!;
@@ -14,8 +16,5 @@ namespace DAL.Models
         public double Price { get; set; }
         public double Totalprice { get; set; }
         public double Fee { get; set; }
-
-        public virtual Account? Account { get; set; }
-        public virtual AuctionResult? AuctionResult { get; set; }
     }
 }

@@ -50,6 +50,8 @@ builder.Services.AddScoped<JewelryGoldDiaRepository>();
 builder.Services.AddScoped<JewelryGoldDiaService>();
 builder.Services.AddScoped<JewelryService>();
 builder.Services.AddScoped<JewelrySilverRepository>();
+builder.Services.AddScoped<PaymentRepository>();
+builder.Services.AddScoped<PaymentService>();
 builder.Services.AddScoped<JewelrySilverService>();
 builder.Services.AddScoped<AccountRepository>();
 builder.Services.AddScoped<AccountService>();

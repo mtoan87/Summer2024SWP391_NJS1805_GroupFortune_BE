@@ -21,6 +21,7 @@ namespace DAL.Models
         public virtual DbSet<Auction> Auctions { get; set; } = null!;
         public virtual DbSet<AuctionResult> AuctionResults { get; set; } = null!;
         public virtual DbSet<Bid> Bids { get; set; } = null!;
+        public virtual DbSet<BidRecord> BidRecords { get; set; } = null!;
         public virtual DbSet<JewelryGold> JewelryGolds { get; set; } = null!;
         public virtual DbSet<JewelryGoldDiamond> JewelryGoldDiamonds { get; set; } = null!;
         public virtual DbSet<JewelrySilver> JewelrySilvers { get; set; } = null!;
@@ -66,7 +67,7 @@ namespace DAL.Models
                 entity.HasOne(d => d.Role)
                     .WithMany(p => p.Accounts)
                     .HasForeignKey(d => d.RoleId)
-                    .HasConstraintName("FK__Account__role_id__68487DD7");
+                    .HasConstraintName("FK__Account__role_id__4BAC3F29");
             });
 
             modelBuilder.Entity<AccountWallet>(entity =>
@@ -88,7 +89,7 @@ namespace DAL.Models
                 entity.HasOne(d => d.Account)
                     .WithMany(p => p.AccountWallets)
                     .HasForeignKey(d => d.AccountId)
-                    .HasConstraintName("FK__AccountWa__accou__6B24EA82");
+                    .HasConstraintName("FK__AccountWa__accou__4E88ABD4");
             });
 
             modelBuilder.Entity<Auction>(entity =>
@@ -120,22 +121,22 @@ namespace DAL.Models
                 entity.HasOne(d => d.Account)
                     .WithMany(p => p.Auctions)
                     .HasForeignKey(d => d.AccountId)
-                    .HasConstraintName("FK__Auction__account__76969D2E");
+                    .HasConstraintName("FK__Auction__account__59FA5E80");
 
                 entity.HasOne(d => d.JewelryGold)
                     .WithMany(p => p.Auctions)
                     .HasForeignKey(d => d.JewelryGoldId)
-                    .HasConstraintName("FK__Auction__jewelry__787EE5A0");
+                    .HasConstraintName("FK__Auction__jewelry__5BE2A6F2");
 
                 entity.HasOne(d => d.JewelryGolddia)
                     .WithMany(p => p.Auctions)
                     .HasForeignKey(d => d.JewelryGolddiaId)
-                    .HasConstraintName("FK__Auction__jewelry__797309D9");
+                    .HasConstraintName("FK__Auction__jewelry__5CD6CB2B");
 
                 entity.HasOne(d => d.JewelrySilver)
                     .WithMany(p => p.Auctions)
                     .HasForeignKey(d => d.JewelrySilverId)
-                    .HasConstraintName("FK__Auction__jewelry__778AC167");
+                    .HasConstraintName("FK__Auction__jewelry__5AEE82B9");
             });
 
             modelBuilder.Entity<AuctionResult>(entity =>
@@ -161,12 +162,12 @@ namespace DAL.Models
                 entity.HasOne(d => d.Account)
                     .WithMany(p => p.AuctionResults)
                     .HasForeignKey(d => d.AccountId)
-                    .HasConstraintName("FK__AuctionRe__accou__05D8E0BE");
+                    .HasConstraintName("FK__AuctionRe__accou__6C190EBB");
 
                 entity.HasOne(d => d.Joinauction)
                     .WithMany(p => p.AuctionResults)
                     .HasForeignKey(d => d.JoinauctionId)
-                    .HasConstraintName("FK__AuctionRe__joina__04E4BC85");
+                    .HasConstraintName("FK__AuctionRe__joina__6B24EA82");
             });
 
             modelBuilder.Entity<Bid>(entity =>
@@ -190,12 +191,28 @@ namespace DAL.Models
                 entity.HasOne(d => d.Account)
                     .WithMany(p => p.Bids)
                     .HasForeignKey(d => d.AccountId)
-                    .HasConstraintName("FK__Bid__account_id__7C4F7684");
+                    .HasConstraintName("FK__Bid__account_id__5FB337D6");
 
                 entity.HasOne(d => d.Auction)
                     .WithMany(p => p.Bids)
                     .HasForeignKey(d => d.AuctionId)
-                    .HasConstraintName("FK__Bid__auction_id__7D439ABD");
+                    .HasConstraintName("FK__Bid__auction_id__60A75C0F");
+            });
+
+            modelBuilder.Entity<BidRecord>(entity =>
+            {
+                entity.ToTable("Bid_record");
+
+                entity.Property(e => e.BidRecordId).HasColumnName("bid_record_id");
+
+                entity.Property(e => e.BidAmount).HasColumnName("bid_amount");
+
+                entity.Property(e => e.BidId).HasColumnName("bid_id");
+
+                entity.HasOne(d => d.Bid)
+                    .WithMany(p => p.BidRecords)
+                    .HasForeignKey(d => d.BidId)
+                    .HasConstraintName("FK__Bid_recor__bid_i__6383C8BA");
             });
 
             modelBuilder.Entity<JewelryGold>(entity =>
@@ -243,13 +260,13 @@ namespace DAL.Models
                 entity.HasOne(d => d.Account)
                     .WithMany(p => p.JewelryGolds)
                     .HasForeignKey(d => d.AccountId)
-                    .HasConstraintName("FK__JewelryGo__accou__70DDC3D8");
+                    .HasConstraintName("FK__JewelryGo__accou__5441852A");
             });
 
             modelBuilder.Entity<JewelryGoldDiamond>(entity =>
             {
                 entity.HasKey(e => e.JewelryGolddiaId)
-                    .HasName("PK__JewelryG__9724431245B8A1C6");
+                    .HasName("PK__JewelryG__97244312922B0398");
 
                 entity.ToTable("JewelryGoldDiamond");
 
@@ -302,7 +319,7 @@ namespace DAL.Models
                 entity.HasOne(d => d.Account)
                     .WithMany(p => p.JewelryGoldDiamonds)
                     .HasForeignKey(d => d.AccountId)
-                    .HasConstraintName("FK__JewelryGo__accou__73BA3083");
+                    .HasConstraintName("FK__JewelryGo__accou__571DF1D5");
             });
 
             modelBuilder.Entity<JewelrySilver>(entity =>
@@ -350,7 +367,7 @@ namespace DAL.Models
                 entity.HasOne(d => d.Account)
                     .WithMany(p => p.JewelrySilvers)
                     .HasForeignKey(d => d.AccountId)
-                    .HasConstraintName("FK__JewelrySi__accou__6E01572D");
+                    .HasConstraintName("FK__JewelrySi__accou__5165187F");
             });
 
             modelBuilder.Entity<JoinAuction>(entity =>
@@ -372,17 +389,17 @@ namespace DAL.Models
                 entity.HasOne(d => d.Account)
                     .WithMany(p => p.JoinAuctions)
                     .HasForeignKey(d => d.AccountId)
-                    .HasConstraintName("FK__JoinAucti__accou__00200768");
+                    .HasConstraintName("FK__JoinAucti__accou__66603565");
 
                 entity.HasOne(d => d.Auction)
                     .WithMany(p => p.JoinAuctions)
                     .HasForeignKey(d => d.AuctionId)
-                    .HasConstraintName("FK__JoinAucti__aucti__01142BA1");
+                    .HasConstraintName("FK__JoinAucti__aucti__6754599E");
 
                 entity.HasOne(d => d.Bid)
                     .WithMany(p => p.JoinAuctions)
                     .HasForeignKey(d => d.BidId)
-                    .HasConstraintName("FK__JoinAucti__bid_i__02084FDA");
+                    .HasConstraintName("FK__JoinAucti__bid_i__68487DD7");
             });
 
             modelBuilder.Entity<Payment>(entity =>
@@ -393,17 +410,13 @@ namespace DAL.Models
 
                 entity.Property(e => e.AccountId).HasColumnName("account_id");
 
+                entity.Property(e => e.AuctionResultId).HasColumnName("auction_result_id");
+
                 entity.Property(e => e.Date)
                     .HasColumnType("datetime")
                     .HasColumnName("date");
 
                 entity.Property(e => e.Fee).HasColumnName("fee");
-
-                entity.Property(e => e.JewelryGoldId).HasColumnName("jewelry_gold_id");
-
-                entity.Property(e => e.JewelrySilverId).HasColumnName("jewelry_silver_id");
-
-                entity.Property(e => e.JoinauctionId).HasColumnName("joinauction_id");
 
                 entity.Property(e => e.Paymentmethod)
                     .HasMaxLength(100)
@@ -420,22 +433,12 @@ namespace DAL.Models
                 entity.HasOne(d => d.Account)
                     .WithMany(p => p.Payments)
                     .HasForeignKey(d => d.AccountId)
-                    .HasConstraintName("FK__Payment__account__08B54D69");
+                    .HasConstraintName("FK__Payment__account__6EF57B66");
 
-                entity.HasOne(d => d.JewelryGold)
+                entity.HasOne(d => d.AuctionResult)
                     .WithMany(p => p.Payments)
-                    .HasForeignKey(d => d.JewelryGoldId)
-                    .HasConstraintName("FK__Payment__jewelry__0A9D95DB");
-
-                entity.HasOne(d => d.JewelrySilver)
-                    .WithMany(p => p.Payments)
-                    .HasForeignKey(d => d.JewelrySilverId)
-                    .HasConstraintName("FK__Payment__jewelry__0B91BA14");
-
-                entity.HasOne(d => d.Joinauction)
-                    .WithMany(p => p.Payments)
-                    .HasForeignKey(d => d.JoinauctionId)
-                    .HasConstraintName("FK__Payment__joinauc__09A971A2");
+                    .HasForeignKey(d => d.AuctionResultId)
+                    .HasConstraintName("FK__Payment__auction__6FE99F9F");
             });
 
             modelBuilder.Entity<Role>(entity =>
