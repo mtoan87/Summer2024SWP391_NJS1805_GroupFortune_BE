@@ -1,4 +1,5 @@
-﻿using DAL.DTO.JewelryDTO;
+﻿using DAL.DTO.JewelryDTO.Gold;
+using DAL.Enums;
 using DAL.Models;
 using Repository.Implement;
 using Repository.Interface;
@@ -53,7 +54,8 @@ namespace Service.Implement
                 Description = createjew.Description,
                 Weight = createjew.Weight,
                 GoldAge = createjew.GoldAge,
-                Status = "UnVerified",
+                Status = JewelryStatus.Unverified.ToString(),
+                Shipment =JewelryShipment.Delivering.ToString(),
             };
 
             await _jewelryGoldRepository.AddAsync(newjewelry);
@@ -92,6 +94,7 @@ namespace Service.Implement
             {
                 throw new Exception($"Jewelry with ID {id} not found.");
             }            
+            updateJewelry.Shipment = updateJewelry.Shipment;
             updjewelry.Price = updateJewelry.Price;
             await _jewelryGoldRepository.UpdateAsync(updjewelry);
             return updjewelry;

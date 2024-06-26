@@ -1,5 +1,5 @@
 ﻿using DAL.DTO.AuctionDTO;
-
+using DAL.Enums;
 using DAL.DTO.JewelryDTO;
 using DAL.Models;
 using Microsoft.Extensions.DependencyInjection;
@@ -47,7 +47,7 @@ namespace Service.Implement
                 JewelrySilverId = createAuction.JewelrySilverId,
                 Starttime = createAuction.Starttime,
                 Endtime = createAuction.Endtime,
-                Status = "UnActive"
+                Status = AuctionStatus.UnActive.ToString(),
             };
             await _auctionRepository.AddAsync(newAuction);
             await _auctionRepository.SaveChangesAsync();
@@ -63,7 +63,7 @@ namespace Service.Implement
                 JewelryGoldId = createAuction.JewelryGoldId,             
                 Starttime = createAuction.Starttime,
                 Endtime = createAuction.Endtime,
-                Status = "UnActive"
+                Status = AuctionStatus.UnActive.ToString(),
             };
             await _auctionRepository.AddAsync(newAuction);          
             return newAuction;
@@ -78,7 +78,7 @@ namespace Service.Implement
                 JewelryGolddiaId = createAuction.JewelryGolddiaId,
                 Starttime = createAuction.Starttime,
                 Endtime = createAuction.Endtime,
-                Status = "UnActive"
+                Status = AuctionStatus.UnActive.ToString(),
             };
             await _auctionRepository.AddAsync(newAuction);
            

@@ -1,4 +1,4 @@
-﻿using DAL.DTO.JewelryDTO;
+﻿using DAL.DTO.JewelryDTO.Silver;
 using DAL.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

@@ -9,9 +9,7 @@ namespace DAL.DTO.AuctionDTO
 {
     public class RequestAuctionDTO
     {
-        public int? AccountId { get; set; }
-
-        
+        public int? AccountId { get; set; }      
         public string Name { get; set; } = null!;
         public string Materials { get; set; } = null!;
         public string Description { get; set; } = null!;

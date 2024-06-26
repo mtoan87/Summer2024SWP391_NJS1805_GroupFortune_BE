@@ -22,6 +22,7 @@ namespace DAL.Models
         public string GoldAge { get; set; } = null!;
         public double? Price { get; set; }
         public string Weight { get; set; } = null!;
+        public string? Shipment { get; set; }
         public string? Status { get; set; }
 
         public virtual Account? Account { get; set; }

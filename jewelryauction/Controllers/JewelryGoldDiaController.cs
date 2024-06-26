@@ -1,4 +1,4 @@
-﻿using DAL.DTO.JewelryDTO;
+﻿using DAL.DTO.JewelryDTO.GoldDiamond;
 using DAL.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -40,45 +40,33 @@ namespace jewelryauction.Controllers
 
         [HttpPost]
         [Route("CreateJewelryGoldDiamond")]
-        public async Task<ActionResult<JewelryGoldDiamond>> CreateGoldDiamondJewelry([FromForm] CreateJewelryGoldDiamondDTO jewelryDTO, IFormFile jewelryImg)
+        public async Task<ActionResult<JewelryGoldDiamond>> CreateGoldDiamondJewelry( CreateJewelryGoldDiamondDTO jewelryDTO)
         {          
             var createdJewelry = await _jewelryGoldDiaService.CreateJewelry(jewelryDTO);
             return Ok(createdJewelry);
         }
         [HttpPut]
         [Route("UpdateJewelryGoldDiamondMember")]
-        public async Task<IActionResult> UpdateJewelryGoldDiamondMember(int id, [FromForm] UpdateJewelryGoldDiaDTO updateJewelry, IFormFile jewelryImg)
+        public async Task<IActionResult> UpdateJewelryGoldDiamondMember(int id, UpdateJewelryGoldDiaDTO updateJewelry)
         {
-            var existingJewelry = await _jewelryGoldDiaService.GetJewelryById(id);
-            if (existingJewelry != null)
-            {
-                updateJewelry.JewelryImg = existingJewelry.JewelryImg;
-            }
+            
             var rs = await _jewelryGoldDiaService.UpdateJewelryMember(id, updateJewelry);
             return Ok(rs);
         }
         [HttpPut]
         [Route("UpdateJewelryGoldDiamondStaff")]
-        public async Task<IActionResult> UpdateJewelryGoldDiamondStaff(int id, [FromForm] UpdateJewelryGoldDiamondStaffDTO updateJewelry, IFormFile jewelryImg)
+        public async Task<IActionResult> UpdateJewelryGoldDiamondStaff(int id,  UpdateJewelryGoldDiamondStaffDTO updateJewelry)
         {
-            var existingJewelry = await _jewelryGoldDiaService.GetJewelryById(id);
-            if (existingJewelry != null)
-            {
-                updateJewelry.JewelryImg = existingJewelry.JewelryImg;
-            }
+            
             var rs = await _jewelryGoldDiaService.UpdateJewelryStaff(id, updateJewelry);
             return Ok(rs);
         }
 
         [HttpPut]
         [Route("UpdateJewelryGoldDiamondManager")]
-        public async Task<IActionResult> UpdateJewelryGoldDiamondManager(int id, [FromForm] UpdateJewelryGoldDiamondManagerDTO updateJewelry, IFormFile jewelryImg)
+        public async Task<IActionResult> UpdateJewelryGoldDiamondManager(int id,  UpdateJewelryGoldDiamondManagerDTO updateJewelry)
         {
-            var existingJewelry = await _jewelryGoldDiaService.GetJewelryById(id);
-            if (existingJewelry != null)
-            {
-                updateJewelry.JewelryImg = existingJewelry.JewelryImg;
-            }
+            
             var rs = await _jewelryGoldDiaService.UpdateJewelryManager(id, updateJewelry);
             return Ok(rs);
         }

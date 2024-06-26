@@ -251,6 +251,10 @@ namespace DAL.Models
 
                 entity.Property(e => e.Price).HasColumnName("price");
 
+                entity.Property(e => e.Shipment)
+                    .HasMaxLength(100)
+                    .HasColumnName("shipment");
+
                 entity.Property(e => e.Status)
                     .HasMaxLength(100)
                     .HasColumnName("status");
@@ -268,7 +272,7 @@ namespace DAL.Models
             modelBuilder.Entity<JewelryGoldDiamond>(entity =>
             {
                 entity.HasKey(e => e.JewelryGolddiaId)
-                    .HasName("PK__JewelryG__97244312F876C281");
+                    .HasName("PK__JewelryG__97244312F56562E1");
 
                 entity.ToTable("JewelryGoldDiamond");
 
@@ -309,6 +313,10 @@ namespace DAL.Models
                     .HasColumnName("name");
 
                 entity.Property(e => e.Price).HasColumnName("price");
+
+                entity.Property(e => e.Shipment)
+                    .HasMaxLength(100)
+                    .HasColumnName("shipment");
 
                 entity.Property(e => e.Status)
                     .HasMaxLength(100)
@@ -357,6 +365,10 @@ namespace DAL.Models
                 entity.Property(e => e.Purity)
                     .HasMaxLength(100)
                     .HasColumnName("purity");
+
+                entity.Property(e => e.Shipment)
+                    .HasMaxLength(100)
+                    .HasColumnName("shipment");
 
                 entity.Property(e => e.Status)
                     .HasMaxLength(100)

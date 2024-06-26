@@ -1,5 +1,6 @@
-﻿using DAL.DTO.JewelryDTO;
+﻿using DAL.DTO.JewelryDTO.GoldDiamond;
 using DAL.Models;
+using DAL.Enums;
 using Repository.Implement;
 using System;
 using System.Collections.Generic;
@@ -30,15 +31,11 @@ namespace Service.Implement
 
             if (createjew.JewelryImg != null && createjew.JewelryImg.Length > 0)
             {
-                // Define the path to save the image
+
                 var uploads = Path.Combine("wwwroot", "assets");
-                Directory.CreateDirectory(uploads); // Ensure the directory exists
-
-                // Set the file name as the original file name
+                Directory.CreateDirectory(uploads);
                 var fileName = createjew.JewelryImg.FileName;
-                imagePath = Path.Combine("assets", fileName); // Relative path to save in database
-
-                // Save the file to the specified path
+                imagePath = Path.Combine("assets", fileName);
                 var fullPath = Path.Combine(uploads, fileName);
                 using (var fileStream = new FileStream(fullPath, FileMode.Create))
                 {
@@ -58,7 +55,8 @@ namespace Service.Implement
                 GoldAge = createjew.GoldAge,
                 Clarity = createjew.Clarity,
                 Carat  = createjew.Carat,
-                Status = "UnVerified",
+                Status = JewelryStatus.Unverified.ToString(),
+                Shipment=JewelryShipment.Delivering.ToString()
             };
 
             await _jewelryGoldDiaRepository.AddAsync(newjewelry);
@@ -100,7 +98,7 @@ namespace Service.Implement
                 throw new Exception($"Jewelry with ID {id} not found.");
             }
 
-            
+            updjewelry.Shipment = updateJewelry.Shipment;
             updjewelry.Price = updateJewelry.Price;
             await _jewelryGoldDiaRepository.UpdateAsync(updjewelry);
             return updjewelry;
