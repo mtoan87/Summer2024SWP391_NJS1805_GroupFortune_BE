@@ -34,6 +34,17 @@ namespace jewelryauction.Controllers
             }
             return Ok(rs);
         }
+        [HttpGet]
+        [Route("GetPaymentByAccountId")]
+        public async Task<IActionResult> GetPaymentByAccountId(int id)
+        {
+            var rs = await _service.GetPaymentByAccountId(id);
+            if (rs == null)
+            {
+                throw new Exception($"Payment with accountId ={id} not found!");
+            }
+            return Ok(rs);
+        }
         [HttpPost]
         [Route("CreatePayment")]
         public async Task<IActionResult> CreatePayment(CreatePaymentDTO createPayment)

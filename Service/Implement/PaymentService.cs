@@ -27,6 +27,11 @@ namespace Service.Implement
         {
             return await _paymentRepository.GetByIdAsync(id);
         }
+        
+        public async Task<IEnumerable<Payment>> GetPaymentByAccountId(int id)
+        {
+            return await _paymentRepository.GetPaymentByAccountId(id);
+        }
 
         public async Task<Payment> CreatePayment(CreatePaymentDTO createPayment)
         {
