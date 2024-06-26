@@ -54,6 +54,7 @@ namespace Service.Implement
                 AccountId = createJoinAuction.AccountId,
                 BidId = createJoinAuction.BidId,
                 AuctionId = createJoinAuction.AuctionId,
+                
                 Joindate = DateTime.Now,
             };
 
@@ -70,8 +71,9 @@ namespace Service.Implement
 
         public async Task<bool> CanJoinAuction(int accountId, int auctionId)
         {
-            var accountWallet = await _accountWalletRepository.GetByIdAsync(accountId);
-            if (accountWallet == null)
+            
+            var accountWalletCheck = await _accountWalletRepository.GetByAccountIdAsync(accountId);
+            if (accountWalletCheck == null)
             {
                 throw new Exception("Account wallet not found.");
             }
@@ -109,7 +111,7 @@ namespace Service.Implement
                 throw new Exception("Jewelry not found or invalid price.");
             }
 
-            return accountWallet.Budget > jewelryPrice;
+            return accountWalletCheck.Budget > jewelryPrice;
         }
 
         public async Task<JoinAuction> UpdateJoinAuction(int id, UpdateJoinAuctionDTO updateJoinAuction)

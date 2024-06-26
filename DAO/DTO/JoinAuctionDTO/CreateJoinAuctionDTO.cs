@@ -10,6 +10,7 @@ namespace DAL.DTO.JoinAuctionDTO
     {
         public int? AccountId { get; set; }
         public int? AuctionId { get; set; }
+        
         public int? BidId { get; set; }
         
     }

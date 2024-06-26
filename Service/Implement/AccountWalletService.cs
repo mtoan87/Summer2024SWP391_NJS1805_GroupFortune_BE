@@ -41,7 +41,7 @@ namespace Service.Implement
 
             };
             await _accountWalletRepository.AddAsync(newAccountWallet);
-            await _accountWalletRepository.SaveChangesAsync();
+            
             return newAccountWallet;
         }
 

@@ -1,4 +1,5 @@
 ﻿using DAL.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,18 @@ namespace Repository.Implement
         {
            
         }
-        
-        
+
+        public async Task<IEnumerable<AccountWallet>> GetWalletByAccountId(int accountId)
+        {
+            return await _context.AccountWallets
+                
+                .Where(a => a.AccountId == accountId)
+                .ToListAsync();
+        }
+
+        public async Task<AccountWallet> GetByAccountIdAsync(int accountId)
+        {
+            return await _context.Set<AccountWallet>().FirstOrDefaultAsync(aw => aw.AccountId == accountId);
+        }
     }
 }
