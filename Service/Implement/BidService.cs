@@ -69,7 +69,6 @@ namespace Service.Implement
         }
         public async Task<bool> PlaceBid(BiddingDTO bidDto)
         {
-            // Retrieve the auction item
             var jewelryGold = await _jewelryGoldRepository.GetByIdAsync(bidDto.AuctionId);
             var jewelryGoldDiamond = await _jewelryGoldDiaRepository.GetByIdAsync(bidDto.AuctionId);
             var jewelrySilver = await _jewelrySilverRepository.GetByIdAsync(bidDto.AuctionId);
@@ -92,25 +91,23 @@ namespace Service.Implement
                 return false;
             }
 
-            // Fetch the existing bid for the user and auction, if any
             var existingBid = await _bidRepository.GetByAccountIdAndAuctionId(bidDto.AccountId, bidDto.AuctionId);
 
             double newMaxPrice;
             if (existingBid == null)
             {
-                // No existing bid, create a new one with initial Minprice and Maxprice
                 newMaxPrice = minPrice + bidDto.BidStep;
                 var newBid = new Bid
                 {
                     AccountId = bidDto.AccountId,
                     AuctionId = bidDto.AuctionId,
                     Minprice = minPrice,
-                    Maxprice = newMaxPrice,
+                    Maxprice = minPrice,  // Ensuring Maxprice is initialized to Minprice
                     Datetime = DateTime.Now
                 };
 
                 await _bidRepository.AddAsync(newBid);
-                await _bidRepository.SaveChangesAsync(); // Save changes to get the new BidId
+                await _bidRepository.SaveChangesAsync();
 
                 var bidRecord = new BidRecord
                 {
@@ -123,7 +120,6 @@ namespace Service.Implement
             }
             else
             {
-                
                 newMaxPrice = existingBid.Maxprice + bidDto.BidStep;
                 existingBid.Maxprice = newMaxPrice;
                 existingBid.Datetime = DateTime.Now;
