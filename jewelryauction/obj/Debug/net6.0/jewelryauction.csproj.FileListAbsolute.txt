@@ -304,3 +304,4 @@ D:\SWP391\BE\jewelryauction\jewelryauction\obj\Debug\net6.0\refint\jewelryauctio
 D:\SWP391\BE\jewelryauction\jewelryauction\obj\Debug\net6.0\jewelryauction.pdb
 D:\SWP391\BE\jewelryauction\jewelryauction\obj\Debug\net6.0\jewelryauction.genruntimeconfig.cache
 D:\SWP391\BE\jewelryauction\jewelryauction\obj\Debug\net6.0\ref\jewelryauction.dll
+D:\SWP391\BE\jewelryauction\jewelryauction\bin\Debug\net6.0\RabbitMQ.Client.dll
