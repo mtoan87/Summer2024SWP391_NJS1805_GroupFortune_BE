@@ -29,6 +29,19 @@ namespace Repository.Implement
             return _context.JewelrySilvers.Where(a => a.Status == "Verified").ToList();
         }
 
+        public async Task<bool> JewelrySilverExistsInAuction(int jewelrySilverId)
+        {
+            var existing = await _dbSet.SingleOrDefaultAsync(m => m.JewelrySilverId == jewelrySilverId);
+            if (existing == null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public async Task<IEnumerable<JewelrySilver>> GetAuctionAndJewelrySilverByAccountId(int accountId)
         {
             return await _context.JewelrySilvers

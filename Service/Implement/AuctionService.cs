@@ -16,9 +16,15 @@ namespace Service.Implement
     public class AuctionService
     {
         private readonly AuctionRepository _auctionRepository;
-        public AuctionService(AuctionRepository auctionRepository)
+        private readonly JewelryGoldRepository _jewelryGoldRepository;
+        private readonly JewelryGoldDiaRepository _jewelryDiaRepository;
+        private readonly JewelrySilverRepository _jewelrySilverRepository;
+        public AuctionService(AuctionRepository auctionRepository, JewelryGoldRepository jewelryGoldRepository, JewelryGoldDiaRepository jewelryGoldDiaRepository, JewelrySilverRepository jewelrySilverRepository)
         {
             _auctionRepository = auctionRepository;
+            _jewelryDiaRepository = jewelryGoldDiaRepository;
+            _jewelryGoldRepository = jewelryGoldRepository;
+            _jewelrySilverRepository = jewelrySilverRepository;
         }
 
         public async Task<IEnumerable<Auction>> GetAllAuctions()
@@ -39,50 +45,59 @@ namespace Service.Implement
         }
         public async Task<Auction> CreateJewelrySilverAuction(CreateSilverAuctionDTO createAuction)
         {
+           
+                
 
-
-            var newAuction = new Auction
-            {
-                AccountId = createAuction.AccountId,
-                JewelrySilverId = createAuction.JewelrySilverId,
-                Starttime = createAuction.Starttime,
-                Endtime = createAuction.Endtime,
-                Status = AuctionStatus.UnActive.ToString(),
-            };
-            await _auctionRepository.AddAsync(newAuction);
-            await _auctionRepository.SaveChangesAsync();
-            return newAuction;
+                var newAuction = new Auction
+                {
+                    AccountId = createAuction.AccountId,
+                    JewelrySilverId = createAuction.JewelrySilverId,
+                    Starttime = createAuction.Starttime,
+                    Endtime = createAuction.Endtime,
+                    Status = AuctionStatus.UnActive.ToString(),
+                };
+                await _auctionRepository.AddAsync(newAuction);
+                
+                return newAuction;
+            
         }
         public async Task<Auction> CreateJewelryGoldAuction(CreateGoldAuctionDTO createAuction)
         {
 
 
-            var newAuction = new Auction
-            {
-                AccountId = createAuction.AccountId,
-                JewelryGoldId = createAuction.JewelryGoldId,             
-                Starttime = createAuction.Starttime,
-                Endtime = createAuction.Endtime,
-                Status = AuctionStatus.UnActive.ToString(),
-            };
-            await _auctionRepository.AddAsync(newAuction);          
-            return newAuction;
+           
+
+                var newAuction = new Auction
+                {
+                    AccountId = createAuction.AccountId,
+                    JewelrySilverId = createAuction.JewelryGoldId,
+                    Starttime = createAuction.Starttime,
+                    Endtime = createAuction.Endtime,
+                    Status = AuctionStatus.UnActive.ToString(),
+                };
+                await _auctionRepository.AddAsync(newAuction);
+
+                return newAuction;
+            
         }
         public async Task<Auction> CreateJewelryGoldDiamondAuction(CreateGoldDiamondAuctionDTO createAuction)
         {
 
 
-            var newAuction = new Auction
-            {
-                AccountId = createAuction.AccountId,
-                JewelryGolddiaId = createAuction.JewelryGolddiaId,
-                Starttime = createAuction.Starttime,
-                Endtime = createAuction.Endtime,
-                Status = AuctionStatus.UnActive.ToString(),
-            };
-            await _auctionRepository.AddAsync(newAuction);
+            var checkExisting = await _jewelryDiaRepository.JewelryGoldDiaExistsInAuction(createAuction.JewelryGolddiaId);
            
-            return newAuction;
+                var newAuction = new Auction
+                {
+                    AccountId = createAuction.AccountId,
+                    JewelrySilverId = createAuction.JewelryGolddiaId,
+                    Starttime = createAuction.Starttime,
+                    Endtime = createAuction.Endtime,
+                    Status = AuctionStatus.UnActive.ToString(),
+                };
+                await _auctionRepository.AddAsync(newAuction);
+
+                return newAuction;
+            
         }
         public async Task<Auction> UpdateSilverAuction(int id, UpdateSilverAuctionDTO updateAuction)
         {

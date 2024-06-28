@@ -40,14 +40,14 @@ namespace jewelryauction.Controllers
 
         [HttpPost]
         [Route("CreateJewelryGoldDiamond")]
-        public async Task<ActionResult<JewelryGoldDiamond>> CreateGoldDiamondJewelry( CreateJewelryGoldDiamondDTO jewelryDTO)
+        public async Task<ActionResult<JewelryGoldDiamond>> CreateGoldDiamondJewelry([FromForm] CreateJewelryGoldDiamondDTO jewelryDTO)
         {          
             var createdJewelry = await _jewelryGoldDiaService.CreateJewelry(jewelryDTO);
             return Ok(createdJewelry);
         }
         [HttpPut]
         [Route("UpdateJewelryGoldDiamondMember")]
-        public async Task<IActionResult> UpdateJewelryGoldDiamondMember(int id, UpdateJewelryGoldDiaDTO updateJewelry)
+        public async Task<IActionResult> UpdateJewelryGoldDiamondMember(int id, [FromForm] UpdateJewelryGoldDiaDTO updateJewelry)
         {
             
             var rs = await _jewelryGoldDiaService.UpdateJewelryMember(id, updateJewelry);
@@ -55,7 +55,7 @@ namespace jewelryauction.Controllers
         }
         [HttpPut]
         [Route("UpdateJewelryGoldDiamondStaff")]
-        public async Task<IActionResult> UpdateJewelryGoldDiamondStaff(int id,  UpdateJewelryGoldDiamondStaffDTO updateJewelry)
+        public async Task<IActionResult> UpdateJewelryGoldDiamondStaff(int id, [FromForm] UpdateJewelryGoldDiamondStaffDTO updateJewelry)
         {
             
             var rs = await _jewelryGoldDiaService.UpdateJewelryStaff(id, updateJewelry);
@@ -64,7 +64,7 @@ namespace jewelryauction.Controllers
 
         [HttpPut]
         [Route("UpdateJewelryGoldDiamondManager")]
-        public async Task<IActionResult> UpdateJewelryGoldDiamondManager(int id,  UpdateJewelryGoldDiamondManagerDTO updateJewelry)
+        public async Task<IActionResult> UpdateJewelryGoldDiamondManager(int id, [FromForm] UpdateJewelryGoldDiamondManagerDTO updateJewelry)
         {
             
             var rs = await _jewelryGoldDiaService.UpdateJewelryManager(id, updateJewelry);

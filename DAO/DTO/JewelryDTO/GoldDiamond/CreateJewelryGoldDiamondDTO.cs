@@ -22,7 +22,7 @@ namespace DAL.DTO.JewelryDTO.GoldDiamond
         [EnumDataType(typeof(DiamondClarity))]
         public string Clarity { get; set; } = null!;
         public string Carat { get; set; } = null!;
-        [EnumDataType(typeof(DiamondClarity))]
+        [EnumDataType(typeof(GoldAge))]
         public string GoldAge { get; set; } = null!;
         public string Weight { get; set; } = null!;
         

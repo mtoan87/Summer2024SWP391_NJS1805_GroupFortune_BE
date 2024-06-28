@@ -36,6 +36,11 @@ namespace Service.Implement
             return await _bidRepository.GetAllAsync();
         }
 
+        public async Task<IEnumerable<Bid>> GetBidRecordByAccountId(int accountId)
+        {
+            return await _bidRepository.GetBidRecordByAccountId(accountId);
+        }
+
         public async Task<Bid> CreateBid(CreateBidDTO createBid)
         {
             var newBid = new Bid

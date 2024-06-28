@@ -27,6 +27,10 @@ namespace Repository.Implement
         {
             return _context.JewelryGoldDiamonds.Where(a => a.Status == "Verified").ToList();
         }
+        public async Task<bool> JewelryGoldDiaExistsInAuction(int jewelryGoldDiaId)
+        {
+            return await _dbSet.AnyAsync(a => a.JewelryGolddiaId == jewelryGoldDiaId);
+        }
         public async Task<IEnumerable<JewelryGoldDiamond>> GetAuctionAndJewelryGoldDiamondByAccountId(int accountId)
         {
             return await _context.JewelryGoldDiamonds

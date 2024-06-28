@@ -71,7 +71,7 @@ namespace Service.Implement
                 throw new Exception($"Jewelry with ID {id} not found.");
             }
 
-            // Keep the existing image if no new image is provided
+            
             if (updateJewelry.JewelryImg == null)
             {
                 updateJewelry.JewelryImg = updjewelry.JewelryImg;

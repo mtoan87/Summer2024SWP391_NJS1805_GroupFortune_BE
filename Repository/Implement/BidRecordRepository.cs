@@ -1,4 +1,5 @@
 ﻿using DAL.Models;
+using Microsoft.EntityFrameworkCore;
 using Repository.Implement;
 using System;
 using System.Collections.Generic;
@@ -14,5 +15,16 @@ namespace Service.Implement
         {
             
         }
+
+        public async Task<IEnumerable<BidRecord>> GetBidRecordByBidId(int bidId)
+        {
+            return await _context.BidRecords
+                
+                .Where(a => a.BidId == bidId)
+                .ToListAsync();
+        }
+
+
+        
     }
 }

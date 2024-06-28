@@ -12,7 +12,7 @@ namespace DAL.DTO.AuctionDTO
     {
 
         public int? AccountId { get; set; }
-        public int? JewelrySilverId { get; set; }
+        public int JewelrySilverId { get; set; }
         public DateTime Starttime { get; set; }
         public DateTime Endtime { get; set; }
     }

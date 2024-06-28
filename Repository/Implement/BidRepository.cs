@@ -26,5 +26,13 @@ namespace Repository.Implement
         {
             return  _context.Bids.FirstOrDefault(b => b.AccountId == accountId && b.AuctionId == auctionId);
         }
+
+        public async Task<IEnumerable<Bid>> GetBidRecordByAccountId(int accountId)
+        {
+            return await _context.Bids
+                .Include(a => a.BidRecords)
+                .Where(a => a.AccountId == accountId)
+                .ToListAsync();
+        }
     }
 }
