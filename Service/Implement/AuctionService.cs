@@ -1,15 +1,8 @@
 ﻿using DAL.DTO.AuctionDTO;
 using DAL.Enums;
-using DAL.DTO.JewelryDTO;
 using DAL.Models;
-using Microsoft.Extensions.DependencyInjection;
 using Repository.Implement;
-using Repository.Interface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Service.Implement
 {
@@ -45,10 +38,12 @@ namespace Service.Implement
         }
         public async Task<Auction> CreateJewelrySilverAuction(CreateSilverAuctionDTO createAuction)
         {
-           
-                
-
-                var newAuction = new Auction
+            bool isJewelryInAnyAuction = _auctionRepository.IsJewelryInAuctionSilver(createAuction.JewelrySilverId);        
+            if (isJewelryInAnyAuction)
+            {
+                throw new Exception("The jewelry item is already in an auction.");
+            }
+            var newAuction = new Auction
                 {
                     AccountId = createAuction.AccountId,
                     JewelrySilverId = createAuction.JewelrySilverId,
@@ -57,17 +52,16 @@ namespace Service.Implement
                     Status = AuctionStatus.UnActive.ToString(),
                 };
                 await _auctionRepository.AddAsync(newAuction);
-                
-                return newAuction;
-            
+                return newAuction;            
         }
         public async Task<Auction> CreateJewelryGoldAuction(CreateGoldAuctionDTO createAuction)
         {
-
-
-           
-
-                var newAuction = new Auction
+            bool isJewelryInAnyAuction = _auctionRepository.IsJewelryInAuctionGold(createAuction.JewelryGoldId);
+            if (isJewelryInAnyAuction)
+            {
+                throw new Exception("The jewelry item is already in an auction.");
+            }
+            var newAuction = new Auction
                 {
                     AccountId = createAuction.AccountId,
                     JewelrySilverId = createAuction.JewelryGoldId,
@@ -82,11 +76,12 @@ namespace Service.Implement
         }
         public async Task<Auction> CreateJewelryGoldDiamondAuction(CreateGoldDiamondAuctionDTO createAuction)
         {
-
-
-            var checkExisting = await _jewelryDiaRepository.JewelryGoldDiaExistsInAuction(createAuction.JewelryGolddiaId);
-           
-                var newAuction = new Auction
+            bool isJewelryInAnyAuction = _auctionRepository.IsJewelryInAuctionGoldDiamond(createAuction.JewelryGolddiaId);      
+            if (isJewelryInAnyAuction)
+            {
+                throw new Exception("The jewelry item is already in an auction.");
+            }
+            var newAuction = new Auction
                 {
                     AccountId = createAuction.AccountId,
                     JewelrySilverId = createAuction.JewelryGolddiaId,
@@ -95,7 +90,6 @@ namespace Service.Implement
                     Status = AuctionStatus.UnActive.ToString(),
                 };
                 await _auctionRepository.AddAsync(newAuction);
-
                 return newAuction;
             
         }
