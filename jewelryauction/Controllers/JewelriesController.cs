@@ -80,6 +80,80 @@ namespace jewelryauction.Controllers
                 JewelryGoldDiamond = golddias
             });
         }
+        private readonly Dictionary<string, float> goldPricesPerOunce = new Dictionary<string, float>
+    {
+        { "24K", 1950 },
+        { "22K", 1800 },
+        { "18K", 1500 },
+        { "14K", 1200 },
+        { "10K", 900 }
+    };
+
+        private readonly Dictionary<string, (float buying, float selling)> silverPricesPerOunce = new Dictionary<string, (float buying, float selling)>
+    {
+        { "99.99", (1950, 2000) },
+        { "99.9", (1910, 1950) },
+        { "92.5", (0, 1820) },
+        { "plated", (0, 1450) }
+    };
+
+        private readonly Dictionary<string, float> diamondPricesPerCarat = new Dictionary<string, float>
+    {
+        { "FL", 8000 },
+        { "IF", 7000 },
+        { "VVS1", 6000 },
+        { "VVS2", 5000 },
+        { "VS1", 4000 },
+        { "VS2", 3000 },
+        { "SI1", 2000 },
+        { "SI2", 1000 },
+        { "I1", 500 },
+        { "I2", 300 },
+        { "I3", 100 }
+    };
+        [HttpPost("CalculatePrice")]
+        public IActionResult CalculatePrice([FromBody] CalculatedPriceJewelry jewelry)
+        {
+            if (jewelry == null || jewelry.Weight <= 0) return BadRequest("Invalid jewelry details");
+
+            var ounces = ConvertToOunces(jewelry.Weight, jewelry.WeightUnit);
+            float price = 0;
+
+            if (jewelry.Materials == "Gold" && !string.IsNullOrEmpty(jewelry.GoldAge))
+            {
+                price = ounces * goldPricesPerOunce[jewelry.GoldAge];
+            }
+            else if (jewelry.Materials == "Silver" && !string.IsNullOrEmpty(jewelry.Purity))
+            {
+                var purityPrice = silverPricesPerOunce[jewelry.Purity];
+                price = ounces * purityPrice.selling;
+            }
+            else if (jewelry.Materials == "GoldDiamond" && !string.IsNullOrEmpty(jewelry.GoldAge) && !string.IsNullOrEmpty(jewelry.Clarity) && jewelry.Carat.HasValue)
+            {
+                var goldPrice = ounces * goldPricesPerOunce[jewelry.GoldAge];
+                var diamondPrice = jewelry.Carat.Value * diamondPricesPerCarat[jewelry.Clarity];
+                price = goldPrice + diamondPrice;
+            }
+            else
+            {
+                return BadRequest("Invalid materials or missing required properties");
+            }
+
+            return Ok(new { CalculatedPrice = price });
+        }
+
+        private float ConvertToOunces(float weight, string unit)
+        {
+            var conversionRates = new Dictionary<string, float>
+        {
+            { "grams", 0.035274f },
+            { "milligrams", 0.000035274f },
+            { "ounces", 1 },
+            { "pennyweights", 0.05f }
+        };
+
+            return weight * conversionRates[unit];
+        }
 
     }
 }
