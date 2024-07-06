@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Service.Implement;
+using Service.Interface;
 
 namespace jewelryauction.Controllers
 {
@@ -8,8 +9,8 @@ namespace jewelryauction.Controllers
     [ApiController]
     public class BidRecordController : ControllerBase
     {
-        private readonly BidRecordService _bidRecordService;
-        public BidRecordController(BidRecordService bidRecordService)
+        private readonly IBidRecordService _bidRecordService;
+        public BidRecordController(IBidRecordService bidRecordService)
         {
             _bidRecordService = bidRecordService;
         }

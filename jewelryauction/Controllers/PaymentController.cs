@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Service.Implement;
+using Service.Interface;
 
 namespace jewelryauction.Controllers
 {
@@ -9,8 +10,8 @@ namespace jewelryauction.Controllers
     [ApiController]
     public class PaymentController : ControllerBase
     {
-        private readonly PaymentService _service;
-        public PaymentController(PaymentService service)
+        private readonly IPaymentService _service;
+        public PaymentController(IPaymentService service)
         {
             _service = service;
 

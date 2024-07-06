@@ -2,6 +2,8 @@
 using DAL.DTO.PaymentDTO;
 using DAL.Models;
 using Repository.Implement;
+using Repository.Interface;
+using Service.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +12,10 @@ using System.Threading.Tasks;
 
 namespace Service.Implement
 {
-    public class PaymentService
+    public class PaymentService : IPaymentService
     {
-        private readonly PaymentRepository _paymentRepository;
-        public PaymentService(PaymentRepository paymentRepository)
+        private readonly IPaymentRepository _paymentRepository;
+        public PaymentService(IPaymentRepository paymentRepository)
         {
             _paymentRepository = paymentRepository;
         }

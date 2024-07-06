@@ -4,6 +4,7 @@ using DAL.DTO.JoinAuctionDTO;
 using DAL.Models;
 using Repository.Implement;
 using Repository.Interface;
+using Service.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,18 +13,18 @@ using System.Threading.Tasks;
 
 namespace Service.Implement
 {
-    public class JoinAuctionService
+    public class JoinAuctionService : IJoinAuctionService
     {
-        private readonly JoinAuctionRepository _joinAuctionRepository;
-        private readonly AuctionRepository _auctionRepository;
+        private readonly IJoinAuctionRepository _joinAuctionRepository;
+        private readonly IAuctionRepository _auctionRepository;
         private readonly IJewelryGoldRepository _jewelryGoldRepository;
         private readonly IJewelrySilverRepository _jewelrySilverRepository;
         private readonly IJewelryGoldDiamondRepository _jewelryGoldDiaRepository;
         private readonly IAccountWalletRepository _accountWalletRepository;
 
         public JoinAuctionService(
-            JoinAuctionRepository joinAuctionRepository,
-            AuctionRepository auctionRepository,
+            IJoinAuctionRepository joinAuctionRepository,
+            IAuctionRepository auctionRepository,
             IJewelryGoldRepository jewelryGoldRepository,
             IJewelrySilverRepository jewelrySilverRepository,
             IJewelryGoldDiamondRepository jewelryGoldDiaRepository,

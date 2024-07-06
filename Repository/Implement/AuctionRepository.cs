@@ -1,12 +1,13 @@
 ﻿using DAL.Models;
 using Microsoft.EntityFrameworkCore;
+using Repository.Interface;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Repository.Implement
 {
-    public class AuctionRepository : RepositoryGeneric<Auction>
+    public class AuctionRepository : RepositoryGeneric<Auction> , IAuctionRepository
     {
         public AuctionRepository(JewelryAuctionContext context) : base(context)
         {

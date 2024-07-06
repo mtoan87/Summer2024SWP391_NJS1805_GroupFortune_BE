@@ -3,17 +3,18 @@ using DAL.Enums;
 using DAL.Models;
 using Repository.Implement;
 using Repository.Interface;
+using Service.Interface;
 
 
 namespace Service.Implement
 {
-    public class AuctionService
+    public class AuctionService : IAuctionService
     {
-        private readonly AuctionRepository _auctionRepository;
+        private readonly IAuctionRepository _auctionRepository;
         private readonly IJewelryGoldRepository _jewelryGoldRepository;
         private readonly IJewelryGoldDiamondRepository _jewelryDiaRepository;
         private readonly IJewelrySilverRepository _jewelrySilverRepository;
-        public AuctionService(AuctionRepository auctionRepository, IJewelryGoldRepository jewelryGoldRepository, IJewelryGoldDiamondRepository jewelryGoldDiaRepository, IJewelrySilverRepository jewelrySilverRepository)
+        public AuctionService(IAuctionRepository auctionRepository, IJewelryGoldRepository jewelryGoldRepository, IJewelryGoldDiamondRepository jewelryGoldDiaRepository, IJewelrySilverRepository jewelrySilverRepository)
         {
             _auctionRepository = auctionRepository;
             _jewelryDiaRepository = jewelryGoldDiaRepository;

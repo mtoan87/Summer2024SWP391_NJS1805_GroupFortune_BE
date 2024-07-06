@@ -26,11 +26,11 @@ namespace jewelryauction.Controllers
     [Route("api/[controller]")]
     public class LoginController : ControllerBase
     {
-        private readonly AccountService _accountService;
+        private readonly IAccountService _accountService;
         private readonly AuthService _authService;
-        private readonly AccountRepository _accountRepository;
+        private readonly IAccountRepository _accountRepository;
         private readonly ILogger<LoginController> _logger;
-        public LoginController(AccountService accountService, ILogger<LoginController> logger, AccountRepository accountRepository)
+        public LoginController(IAccountService accountService, ILogger<LoginController> logger, IAccountRepository accountRepository)
         {
             _accountService = accountService;
             _logger = logger;

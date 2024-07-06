@@ -4,6 +4,7 @@ using DAL.DTO.BidDTO;
 using DAL.Models;
 using Repository.Implement;
 using Repository.Interface;
+using Service.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,14 +13,14 @@ using System.Threading.Tasks;
 
 namespace Service.Implement
 {
-    public class BidService
+    public class BidService : IBidService
     {
-        private readonly BidRepository _bidRepository;
+        private readonly IBidRepository _bidRepository;
         private readonly IJewelryGoldRepository _jewelryGoldRepository;
         private readonly IJewelrySilverRepository _jewelrySilverRepository;
         private readonly IJewelryGoldDiamondRepository _jewelryGoldDiaRepository;
-        private readonly BidRecordRepository _bidRecordRepository;
-        public BidService(BidRepository bidRepository, IJewelryGoldRepository jewelryGoldRepository, IJewelrySilverRepository jewelrySilverRepository, IJewelryGoldDiamondRepository jewelryGoldDiaRepository, BidRecordRepository bidRecordRepository)
+        private readonly IBidRecordRepository _bidRecordRepository;
+        public BidService(IBidRepository bidRepository, IJewelryGoldRepository jewelryGoldRepository, IJewelrySilverRepository jewelrySilverRepository, IJewelryGoldDiamondRepository jewelryGoldDiaRepository, IBidRecordRepository bidRecordRepository)
         {
             _jewelryGoldRepository = jewelryGoldRepository;
             _jewelrySilverRepository = jewelrySilverRepository;

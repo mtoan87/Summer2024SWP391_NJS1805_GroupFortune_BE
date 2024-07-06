@@ -51,25 +51,26 @@ builder.Services.AddScoped<IJewelryGoldDiamondService ,JewelryGoldDiaService>();
 builder.Services.AddScoped<JewelryService>();
 builder.Services.AddScoped<IJewelrySilverRepository ,JewelrySilverRepository>();
 builder.Services.AddScoped<IJewelrySilverService, JewelrySilverService>();
-builder.Services.AddScoped<PaymentRepository>();
-builder.Services.AddScoped<PaymentService>();
+builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
+builder.Services.AddScoped<IPaymentService, PaymentService>();
 
 builder.Services.AddScoped<IAccountRepository,AccountRepository>();
 builder.Services.AddScoped<IAccountService, AccountService>();
-builder.Services.AddScoped<AuctionRepository>();
+builder.Services.AddScoped<IAuctionRepository, AuctionRepository>();
+builder.Services.AddScoped<IAuctionService, AuctionService>();
 builder.Services.AddScoped<IAccountWalletService, AccountWalletService>();
 builder.Services.AddScoped<IAccountWalletRepository, AccountWalletRepository>();
-builder.Services.AddScoped<AuctionService>();
+
 builder.Services.AddScoped<IAuctionResultRepository , AuctionResultRepository>();
 builder.Services.AddScoped<IAuctionResultService, AuctionResultService>();
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<RequestAuctionRepository>();
-builder.Services.AddScoped<JoinAuctionRepository>();
-builder.Services.AddScoped<JoinAuctionService>();
-builder.Services.AddScoped<BidRepository>();
-builder.Services.AddScoped<BidService>();
-builder.Services.AddScoped<BidRecordRepository>();
-builder.Services.AddScoped<BidRecordService>();
+builder.Services.AddScoped<IJoinAuctionRepository, JoinAuctionRepository>();
+builder.Services.AddScoped<IJoinAuctionService, JoinAuctionService>();
+builder.Services.AddScoped<IBidRepository, BidRepository>();
+builder.Services.AddScoped<IBidService, BidService>();
+builder.Services.AddScoped<IBidRecordRepository , BidRecordRepository>();
+builder.Services.AddScoped<IBidRecordService, BidRecordService>();
 builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;

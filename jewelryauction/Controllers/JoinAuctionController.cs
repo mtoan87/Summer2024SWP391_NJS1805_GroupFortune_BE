@@ -12,8 +12,8 @@ namespace jewelryauction.Controllers
     [ApiController]
     public class JoinAuctionController : ControllerBase
     {
-        private readonly JoinAuctionService _joinAuctionService;
-        public JoinAuctionController(JoinAuctionService joinAuctionService)
+        private readonly IJoinAuctionService _joinAuctionService;
+        public JoinAuctionController(IJoinAuctionService joinAuctionService)
         {
             _joinAuctionService = joinAuctionService;
         }

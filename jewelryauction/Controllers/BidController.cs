@@ -13,8 +13,8 @@ namespace jewelryauction.Controllers
     [ApiController]
     public class BidController : ControllerBase
     {
-        private readonly BidService _bidService;
-        public BidController(BidService bidService)
+        private readonly IBidService _bidService;
+        public BidController(IBidService bidService)
         {
             _bidService = bidService;
         }

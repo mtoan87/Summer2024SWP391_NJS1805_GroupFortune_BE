@@ -1,6 +1,7 @@
 ﻿using DAL.Models;
 using Microsoft.EntityFrameworkCore;
 using Repository.Implement;
+using Repository.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Service.Implement
 {
-    public class BidRecordRepository : RepositoryGeneric<BidRecord>
+    public class BidRecordRepository : RepositoryGeneric<BidRecord> , IBidRecordRepository
     {
         public BidRecordRepository(JewelryAuctionContext context): base(context)
         {

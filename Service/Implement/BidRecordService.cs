@@ -1,5 +1,7 @@
 ﻿using DAL.Models;
 using Repository.Implement;
+using Repository.Interface;
+using Service.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace Service.Implement
 {
-    public class BidRecordService
+    public class BidRecordService : IBidRecordService
     {
-        private readonly BidRecordRepository _repository;
-        public BidRecordService(BidRecordRepository bidRecordRepository)
+        private readonly IBidRecordRepository _repository;
+        public BidRecordService(IBidRecordRepository bidRecordRepository)
         {
             _repository = bidRecordRepository;
         }
