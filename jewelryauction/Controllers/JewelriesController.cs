@@ -10,6 +10,7 @@ using Service.Implement;
 using Repository.Implement;
 using DAL.DTO.JewelryDTO;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Service.Interface;
 
 namespace jewelryauction.Controllers
 {
@@ -17,9 +18,9 @@ namespace jewelryauction.Controllers
     [ApiController]
     public class JewelriesController : ControllerBase
     {
-        private readonly JewelryService _jewelryService;
+        private readonly IJewelryService _jewelryService;
 
-        public JewelriesController(JewelryService jewelryService)
+        public JewelriesController(IJewelryService jewelryService)
         {
             _jewelryService = jewelryService;
         }

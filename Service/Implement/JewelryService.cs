@@ -3,6 +3,7 @@ using DAL.DTO.JewelryDTO;
 using DAL.Models;
 using Repository.Implement;
 using Repository.Interface;
+using Service.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Service.Implement
 {
-    public class JewelryService
+    public class JewelryService : IJewelryService
     {
         private readonly IJewelryGoldRepository _jewelryGoldRepository;
         private readonly IJewelrySilverRepository _jewelrySilverRepository;

@@ -48,20 +48,18 @@ builder.Services.AddScoped<IJewelryGoldRepository , JewelryGoldRepository >();
 builder.Services.AddScoped<IJewelryGoldService, JewelryGoldService>();
 builder.Services.AddScoped<IJewelryGoldDiamondRepository , JewelryGoldDiaRepository>();
 builder.Services.AddScoped<IJewelryGoldDiamondService ,JewelryGoldDiaService>();
-builder.Services.AddScoped<JewelryService>();
+builder.Services.AddScoped<IJewelryService, JewelryService>();
 builder.Services.AddScoped<IJewelrySilverRepository ,JewelrySilverRepository>();
 builder.Services.AddScoped<IJewelrySilverService, JewelrySilverService>();
 builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
 builder.Services.AddScoped<IPaymentService, PaymentService>();
-
 builder.Services.AddScoped<IAccountRepository,AccountRepository>();
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IAuctionRepository, AuctionRepository>();
 builder.Services.AddScoped<IAuctionService, AuctionService>();
 builder.Services.AddScoped<IAccountWalletService, AccountWalletService>();
 builder.Services.AddScoped<IAccountWalletRepository, AccountWalletRepository>();
-
-builder.Services.AddScoped<IAuctionResultRepository , AuctionResultRepository>();
+builder.Services.AddScoped<IAuctionResultRepository, AuctionResultRepository>();
 builder.Services.AddScoped<IAuctionResultService, AuctionResultService>();
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<RequestAuctionRepository>();
