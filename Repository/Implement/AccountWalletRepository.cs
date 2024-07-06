@@ -1,5 +1,6 @@
 ﻿using DAL.Models;
 using Microsoft.EntityFrameworkCore;
+using Repository.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Repository.Implement
 {
-    public class AccountWalletRepository : RepositoryGeneric<AccountWallet>
+    public class AccountWalletRepository : RepositoryGeneric<AccountWallet> , IAccountWalletRepository
     {
         public AccountWalletRepository(JewelryAuctionContext context) : base(context)
         {

@@ -12,8 +12,8 @@ namespace jewelryauction.Controllers
     [ApiController]
     public class AuctionResultsController : ControllerBase
     {
-        private readonly AuctionResultService _service;
-        public AuctionResultsController(AuctionResultService service)
+        private readonly IAuctionResultService _service;
+        public AuctionResultsController(IAuctionResultService service)
         {
             _service = service;
         }

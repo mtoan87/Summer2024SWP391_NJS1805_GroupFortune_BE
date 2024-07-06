@@ -11,8 +11,8 @@ namespace jewelryauction.Controllers
     [Route("[controller]")]
     public class AccountWalletController : ControllerBase
     {
-        private readonly AccountWalletService _accountWalletService;
-        public AccountWalletController(AccountWalletService accountWalletService)
+        private readonly IAccountWalletService _accountWalletService;
+        public AccountWalletController(IAccountWalletService accountWalletService)
         {
             _accountWalletService = accountWalletService;
         }

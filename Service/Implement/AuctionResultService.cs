@@ -3,6 +3,7 @@ using DAL.DTO.AuctionResultDTO;
 using DAL.Models;
 using Repository.Implement;
 using Repository.Interface;
+using Service.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,10 @@ using System.Threading.Tasks;
 
 namespace Service.Implement
 {
-    public class AuctionResultService
+    public class AuctionResultService : IAuctionResultService
     {
-        private readonly AuctionResultRepository _repository;
-        public AuctionResultService(AuctionResultRepository repository)
+        private readonly IAuctionResultRepository _repository;
+        public AuctionResultService(IAuctionResultRepository repository)
         {
             _repository = repository;
         }

@@ -3,6 +3,7 @@ using DAL.DTO.AccountWalletDTO;
 using DAL.Models;
 using Repository.Implement;
 using Repository.Interface;
+using Service.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,10 @@ using System.Threading.Tasks;
 
 namespace Service.Implement
 {
-    public class AccountWalletService
+    public class AccountWalletService : IAccountWalletService
     {
-        private readonly AccountWalletRepository _accountWalletRepository;
-        public AccountWalletService(AccountWalletRepository accountWalletRepository)
+        private readonly IAccountWalletRepository _accountWalletRepository;
+        public AccountWalletService(IAccountWalletRepository accountWalletRepository)
         {
             _accountWalletRepository = accountWalletRepository;
         }
