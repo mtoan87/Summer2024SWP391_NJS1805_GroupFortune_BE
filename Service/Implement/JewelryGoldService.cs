@@ -3,6 +3,7 @@ using DAL.Enums;
 using DAL.Models;
 using Repository.Implement;
 using Repository.Interface;
+using Service.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,10 @@ using System.Threading.Tasks;
 
 namespace Service.Implement
 {
-    public class JewelryGoldService
+    public class JewelryGoldService : IJewelryGoldService
     {
-        private readonly JewelryGoldRepository _jewelryGoldRepository;
-        public JewelryGoldService(JewelryGoldRepository jewelryGoldRepository)
+        private readonly IJewelryGoldRepository _jewelryGoldRepository;
+        public JewelryGoldService(IJewelryGoldRepository jewelryGoldRepository)
         {
             _jewelryGoldRepository = jewelryGoldRepository;
         }
@@ -24,7 +25,7 @@ namespace Service.Implement
         }
         public async Task<JewelryGold> GetJewelryById(int id)
         {
-            return await _jewelryGoldRepository.GetById(id);
+            return await _jewelryGoldRepository.GetByIdAsync(id);
         }
         public async Task<JewelryGold> CreateJewelry(CreateJewelryGoldDTO createjew)
         {

@@ -3,6 +3,7 @@ using DAL.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Service.Implement;
+using Service.Interface;
 
 namespace jewelryauction.Controllers
 {
@@ -10,9 +11,9 @@ namespace jewelryauction.Controllers
     [ApiController]
     public class JewelrySilverController : ControllerBase
     {
-        private readonly JewelrySilverService _jewelrySilverService;
+        private readonly IJewelrySilverService _jewelrySilverService;
 
-        public JewelrySilverController(JewelrySilverService jewelrySilverService)
+        public JewelrySilverController(IJewelrySilverService jewelrySilverService)
         {
             _jewelrySilverService = jewelrySilverService;
         }

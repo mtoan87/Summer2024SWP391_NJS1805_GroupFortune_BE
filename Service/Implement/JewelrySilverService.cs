@@ -7,13 +7,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Repository.Interface;
+using Service.Interface;
 
 namespace Service.Implement
 {
-    public class JewelrySilverService
+    public class JewelrySilverService : IJewelrySilverService
     {
-        private readonly JewelrySilverRepository _jewelrySilverRepository;
-        public JewelrySilverService(JewelrySilverRepository jewelrySilverRepository)
+        private readonly IJewelrySilverRepository _jewelrySilverRepository;
+        public JewelrySilverService(IJewelrySilverRepository jewelrySilverRepository)
         {
             _jewelrySilverRepository = jewelrySilverRepository;
         }

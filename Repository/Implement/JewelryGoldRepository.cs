@@ -1,5 +1,6 @@
 ﻿using DAL.Models;
 using Microsoft.EntityFrameworkCore;
+using Repository.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 namespace Repository.Implement
 {
 
-    public class JewelryGoldRepository : RepositoryGeneric<JewelryGold>
+    public class JewelryGoldRepository : RepositoryGeneric<JewelryGold> , IJewelryGoldRepository
     {
         public JewelryGoldRepository(JewelryAuctionContext context) : base(context)
         {

@@ -2,6 +2,7 @@
 using DAL.Enums;
 using DAL.Models;
 using Repository.Implement;
+using Repository.Interface;
 
 
 namespace Service.Implement
@@ -9,10 +10,10 @@ namespace Service.Implement
     public class AuctionService
     {
         private readonly AuctionRepository _auctionRepository;
-        private readonly JewelryGoldRepository _jewelryGoldRepository;
+        private readonly IJewelryGoldRepository _jewelryGoldRepository;
         private readonly JewelryGoldDiaRepository _jewelryDiaRepository;
-        private readonly JewelrySilverRepository _jewelrySilverRepository;
-        public AuctionService(AuctionRepository auctionRepository, JewelryGoldRepository jewelryGoldRepository, JewelryGoldDiaRepository jewelryGoldDiaRepository, JewelrySilverRepository jewelrySilverRepository)
+        private readonly IJewelrySilverRepository _jewelrySilverRepository;
+        public AuctionService(AuctionRepository auctionRepository, IJewelryGoldRepository jewelryGoldRepository, JewelryGoldDiaRepository jewelryGoldDiaRepository, IJewelrySilverRepository jewelrySilverRepository)
         {
             _auctionRepository = auctionRepository;
             _jewelryDiaRepository = jewelryGoldDiaRepository;
