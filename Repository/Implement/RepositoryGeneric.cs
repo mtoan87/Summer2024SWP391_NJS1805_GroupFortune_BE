@@ -38,12 +38,7 @@ namespace Repository.Implement
         {
             return _context.Set<T>();
         }
-        public bool Remove(T entity)
-        {
-            _dbSet.Remove(entity);
-            _context.SaveChanges();
-            return true;
-        }
+        
         public async Task<bool> RemoveAsync(T entity)
         {
             _dbSet.Remove(entity);
@@ -75,9 +70,6 @@ namespace Repository.Implement
             return await _context.SaveChangesAsync();
         }
 
-        Task IRepositoryGeneric<T>.AddAsync(T entity)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

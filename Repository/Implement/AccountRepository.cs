@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Repository.Implement
 {
-    public class AccountRepository : RepositoryGeneric<Account> 
+    public class AccountRepository : RepositoryGeneric<Account> , IAccountRepository
     {
         
         public AccountRepository(JewelryAuctionContext context) : base(context)

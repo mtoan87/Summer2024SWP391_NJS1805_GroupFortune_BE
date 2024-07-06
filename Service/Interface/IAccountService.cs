@@ -10,6 +10,11 @@ namespace Service.Interface
 {
     public interface IAccountService
     {
-       
+        Task<IEnumerable<Account>> GetAllAccounts();
+        Task<Account> GetAccountById(int id);
+        Task<Account> CreateAccount(AdminCreateAccountDTO adminCreateAccountDTO);
+        Task RegisterAccount(RegisterAccountDTO registerAccount);
+        Task<Account> UpdateAccount(int id, UpdateAccountDTO updateAccount);
+        Task<Account> DeleteAccount(int id);
     }
 }

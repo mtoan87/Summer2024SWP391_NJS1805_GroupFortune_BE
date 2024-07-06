@@ -7,8 +7,12 @@ using System.Threading.Tasks;
 
 namespace Repository.Interface
 {
-    public interface IAccountRepository 
+    public interface IAccountRepository : IRepositoryGeneric<Account>
     {
-      
+        Task<bool> CheckExistingGmailAsync(string gmail);
+
+        void AddAccount(Account account);
+        Task<Account?> GetAccountByEmailAsync(string email);
+        Task<Account?> GetAccountById(int id);
     }
 }

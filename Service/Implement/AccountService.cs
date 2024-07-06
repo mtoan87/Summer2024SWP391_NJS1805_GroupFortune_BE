@@ -6,13 +6,13 @@ using Repository.Implement;
 using Azure.Core;
 namespace Service.Implement
 {
-    public class AccountService 
+    public class AccountService : IAccountService
     {
        
-        private  readonly AccountRepository _accountRepository;
+        //private  readonly AccountRepository _accountRepository;
+        private readonly IAccountRepository _accountRepository;
         
-        
-        public AccountService( AccountRepository accountRepository)
+        public AccountService(IAccountRepository accountRepository)
         {
             
             _accountRepository = accountRepository;
