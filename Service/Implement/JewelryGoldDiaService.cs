@@ -2,18 +2,20 @@
 using DAL.Models;
 using DAL.Enums;
 using Repository.Implement;
+using Repository.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Service.Interface;
 
 namespace Service.Implement
 {
-    public class JewelryGoldDiaService
+    public class JewelryGoldDiaService : IJewelryGoldDiamondService
     {
-        private readonly JewelryGoldDiaRepository _jewelryGoldDiaRepository;
-        public JewelryGoldDiaService(JewelryGoldDiaRepository jewelryGoldDiaRepository)
+        private readonly IJewelryGoldDiamondRepository _jewelryGoldDiaRepository;
+        public JewelryGoldDiaService(IJewelryGoldDiamondRepository jewelryGoldDiaRepository)
         {
             _jewelryGoldDiaRepository = jewelryGoldDiaRepository;
         }

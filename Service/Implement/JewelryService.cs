@@ -15,8 +15,8 @@ namespace Service.Implement
     {
         private readonly IJewelryGoldRepository _jewelryGoldRepository;
         private readonly IJewelrySilverRepository _jewelrySilverRepository;
-        private readonly JewelryGoldDiaRepository _jewelryGoldDiaRepository;
-        public JewelryService(IJewelryGoldRepository jewelryGoldRepository, IJewelrySilverRepository jewelrySilverRepository, JewelryGoldDiaRepository jewelryGoldDiaRepository)
+        private readonly IJewelryGoldDiamondRepository _jewelryGoldDiaRepository;
+        public JewelryService(IJewelryGoldRepository jewelryGoldRepository, IJewelrySilverRepository jewelrySilverRepository, IJewelryGoldDiamondRepository jewelryGoldDiaRepository)
         {
             _jewelryGoldRepository = jewelryGoldRepository;
             _jewelrySilverRepository = jewelrySilverRepository;

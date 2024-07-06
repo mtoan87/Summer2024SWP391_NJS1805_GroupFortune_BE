@@ -46,8 +46,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddScoped<IJewelryGoldRepository , JewelryGoldRepository >();
 builder.Services.AddScoped<IJewelryGoldService, JewelryGoldService>();
-builder.Services.AddScoped<JewelryGoldDiaRepository>();
-builder.Services.AddScoped<JewelryGoldDiaService>();
+builder.Services.AddScoped<IJewelryGoldDiamondRepository , JewelryGoldDiaRepository>();
+builder.Services.AddScoped<IJewelryGoldDiamondService ,JewelryGoldDiaService>();
 builder.Services.AddScoped<JewelryService>();
 builder.Services.AddScoped<IJewelrySilverRepository ,JewelrySilverRepository>();
 builder.Services.AddScoped<IJewelrySilverService, JewelrySilverService>();

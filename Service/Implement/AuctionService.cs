@@ -11,9 +11,9 @@ namespace Service.Implement
     {
         private readonly AuctionRepository _auctionRepository;
         private readonly IJewelryGoldRepository _jewelryGoldRepository;
-        private readonly JewelryGoldDiaRepository _jewelryDiaRepository;
+        private readonly IJewelryGoldDiamondRepository _jewelryDiaRepository;
         private readonly IJewelrySilverRepository _jewelrySilverRepository;
-        public AuctionService(AuctionRepository auctionRepository, IJewelryGoldRepository jewelryGoldRepository, JewelryGoldDiaRepository jewelryGoldDiaRepository, IJewelrySilverRepository jewelrySilverRepository)
+        public AuctionService(AuctionRepository auctionRepository, IJewelryGoldRepository jewelryGoldRepository, IJewelryGoldDiamondRepository jewelryGoldDiaRepository, IJewelrySilverRepository jewelrySilverRepository)
         {
             _auctionRepository = auctionRepository;
             _jewelryDiaRepository = jewelryGoldDiaRepository;

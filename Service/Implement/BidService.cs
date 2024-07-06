@@ -17,9 +17,9 @@ namespace Service.Implement
         private readonly BidRepository _bidRepository;
         private readonly IJewelryGoldRepository _jewelryGoldRepository;
         private readonly IJewelrySilverRepository _jewelrySilverRepository;
-        private readonly JewelryGoldDiaRepository _jewelryGoldDiaRepository;
+        private readonly IJewelryGoldDiamondRepository _jewelryGoldDiaRepository;
         private readonly BidRecordRepository _bidRecordRepository;
-        public BidService(BidRepository bidRepository, IJewelryGoldRepository jewelryGoldRepository, IJewelrySilverRepository jewelrySilverRepository, JewelryGoldDiaRepository jewelryGoldDiaRepository, BidRecordRepository bidRecordRepository)
+        public BidService(BidRepository bidRepository, IJewelryGoldRepository jewelryGoldRepository, IJewelrySilverRepository jewelrySilverRepository, IJewelryGoldDiamondRepository jewelryGoldDiaRepository, BidRecordRepository bidRecordRepository)
         {
             _jewelryGoldRepository = jewelryGoldRepository;
             _jewelrySilverRepository = jewelrySilverRepository;

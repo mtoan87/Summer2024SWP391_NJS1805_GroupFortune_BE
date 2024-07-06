@@ -18,7 +18,7 @@ namespace Service.Implement
         private readonly AuctionRepository _auctionRepository;
         private readonly IJewelryGoldRepository _jewelryGoldRepository;
         private readonly IJewelrySilverRepository _jewelrySilverRepository;
-        private readonly JewelryGoldDiaRepository _jewelryGoldDiaRepository;
+        private readonly IJewelryGoldDiamondRepository _jewelryGoldDiaRepository;
         private readonly AccountWalletRepository _accountWalletRepository;
 
         public JoinAuctionService(
@@ -26,7 +26,7 @@ namespace Service.Implement
             AuctionRepository auctionRepository,
             IJewelryGoldRepository jewelryGoldRepository,
             IJewelrySilverRepository jewelrySilverRepository,
-            JewelryGoldDiaRepository jewelryGoldDiaRepository,
+            IJewelryGoldDiamondRepository jewelryGoldDiaRepository,
             AccountWalletRepository accountWalletRepository)
         {
             _joinAuctionRepository = joinAuctionRepository;

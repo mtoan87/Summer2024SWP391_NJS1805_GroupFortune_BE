@@ -9,5 +9,11 @@ namespace Repository.Interface
 {
     public interface IJewelryGoldDiamondRepository : IRepositoryGeneric<JewelryGoldDiamond>
     {
+        IEnumerable<JewelryGoldDiamond> GetAll();
+        IEnumerable<JewelryGoldDiamond> GetUnVerified();
+        IEnumerable<JewelryGoldDiamond> GetVerified();
+        Task<bool> JewelryGoldDiaExistsInAuction(int jewelrySilverId);
+
+        Task<IEnumerable<JewelryGoldDiamond>> GetAuctionAndJewelryGoldDiamondByAccountId(int accountId);
     }
 }
