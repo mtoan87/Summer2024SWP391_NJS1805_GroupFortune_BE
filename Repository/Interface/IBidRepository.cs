@@ -9,6 +9,6 @@ namespace Repository.Interface
 {
     public interface IBidRepository : IRepositoryGeneric<Bid>
     {
-       
+        Task<IEnumerable<Bid>> GetBidByAuctionId(int auctionId);
     }
 }

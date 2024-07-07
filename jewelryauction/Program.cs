@@ -10,6 +10,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using DAL.Authenticate;
 using jewelryauction.Hub;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -44,6 +45,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
         };
     });
+builder.Services.AddSignalR()
+    .AddJsonProtocol(options =>
+    {
+        options.PayloadSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+    });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddScoped<IJewelryGoldRepository , JewelryGoldRepository >();
 builder.Services.AddScoped<IJewelryGoldService, JewelryGoldService>();
@@ -63,6 +69,7 @@ builder.Services.AddScoped<IAccountWalletRepository, AccountWalletRepository>();
 builder.Services.AddScoped<IAuctionResultRepository, AuctionResultRepository>();
 builder.Services.AddScoped<IAuctionResultService, AuctionResultService>();
 builder.Services.AddScoped<AuthService>();
+builder.Services.AddScoped<BiddingHub>();
 builder.Services.AddScoped<RequestAuctionRepository>();
 builder.Services.AddScoped<IJoinAuctionRepository, JoinAuctionRepository>();
 builder.Services.AddScoped<IJoinAuctionService, JoinAuctionService>();

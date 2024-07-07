@@ -26,12 +26,12 @@ namespace jewelryauction.Controllers
             var jewelry = await _bidService.GetAllBids();
             return Ok(jewelry);
         }
-        //[HttpGet("GetBidByAccountId/{accountId}")]
-        //public async Task<IActionResult> GetBidByAccountId(int accountId)
-        //{
-        //    var result = await _bidService.GetBidByAccountIdAsync(accountId);
-        //    return Ok(result);
-        //}
+        [HttpGet("GetBidByAuctionId/{auctionId}")]
+        public async Task<IActionResult> GetBidByAuctionId(int auctionId)
+        {
+            var result = await _bidService.GetBidByAuctionId(auctionId);
+            return Ok(result);
+        }
         //[HttpGet("GetBidRecordByAccountId/{accountId}")]
         //public async Task<IActionResult> GetBidRecordByAccountId(int accountId)
         //{
