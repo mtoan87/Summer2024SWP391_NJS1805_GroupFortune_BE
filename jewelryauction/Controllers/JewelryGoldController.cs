@@ -51,11 +51,11 @@ namespace jewelryauction.Controllers
         [Route("UpdateJewelryGoldMember")]
         public async Task<IActionResult> UpdateJewelryGoldMember(int id, [FromForm] UpdateJewelryDTO updateJewelry)
         {
-            var existingJewelry = await _jewelryGoldService.GetJewelryById(id);
-            if (existingJewelry != null)
-            {
-                updateJewelry.JewelryImg = existingJewelry.JewelryImg;
-            }
+            //var existingJewelry = await _jewelryGoldService.GetJewelryById(id);
+            //if (existingJewelry != null)
+            //{
+            //    updateJewelry.JewelryImg = existingJewelry.JewelryImg;
+            //}
             var rs = await _jewelryGoldService.UpdateJewelryMember(id, updateJewelry);
             return Ok(rs);
         }
@@ -63,11 +63,7 @@ namespace jewelryauction.Controllers
         [Route("UpdateJewelryGoldStaff")]
         public async Task<IActionResult> UpdateJewelryGoldStaff(int id, [FromForm] UpdateJewelryStaffDTO updateJewelry)
         {
-            var existingJewelry = await _jewelryGoldService.GetJewelryById(id);
-            if (existingJewelry != null)
-            {
-                updateJewelry.JewelryImg = existingJewelry.JewelryImg;
-            }
+           
             var rs = await _jewelryGoldService.UpdateJewelryStaff(id, updateJewelry);
             return Ok(rs);
         }
