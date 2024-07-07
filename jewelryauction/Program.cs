@@ -9,6 +9,7 @@ using Service.Interface;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using DAL.Authenticate;
+using jewelryauction.Hub;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -89,9 +90,15 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseRouting();
 app.UseCors();
 app.UseAuthorization();
 
-app.MapControllers();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+    endpoints.MapHub<BiddingHub>("/biddingHub");
+});
+
 
 app.Run();
