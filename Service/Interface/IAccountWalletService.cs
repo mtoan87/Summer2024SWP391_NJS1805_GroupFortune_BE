@@ -14,5 +14,6 @@ namespace Service.Interface
         Task<AccountWallet> GetAccountWalletById(int id);
         Task<AccountWallet> CreateAccountWallet(CreateAccountWalletDTO createAccountWallet);
         Task<AccountWallet> UpdateAccountWallet(int id, UpdateAccountWalletDTO updateAccountWallet);
+        Task<AccountWallet> GetAccountWalletByAccountId(int id);
     }
 }

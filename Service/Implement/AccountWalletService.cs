@@ -29,6 +29,10 @@ namespace Service.Implement
         {
             return await _accountWalletRepository.GetByIdAsync(id);
         }
+        public async Task<AccountWallet> GetAccountWalletByAccountId(int id)
+        {
+            return await _accountWalletRepository.GetByAccountIdAsync(id);
+        }
 
         public async Task<AccountWallet> CreateAccountWallet(CreateAccountWalletDTO createAccountWallet)
         {
