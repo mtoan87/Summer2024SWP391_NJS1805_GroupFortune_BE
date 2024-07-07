@@ -48,5 +48,11 @@ namespace Repository.Implement
                 .Where(a => a.AccountId == accountId)
                 .ToListAsync();
         }
+        public async Task<JewelryGold> GetJewelryGoldByAuctionId(int auctionId)
+        {
+            return await _context.JewelryGolds
+                .Include(j => j.Auctions)
+                .FirstOrDefaultAsync(j => j.Auctions.Any(a => a.AuctionId == auctionId));
+        }
     }
 }

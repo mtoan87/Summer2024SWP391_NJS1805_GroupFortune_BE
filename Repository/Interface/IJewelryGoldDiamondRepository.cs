@@ -13,7 +13,8 @@ namespace Repository.Interface
         IEnumerable<JewelryGoldDiamond> GetUnVerified();
         IEnumerable<JewelryGoldDiamond> GetVerified();
         Task<bool> JewelryGoldDiaExistsInAuction(int jewelrySilverId);
-
+        Task<JewelryGoldDiamond> GetJewelryGoldDiamondByAuctionId(int auctionId);
+        
         Task<IEnumerable<JewelryGoldDiamond>> GetAuctionAndJewelryGoldDiamondByAccountId(int accountId);
     }
 }

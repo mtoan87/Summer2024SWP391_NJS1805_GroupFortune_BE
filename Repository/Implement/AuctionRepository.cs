@@ -66,6 +66,40 @@ namespace Repository.Implement
                 .ToList();
         }
 
+        public List<JewelrySilver> GetJewelrySilversByAuctionId(int auctionId)
+        {
+            
+            var jewelrySilvers = _context.JewelrySilvers
+                .Include(j => j.Account) 
+                .Include(j => j.Auctions)
+                .Where(j => j.Auctions.Any(a => a.AuctionId == auctionId))
+                .ToList();
+
+            return jewelrySilvers;
+        }
+        public List<JewelryGold> GetJewelryGoldsByAuctionId(int auctionId)
+        {
+            // Query the JewelrySilver entities that are associated with the AuctionId
+            var jewelryGolds = _context.JewelryGolds
+                .Include(j => j.Account) // Include related Account if needed
+                .Include(j => j.Auctions)
+                .Where(j => j.Auctions.Any(a => a.AuctionId == auctionId))
+                .ToList();
+
+            return jewelryGolds;
+        }
+        public List<JewelryGoldDiamond> GetJewelryGoldDiamondsByAuctionId(int auctionId)
+        {
+            // Query the JewelrySilver entities that are associated with the AuctionId
+            var jewelryGoldDiamonds = _context.JewelryGoldDiamonds
+                .Include(j => j.Account) // Include related Account if needed
+                .Include(j => j.Auctions)
+                .Where(j => j.Auctions.Any(a => a.AuctionId == auctionId))
+                .ToList();
+
+            return jewelryGoldDiamonds;
+        }
+
         public bool IsJewelryInAuctionGold(int? jewelryGoldId)
         {
             return _context.Auctions.Any(a => a.JewelryGoldId == jewelryGoldId);

@@ -14,6 +14,9 @@ namespace Repository.Interface
         Task<IEnumerable<Auction>> GetAuctionAndJewelrySilverByAccountId(int accountId);
         Task<IEnumerable<Auction>> GetAuctionAndJewelryGoldByAccountId(int accountId);
         Task<IEnumerable<Auction>> GetAuctionAndJewelryGoldDiamondByAccountId(int accountId);
+        List<JewelryGold> GetJewelryGoldsByAuctionId(int auctionId);
+        List<JewelrySilver> GetJewelrySilversByAuctionId(int auctionId);
+        List<JewelryGoldDiamond> GetJewelryGoldDiamondsByAuctionId(int auctionId);
         int GetAccountCountInAuction(int auctionId);
         IEnumerable<Auction> GetJewelryActiveAuctions();
         bool IsJewelryInAuctionGold(int? jewelryGoldId);

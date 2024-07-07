@@ -87,23 +87,14 @@ namespace Service.Implement
         }
         public async Task<bool> PlaceBid(BiddingDTO bidDto)
         {
-            var auction = await _auctionRepository.GetByIdAsync(bidDto.AuctionId);
-            if (auction == null)
-            {
-                throw new Exception($"Auction with ID {bidDto.AuctionId} not found");
-            }
-
-            var jewelryGold = auction.JewelryGoldId.HasValue
-                ? await _jewelryGoldRepository.GetByIdAsync(auction.JewelryGoldId.Value)
-                : null;
-            var jewelryGoldDiamond = auction.JewelryGolddiaId.HasValue
-                ? await _jewelryGoldDiaRepository.GetByIdAsync(auction.JewelryGolddiaId.Value)
-                : null;
-            var jewelrySilver = auction.JewelrySilverId.HasValue
-                ? await _jewelrySilverRepository.GetByIdAsync(auction.JewelrySilverId.Value)
-                : null;
+            
+            var jewelryGold = await _jewelryGoldRepository.GetJewelryGoldByAuctionId(bidDto.AuctionId);
+            var jewelryGoldDiamond = await _jewelryGoldDiaRepository.GetJewelryGoldDiamondByAuctionId(bidDto.AuctionId);
+            var jewelrySilver = await _jewelrySilverRepository.GetJewelrySilverByAuctionId(bidDto.AuctionId);
 
             double minPrice = 0;
+
+            
             if (jewelryGold != null)
             {
                 minPrice = jewelryGold.Price ?? 0;
@@ -118,18 +109,19 @@ namespace Service.Implement
             }
             else
             {
-                return false;
+                return false; 
             }
 
+            
             var existingBid = await _bidRepository.GetByIdAsync(bidDto.BidId);
 
             double newMaxPrice;
             if (existingBid == null)
             {
+                
                 newMaxPrice = minPrice + bidDto.BidStep;
                 var newBid = new Bid
                 {
-                    // AccountId = bidDto.AccountId,
                     AuctionId = bidDto.AuctionId,
                     Minprice = minPrice,
                     Maxprice = minPrice,
@@ -150,6 +142,7 @@ namespace Service.Implement
             }
             else
             {
+                
                 newMaxPrice = existingBid.Maxprice + bidDto.BidStep;
                 existingBid.Maxprice = newMaxPrice;
                 existingBid.Datetime = DateTime.Now;
@@ -169,6 +162,8 @@ namespace Service.Implement
 
             return true;
         }
+
+
 
 
     }

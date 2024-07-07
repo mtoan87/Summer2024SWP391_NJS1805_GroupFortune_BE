@@ -15,5 +15,6 @@ namespace Repository.Interface
         Task<bool> JewelrySilverExistsInAuction(int jewelrySilverId);
 
         Task<IEnumerable<JewelrySilver>> GetAuctionAndJewelrySilverByAccountId(int accountId);
+        Task<JewelrySilver> GetJewelrySilverByAuctionId(int auctionId);
     }
 }
