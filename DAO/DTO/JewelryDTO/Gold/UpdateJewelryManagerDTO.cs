@@ -22,7 +22,7 @@ namespace DAL.DTO.JewelryDTO.Gold
         public double Price { get; set; }
         [EnumDataType(typeof(GoldAge))]
         public string? Goldage { get; set; }
-        public string? Collection { get; set; }
+        
         [EnumDataType(typeof(JewelryStatus))]
         public string? Status { get; set; }
     }

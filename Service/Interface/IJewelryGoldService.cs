@@ -11,7 +11,6 @@ namespace Service.Interface
     public interface IJewelryGoldService
     {
         Task<IEnumerable<JewelryGold>> GetAllGoldJewelries();
-
         Task<JewelryGold> GetJewelryById(int id);
         Task<JewelryGold> CreateJewelry(CreateJewelryGoldDTO createjew);
         Task<JewelryGold> UpdateJewelryMember(int id, UpdateJewelryDTO updateJewelry);

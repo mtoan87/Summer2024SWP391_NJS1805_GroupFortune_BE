@@ -21,6 +21,6 @@ namespace DAL.DTO.JewelryDTO.Gold
         public string Weight { get; set; } = null!;
         [EnumDataType(typeof(GoldAge))]
         public string? Goldage { get; set; }
-        public string? Collection { get; set; }
+        
     }
 }
