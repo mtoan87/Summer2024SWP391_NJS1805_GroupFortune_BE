@@ -54,8 +54,7 @@ namespace Service.Implement
             {
                 AccountId = createJoinAuction.AccountId,
                 BidId = createJoinAuction.BidId,
-                AuctionId = createJoinAuction.AuctionId,
-                
+                AuctionId = createJoinAuction.AuctionId,            
                 Joindate = DateTime.Now,
             };
 

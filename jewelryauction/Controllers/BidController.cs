@@ -26,6 +26,13 @@ namespace jewelryauction.Controllers
             var jewelry = await _bidService.GetAllBids();
             return Ok(jewelry);
         }
+        [HttpGet]
+        [Route("GetBidByBidId")]
+        public async Task<IActionResult> GetBidByBidId(int BidId)
+        {
+            var jewelry = await _bidService.GetBidById(BidId);
+            return Ok(jewelry);
+        }
         [HttpGet("GetBidByAuctionId/{auctionId}")]
         public async Task<IActionResult> GetBidByAuctionId(int auctionId)
         {

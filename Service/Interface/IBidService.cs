@@ -11,6 +11,7 @@ namespace Service.Interface
     public interface IBidService
     {
         //Task<IEnumerable<Bid>> GetBidByAccountIdAsync(int accountId);
+        Task<Bid> GetBidById(int id);
         Task<IEnumerable<Bid>> GetAllBids();
         Task<IEnumerable<Bid>> GetBidByAuctionId(int auctionId);
         //Task<IEnumerable<Bid>> GetBidRecordByAccountId(int accountId);

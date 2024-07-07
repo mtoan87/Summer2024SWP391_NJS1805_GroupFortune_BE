@@ -20,6 +20,7 @@ namespace Service.Implement
         private readonly IJewelrySilverRepository _jewelrySilverRepository;
         private readonly IJewelryGoldDiamondRepository _jewelryGoldDiaRepository;
         private readonly IBidRecordRepository _bidRecordRepository;
+        private readonly IAuctionRepository _auctionRepository;
         public BidService(IBidRepository bidRepository, IJewelryGoldRepository jewelryGoldRepository, IJewelrySilverRepository jewelrySilverRepository, IJewelryGoldDiamondRepository jewelryGoldDiaRepository, IBidRecordRepository bidRecordRepository)
         {
             _jewelryGoldRepository = jewelryGoldRepository;
@@ -49,7 +50,10 @@ namespace Service.Implement
         //{
         //    return await _bidRecordRepository.GetBidRecordByAccountId(accountId);
         //}
-
+        public async Task<Bid> GetBidById(int id)
+        {
+            return await _bidRepository.GetByIdAsync(id);
+        }
         public async Task<Bid> CreateBid(CreateBidDTO createBid)
         {
             var newBid = new Bid
@@ -83,9 +87,10 @@ namespace Service.Implement
         }
         public async Task<bool> PlaceBid(BiddingDTO bidDto)
         {
-            var jewelryGold = await _jewelryGoldRepository.GetByIdAsync(bidDto.AuctionId);
-            var jewelryGoldDiamond = await _jewelryGoldDiaRepository.GetByIdAsync(bidDto.AuctionId);
-            var jewelrySilver = await _jewelrySilverRepository.GetByIdAsync(bidDto.AuctionId);
+            var auction = await _auctionRepository.GetByIdAsync(bidDto.AuctionId);
+            var jewelryGold = await _jewelryGoldRepository.GetByIdAsync(auction.AuctionId);
+            var jewelryGoldDiamond = await _jewelryGoldDiaRepository.GetByIdAsync(auction.AuctionId);
+            var jewelrySilver = await _jewelrySilverRepository.GetByIdAsync(auction.AuctionId);
 
             double minPrice = 0;
             if (jewelryGold != null)
