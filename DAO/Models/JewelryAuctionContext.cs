@@ -176,8 +176,6 @@ namespace DAL.Models
 
                 entity.Property(e => e.BidId).HasColumnName("bid_id");
 
-                entity.Property(e => e.AccountId).HasColumnName("account_id");
-
                 entity.Property(e => e.AuctionId).HasColumnName("auction_id");
 
                 entity.Property(e => e.Datetime)
@@ -188,15 +186,10 @@ namespace DAL.Models
 
                 entity.Property(e => e.Minprice).HasColumnName("minprice");
 
-                entity.HasOne(d => d.Account)
-                    .WithMany(p => p.Bids)
-                    .HasForeignKey(d => d.AccountId)
-                    .HasConstraintName("FK__Bid__account_id__5FB337D6");
-
                 entity.HasOne(d => d.Auction)
                     .WithMany(p => p.Bids)
                     .HasForeignKey(d => d.AuctionId)
-                    .HasConstraintName("FK__Bid__auction_id__60A75C0F");
+                    .HasConstraintName("FK__Bid__auction_id__5FB337D6");
             });
 
             modelBuilder.Entity<BidRecord>(entity =>
@@ -205,11 +198,18 @@ namespace DAL.Models
 
                 entity.Property(e => e.BidRecordId).HasColumnName("bid_record_id");
 
+                entity.Property(e => e.AccountId).HasColumnName("account_id");
+
                 entity.Property(e => e.BidAmount).HasColumnName("bid_amount");
 
                 entity.Property(e => e.BidId).HasColumnName("bid_id");
 
                 entity.Property(e => e.BidStep).HasColumnName("bid_step");
+
+                entity.HasOne(d => d.Account)
+                    .WithMany(p => p.BidRecords)
+                    .HasForeignKey(d => d.AccountId)
+                    .HasConstraintName("FK__Bid_recor__accou__628FA481");
 
                 entity.HasOne(d => d.Bid)
                     .WithMany(p => p.BidRecords)
@@ -272,7 +272,7 @@ namespace DAL.Models
             modelBuilder.Entity<JewelryGoldDiamond>(entity =>
             {
                 entity.HasKey(e => e.JewelryGolddiaId)
-                    .HasName("PK__JewelryG__97244312F56562E1");
+                    .HasName("PK__JewelryG__97244312BB08776C");
 
                 entity.ToTable("JewelryGoldDiamond");
 

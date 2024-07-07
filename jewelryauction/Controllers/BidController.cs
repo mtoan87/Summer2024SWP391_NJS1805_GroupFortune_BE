@@ -26,18 +26,18 @@ namespace jewelryauction.Controllers
             var jewelry = await _bidService.GetAllBids();
             return Ok(jewelry);
         }
-        [HttpGet("GetBidByAccountId/{accountId}")]
-        public async Task<IActionResult> GetBidByAccountId(int accountId)
-        {
-            var result = await _bidService.GetBidByAccountIdAsync(accountId);
-            return Ok(result);
-        }
-        [HttpGet("GetBidRecordByAccountId/{accountId}")]
-        public async Task<IActionResult> GetBidRecordByAccountId(int accountId)
-        {
-            var result = await _bidService.GetBidRecordByAccountId(accountId);
-            return Ok(result);
-        }
+        //[HttpGet("GetBidByAccountId/{accountId}")]
+        //public async Task<IActionResult> GetBidByAccountId(int accountId)
+        //{
+        //    var result = await _bidService.GetBidByAccountIdAsync(accountId);
+        //    return Ok(result);
+        //}
+        //[HttpGet("GetBidRecordByAccountId/{accountId}")]
+        //public async Task<IActionResult> GetBidRecordByAccountId(int accountId)
+        //{
+        //    var result = await _bidService.GetBidRecordByAccountId(accountId);
+        //    return Ok(result);
+        //}
         [HttpPost]
         [Route("CreateBid")]
         public async Task<IActionResult> CreateBid(CreateBidDTO createBid)

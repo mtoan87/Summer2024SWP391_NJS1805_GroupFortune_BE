@@ -28,26 +28,30 @@ namespace Service.Implement
             _bidRecordRepository = bidRecordRepository;
             _bidRepository = bidRepository;
         }
-        public async Task<IEnumerable<Bid>> GetBidByAccountIdAsync(int accountId)
+        //public async Task<IEnumerable<Bid>> GetBidByAccountIdAsync(int accountId)
+        //{
+        //    return await _bidRepository.GetBidByAccountId(accountId);
+        //}
+        public async Task<Bid> GetBidByBidId(int accountId)
         {
-            return await _bidRepository.GetBidByAccountId(accountId);
+          return await _bidRepository.GetByIdAsync(accountId);
         }
-
+        
         public async Task<IEnumerable<Bid>> GetAllBids()
         {
             return await _bidRepository.GetAllAsync();
         }
 
-        public async Task<IEnumerable<Bid>> GetBidRecordByAccountId(int accountId)
-        {
-            return await _bidRepository.GetBidRecordByAccountId(accountId);
-        }
+        //public async Task<IEnumerable<Bid>> GetBidRecordByAccountId(int accountId)
+        //{
+        //    return await _bidRecordRepository.GetBidRecordByAccountId(accountId);
+        //}
 
         public async Task<Bid> CreateBid(CreateBidDTO createBid)
         {
             var newBid = new Bid
             {
-                AccountId = createBid.AccountId,
+//              AccountId = createBid.AccountId,
                 AuctionId = createBid.AuctionId,
                 Minprice = createBid.Minprice,
                 Maxprice = createBid.Maxprice,
@@ -66,7 +70,7 @@ namespace Service.Implement
                 throw new Exception($"Bid with ID{id} not found");
             }
             bid.AuctionId = updateBid.AuctionId;
-            bid.AccountId = updateBid.AccountId;
+//          bid.AccountId = updateBid.AccountId;
             bid.Minprice = updateBid.Minprice;
             bid.Maxprice = updateBid.Maxprice;
             await _bidRepository.UpdateAsync(bid);
@@ -98,7 +102,7 @@ namespace Service.Implement
                 return false;
             }
 
-            var existingBid = await _bidRepository.GetByAccountIdAndAuctionId(bidDto.AccountId, bidDto.AuctionId);
+            var existingBid = await _bidRepository.GetByIdAsync(bidDto.BidId);
 
             double newMaxPrice;
             if (existingBid == null)
@@ -106,10 +110,10 @@ namespace Service.Implement
                 newMaxPrice = minPrice + bidDto.BidStep;
                 var newBid = new Bid
                 {
-                    AccountId = bidDto.AccountId,
+//                  AccountId = bidDto.AccountId,
                     AuctionId = bidDto.AuctionId,
                     Minprice = minPrice,
-                    Maxprice = minPrice,  // Ensuring Maxprice is initialized to Minprice
+                    Maxprice = minPrice, 
                     Datetime = DateTime.Now
                 };
 

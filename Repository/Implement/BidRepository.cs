@@ -17,23 +17,6 @@ namespace Repository.Implement
 
 
         }       
-        public async Task<IEnumerable<Bid>> GetBidByAccountId(int accountId)
-        {
-            return await _context.Bids
-                .Where(a => a.AccountId == accountId)
-                .ToListAsync();
-        }
-        public async Task<Bid> GetByAccountIdAndAuctionId(int accountId, int auctionId)
-        {
-            return  _context.Bids.FirstOrDefault(b => b.AccountId == accountId && b.AuctionId == auctionId);
-        }
-
-        public async Task<IEnumerable<Bid>> GetBidRecordByAccountId(int accountId)
-        {
-            return await _context.Bids
-                .Include(a => a.BidRecords)
-                .Where(a => a.AccountId == accountId)
-                .ToListAsync();
-        }
+        
     }
 }

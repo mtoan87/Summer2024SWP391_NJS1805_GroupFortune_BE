@@ -15,6 +15,7 @@ namespace DAL.Models
         public int? AuctionId { get; set; }
         public int? BidId { get; set; }
         public DateTime Joindate { get; set; }
+
         public virtual Account? Account { get; set; }
         public virtual Auction? Auction { get; set; }
         public virtual Bid? Bid { get; set; }

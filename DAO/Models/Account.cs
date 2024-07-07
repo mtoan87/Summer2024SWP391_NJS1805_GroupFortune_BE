@@ -10,7 +10,7 @@ namespace DAL.Models
             AccountWallets = new HashSet<AccountWallet>();
             AuctionResults = new HashSet<AuctionResult>();
             Auctions = new HashSet<Auction>();
-            Bids = new HashSet<Bid>();
+            BidRecords = new HashSet<BidRecord>();
             JewelryGoldDiamonds = new HashSet<JewelryGoldDiamond>();
             JewelryGolds = new HashSet<JewelryGold>();
             JewelrySilvers = new HashSet<JewelrySilver>();
@@ -29,7 +29,7 @@ namespace DAL.Models
         public virtual ICollection<AccountWallet> AccountWallets { get; set; }
         public virtual ICollection<AuctionResult> AuctionResults { get; set; }
         public virtual ICollection<Auction> Auctions { get; set; }
-        public virtual ICollection<Bid> Bids { get; set; }
+        public virtual ICollection<BidRecord> BidRecords { get; set; }
         public virtual ICollection<JewelryGoldDiamond> JewelryGoldDiamonds { get; set; }
         public virtual ICollection<JewelryGold> JewelryGolds { get; set; }
         public virtual ICollection<JewelrySilver> JewelrySilvers { get; set; }

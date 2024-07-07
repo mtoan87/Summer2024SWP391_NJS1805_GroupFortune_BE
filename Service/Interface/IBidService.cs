@@ -10,9 +10,9 @@ namespace Service.Interface
 {
     public interface IBidService
     {
-        Task<IEnumerable<Bid>> GetBidByAccountIdAsync(int accountId);
+        //Task<IEnumerable<Bid>> GetBidByAccountIdAsync(int accountId);
         Task<IEnumerable<Bid>> GetAllBids();
-        Task<IEnumerable<Bid>> GetBidRecordByAccountId(int accountId);
+        //Task<IEnumerable<Bid>> GetBidRecordByAccountId(int accountId);
         Task<Bid> CreateBid(CreateBidDTO createBid);
         Task<Bid> UpdateBid(int id, UpdateBidDTO updateBid);
         Task<bool> PlaceBid(BiddingDTO bidDto);

@@ -8,7 +8,7 @@ namespace DAL.DTO.BidDTO
 {
     public class CreateBidDTO
     {
-        public int? AccountId { get; set; }
+        
         public int? AuctionId { get; set; }
         public double Minprice { get; set; }
         public double Maxprice { get; set; } 

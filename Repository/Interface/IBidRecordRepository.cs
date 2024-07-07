@@ -10,5 +10,6 @@ namespace Repository.Interface
     public interface IBidRecordRepository : IRepositoryGeneric<BidRecord>
     {
         Task<IEnumerable<BidRecord>> GetBidRecordByBidId(int bidId);
+        Task<IEnumerable<BidRecord>> GetBidByAccountId(int accountId);
     }
 }
