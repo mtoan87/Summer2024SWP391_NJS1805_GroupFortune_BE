@@ -94,8 +94,8 @@ namespace Service.Implement
             if (updjewelry == null)
             {
                 throw new Exception($"Jewelry with ID {id} not found.");
-            }            
-            updateJewelry.Shipment = updateJewelry.Shipment;
+            }
+            updjewelry.Shipment = updateJewelry.Shipment;
             updjewelry.Price = updateJewelry.Price;
             await _jewelryGoldRepository.UpdateAsync(updjewelry);
             return updjewelry;
