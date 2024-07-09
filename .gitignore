@@ -9,6 +9,7 @@
 
 # Ignore Debug folder
 obj/Debug/
+.vs/
 
 # Build results
 [Dd]ebug/
