@@ -9,7 +9,7 @@
 
 # Ignore Debug folder
 obj/Debug/
-.vs/
+.vs/jewelryauction
 
 # Build results
 [Dd]ebug/
