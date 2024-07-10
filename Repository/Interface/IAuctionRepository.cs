@@ -22,5 +22,6 @@ namespace Repository.Interface
         bool IsJewelryInAuctionGold(int? jewelryGoldId);
         bool IsJewelryInAuctionSilver(int? jewelrySilverId);
         bool IsJewelryInAuctionGoldDiamond(int? jewelryGoldDiaId);
+        Task<IEnumerable<Auction>> GetAuctionByAccountId(int accountId);
     }
 }

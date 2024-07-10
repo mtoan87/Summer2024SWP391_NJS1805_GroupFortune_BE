@@ -23,6 +23,12 @@ namespace Repository.Implement
             return _context.Auctions.Where(a => a.Status == "UnActive").ToList();
         }
 
+        public async Task<IEnumerable<Auction>> GetAuctionByAccountId(int accountId)
+        {
+            return await _context.Auctions              
+                .Where(a => a.AccountId == accountId)
+                .ToListAsync();
+        }
         public async Task<IEnumerable<Auction>> GetAuctionAndJewelrySilverByAccountId(int accountId)
         {
             return await _context.Auctions

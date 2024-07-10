@@ -13,6 +13,7 @@ namespace Service.Interface
         Task<IEnumerable<Auction>> GetAllAuctions();
         IEnumerable<Auction> GetAllActiveAuctions();
         IEnumerable<Auction> GetAllUnActiveAuctions();
+        Task<IEnumerable<Auction>> GetAuctionByAccountId(int accountId);
         Task<Auction> GetAuctionById(int id);
         Task<Auction> CreateJewelrySilverAuction(CreateSilverAuctionDTO createAuction);
         Task<Auction> CreateJewelryGoldAuction(CreateGoldAuctionDTO createAuction);

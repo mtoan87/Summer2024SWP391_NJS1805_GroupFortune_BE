@@ -26,6 +26,10 @@ namespace Service.Implement
         {
             return await _auctionRepository.GetAllAsync();
         }
+        public async Task<IEnumerable<Auction>> GetAuctionByAccountId(int accountId)
+        {
+            return await _auctionRepository.GetAuctionByAccountId(accountId);
+        }
         public IEnumerable<Auction> GetAllActiveAuctions()
         {
             return _auctionRepository.GetActiveAuctions();
