@@ -272,7 +272,7 @@ namespace DAL.Models
             modelBuilder.Entity<JewelryGoldDiamond>(entity =>
             {
                 entity.HasKey(e => e.JewelryGolddiaId)
-                    .HasName("PK__JewelryG__97244312BB08776C");
+                    .HasName("PK__JewelryG__97244312D20869C4");
 
                 entity.ToTable("JewelryGoldDiamond");
 

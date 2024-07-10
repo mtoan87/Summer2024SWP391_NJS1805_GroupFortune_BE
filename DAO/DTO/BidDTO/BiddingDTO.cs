@@ -10,6 +10,6 @@ namespace DAL.DTO.BidDTO
     {
         public int BidId { get; set; }
         public int AuctionId { get; set; }
-        public double BidStep { get; set; }
+        public double? BidStep { get; set; }
     }
 }

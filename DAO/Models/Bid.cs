@@ -13,8 +13,8 @@ namespace DAL.Models
 
         public int BidId { get; set; }
         public int? AuctionId { get; set; }
-        public double Minprice { get; set; }
-        public double Maxprice { get; set; }
+        public double? Minprice { get; set; }
+        public double? Maxprice { get; set; }
         public DateTime Datetime { get; set; }
 
         public virtual Auction? Auction { get; set; }

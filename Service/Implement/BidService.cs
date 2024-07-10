@@ -88,7 +88,7 @@ namespace Service.Implement
             var jewelryGoldDiamond = await _jewelryGoldDiaRepository.GetJewelryGoldDiamondByAuctionId(bidDto.AuctionId);
             var jewelrySilver = await _jewelrySilverRepository.GetJewelrySilverByAuctionId(bidDto.AuctionId);
 
-            double minPrice = 0;
+            double? minPrice = 0;
 
 
             if (jewelryGold != null)
@@ -111,7 +111,7 @@ namespace Service.Implement
 
             var existingBid = await _bidRepository.GetByIdAsync(bidDto.BidId);
 
-            double newMaxPrice;
+            double? newMaxPrice;
             if (existingBid == null)
             {
 
@@ -129,7 +129,7 @@ namespace Service.Implement
 
                 var bidRecord = new BidRecord
                 {
-                    BidId = newBid.BidId,
+                   BidId=bidDto.BidId,
                     BidAmount = newMaxPrice,
                     BidStep = bidDto.BidStep
                 };

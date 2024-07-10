@@ -595,7 +595,6 @@ D:\SWP391\BE\Summer2024SWP391_NJS1805_GroupFortune_BE\jewelryauction\obj\Debug\n
 D:\SWP391\BE\Summer2024SWP391_NJS1805_GroupFortune_BE\jewelryauction\obj\Debug\net6.0\jewelryauction.AssemblyInfoInputs.cache
 D:\SWP391\BE\Summer2024SWP391_NJS1805_GroupFortune_BE\jewelryauction\obj\Debug\net6.0\jewelryauction.AssemblyInfo.cs
 D:\SWP391\BE\Summer2024SWP391_NJS1805_GroupFortune_BE\jewelryauction\obj\Debug\net6.0\jewelryauction.csproj.CoreCompileInputs.cache
-D:\SWP391\BE\Summer2024SWP391_NJS1805_GroupFortune_BE\jewelryauction\obj\Debug\net6.0\jewelryauction.MvcApplicationPartsAssemblyInfo.cs
 D:\SWP391\BE\Summer2024SWP391_NJS1805_GroupFortune_BE\jewelryauction\obj\Debug\net6.0\jewelryauction.MvcApplicationPartsAssemblyInfo.cache
 D:\SWP391\BE\Summer2024SWP391_NJS1805_GroupFortune_BE\jewelryauction\obj\Debug\net6.0\jewelryauction.sourcelink.json
 D:\SWP391\BE\Summer2024SWP391_NJS1805_GroupFortune_BE\jewelryauction\obj\Debug\net6.0\staticwebassets.build.json

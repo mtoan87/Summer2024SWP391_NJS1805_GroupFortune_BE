@@ -32,5 +32,10 @@ namespace Service.Implement
         {
             return await _repository.GetBidByAccountId(AccountId);
         }
+
+        public async Task<IEnumerable<BidRecord>> GetBidRecordAndBidByAccountId(int AccountId)
+        {
+            return await _repository.GetBidAndBidRecorsByAccountId(AccountId);
+        }
     }
 }

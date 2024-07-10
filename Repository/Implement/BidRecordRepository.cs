@@ -31,6 +31,13 @@ namespace Service.Implement
                 .Where(a => a.AccountId == accountId)
                 .ToListAsync();
         }
+        public async Task<IEnumerable<BidRecord>> GetBidAndBidRecorsByAccountId(int accountId)
+        {
+            return await _context.BidRecords
+                .Include(a => a.Bid)
+                .Where(a => a.AccountId == accountId)
+                .ToListAsync();
+        }
 
 
     }
