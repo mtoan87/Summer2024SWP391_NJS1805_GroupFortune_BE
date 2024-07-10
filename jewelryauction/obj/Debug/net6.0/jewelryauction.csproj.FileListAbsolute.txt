@@ -612,3 +612,4 @@ D:\SWP391\BE\Summer2024SWP391_NJS1805_GroupFortune_BE\jewelryauction\obj\Debug\n
 D:\SWP391\BE\Summer2024SWP391_NJS1805_GroupFortune_BE\jewelryauction\obj\Debug\net6.0\jewelryauction.pdb
 D:\SWP391\BE\Summer2024SWP391_NJS1805_GroupFortune_BE\jewelryauction\obj\Debug\net6.0\jewelryauction.genruntimeconfig.cache
 D:\SWP391\BE\Summer2024SWP391_NJS1805_GroupFortune_BE\jewelryauction\obj\Debug\net6.0\ref\jewelryauction.dll
+D:\SWP391\BE\Summer2024SWP391_NJS1805_GroupFortune_BE\jewelryauction\bin\Debug\net6.0\System.Net.WebSockets.WebSocketProtocol.dll

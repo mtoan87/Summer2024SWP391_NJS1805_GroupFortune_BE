@@ -1,15 +1,9 @@
-﻿using DAL.DTO.AuctionDTO;
-using DAL.DTO.AuctionResultDTO;
-using DAL.DTO.BidDTO;
+﻿using DAL.DTO.BidDTO;
 using DAL.Models;
-using Repository.Implement;
+using Microsoft.AspNetCore.SignalR;
 using Repository.Interface;
+using Service.Hubs;
 using Service.Interface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Service.Implement
 {
@@ -21,13 +15,15 @@ namespace Service.Implement
         private readonly IJewelryGoldDiamondRepository _jewelryGoldDiaRepository;
         private readonly IBidRecordRepository _bidRecordRepository;
         private readonly IAuctionRepository _auctionRepository;
-        public BidService(IBidRepository bidRepository, IJewelryGoldRepository jewelryGoldRepository, IJewelrySilverRepository jewelrySilverRepository, IJewelryGoldDiamondRepository jewelryGoldDiaRepository, IBidRecordRepository bidRecordRepository)
+        private readonly IHubContext<BiddingHub> _biddingHubContext;
+        public BidService(IBidRepository bidRepository, IJewelryGoldRepository jewelryGoldRepository, IJewelrySilverRepository jewelrySilverRepository, IJewelryGoldDiamondRepository jewelryGoldDiaRepository, IBidRecordRepository bidRecordRepository, IHubContext<BiddingHub> hubContext)
         {
             _jewelryGoldRepository = jewelryGoldRepository;
             _jewelrySilverRepository = jewelrySilverRepository;
             _jewelryGoldDiaRepository = jewelryGoldDiaRepository;
             _bidRecordRepository = bidRecordRepository;
             _bidRepository = bidRepository;
+            _biddingHubContext = hubContext;
         }
         //public async Task<IEnumerable<Bid>> GetBidByAccountIdAsync(int accountId)
         //{
@@ -35,9 +31,9 @@ namespace Service.Implement
         //}
         public async Task<Bid> GetBidByBidId(int accountId)
         {
-          return await _bidRepository.GetByIdAsync(accountId);
+            return await _bidRepository.GetByIdAsync(accountId);
         }
-        
+
         public async Task<IEnumerable<Bid>> GetAllBids()
         {
             return await _bidRepository.GetAllAsync();
@@ -58,7 +54,7 @@ namespace Service.Implement
         {
             var newBid = new Bid
             {
-//              AccountId = createBid.AccountId,
+                //              AccountId = createBid.AccountId,
                 AuctionId = createBid.AuctionId,
                 Minprice = createBid.Minprice,
                 Maxprice = createBid.Maxprice,
@@ -69,32 +65,32 @@ namespace Service.Implement
             return newBid;
         }
 
-        public async Task<Bid> UpdateBid(int id,UpdateBidDTO updateBid)
+        public async Task<Bid> UpdateBid(int id, UpdateBidDTO updateBid)
         {
             var bid = await _bidRepository.GetByIdAsync(id);
-            if(bid == null)
+            if (bid == null)
             {
                 throw new Exception($"Bid with ID{id} not found");
             }
             bid.AuctionId = updateBid.AuctionId;
-//          bid.AccountId = updateBid.AccountId;
+            //          bid.AccountId = updateBid.AccountId;
             bid.Minprice = updateBid.Minprice;
             bid.Maxprice = updateBid.Maxprice;
             await _bidRepository.UpdateAsync(bid);
-           
+
             return bid;
 
         }
         public async Task<bool> PlaceBid(BiddingDTO bidDto)
         {
-            
+
             var jewelryGold = await _jewelryGoldRepository.GetJewelryGoldByAuctionId(bidDto.AuctionId);
             var jewelryGoldDiamond = await _jewelryGoldDiaRepository.GetJewelryGoldDiamondByAuctionId(bidDto.AuctionId);
             var jewelrySilver = await _jewelrySilverRepository.GetJewelrySilverByAuctionId(bidDto.AuctionId);
 
             double minPrice = 0;
 
-            
+
             if (jewelryGold != null)
             {
                 minPrice = jewelryGold.Price ?? 0;
@@ -109,16 +105,16 @@ namespace Service.Implement
             }
             else
             {
-                return false; 
+                return false;
             }
 
-            
+
             var existingBid = await _bidRepository.GetByIdAsync(bidDto.BidId);
 
             double newMaxPrice;
             if (existingBid == null)
             {
-                
+
                 newMaxPrice = minPrice + bidDto.BidStep;
                 var newBid = new Bid
                 {
@@ -142,7 +138,7 @@ namespace Service.Implement
             }
             else
             {
-                
+
                 newMaxPrice = existingBid.Maxprice + bidDto.BidStep;
                 existingBid.Maxprice = newMaxPrice;
                 existingBid.Datetime = DateTime.Now;
@@ -156,6 +152,8 @@ namespace Service.Implement
 
                 await _bidRecordRepository.AddAsync(bidRecord);
             }
+
+            await _biddingHubContext.Clients.Group(existingBid.BidId.ToString()).SendAsync("HighestPrice", newMaxPrice).ConfigureAwait(true);
 
             await _bidRepository.SaveChangesAsync();
             await _bidRecordRepository.SaveChangesAsync();
