@@ -1,15 +1,14 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+using DAL.Authenticate;
 using DAL.Models;
-using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Repository.Implement;
 using Repository.Interface;
+using Service.Hubs;
 using Service.Implement;
 using Service.Interface;
-using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using DAL.Authenticate;
-using jewelryauction.Hub;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -51,16 +50,16 @@ builder.Services.AddSignalR()
         options.PayloadSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
     });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddScoped<IJewelryGoldRepository , JewelryGoldRepository >();
+builder.Services.AddScoped<IJewelryGoldRepository, JewelryGoldRepository>();
 builder.Services.AddScoped<IJewelryGoldService, JewelryGoldService>();
-builder.Services.AddScoped<IJewelryGoldDiamondRepository , JewelryGoldDiaRepository>();
-builder.Services.AddScoped<IJewelryGoldDiamondService ,JewelryGoldDiaService>();
+builder.Services.AddScoped<IJewelryGoldDiamondRepository, JewelryGoldDiaRepository>();
+builder.Services.AddScoped<IJewelryGoldDiamondService, JewelryGoldDiaService>();
 builder.Services.AddScoped<IJewelryService, JewelryService>();
-builder.Services.AddScoped<IJewelrySilverRepository ,JewelrySilverRepository>();
+builder.Services.AddScoped<IJewelrySilverRepository, JewelrySilverRepository>();
 builder.Services.AddScoped<IJewelrySilverService, JewelrySilverService>();
 builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
 builder.Services.AddScoped<IPaymentService, PaymentService>();
-builder.Services.AddScoped<IAccountRepository,AccountRepository>();
+builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IAuctionRepository, AuctionRepository>();
 builder.Services.AddScoped<IAuctionService, AuctionService>();
@@ -75,7 +74,7 @@ builder.Services.AddScoped<IJoinAuctionRepository, JoinAuctionRepository>();
 builder.Services.AddScoped<IJoinAuctionService, JoinAuctionService>();
 builder.Services.AddScoped<IBidRepository, BidRepository>();
 builder.Services.AddScoped<IBidService, BidService>();
-builder.Services.AddScoped<IBidRecordRepository , BidRecordRepository>();
+builder.Services.AddScoped<IBidRecordRepository, BidRecordRepository>();
 builder.Services.AddScoped<IBidRecordService, BidRecordService>();
 builder.Services.AddControllers().AddJsonOptions(options =>
 {
@@ -104,7 +103,8 @@ app.UseAuthorization();
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();
-    endpoints.MapHub<BiddingHub>("/biddingHub");
+    endpoints.MapHub<BiddingHub>("/bidding-hub");
+
 });
 
 
