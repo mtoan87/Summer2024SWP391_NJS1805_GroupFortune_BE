@@ -12,10 +12,10 @@ namespace Repository.Implement
         public AuctionRepository(JewelryAuctionContext context) : base(context)
         {
         }
-
+        
         public IEnumerable<Auction> GetActiveAuctions()
         {
-            return _context.Auctions.Where(a => a.Status == "Active").ToList();
+            return _context.Auctions.Where(a => a.Status == "Active" ).ToList();
         }
 
         public IEnumerable<Auction> GetUnActiveAuctions()
@@ -115,17 +115,17 @@ namespace Repository.Implement
 
         public bool IsJewelryInAuctionGold(int? jewelryGoldId)
         {
-            return _context.Auctions.Any(a => a.JewelryGoldId == jewelryGoldId);
+            return _context.Auctions.Any(a => a.JewelryGoldId == jewelryGoldId && a.Status != "Failed");
         }
 
         public bool IsJewelryInAuctionSilver(int? jewelrySilverId)
         {
-            return _context.Auctions.Any(a => a.JewelrySilverId == jewelrySilverId);
+            return _context.Auctions.Any(a => a.JewelrySilverId == jewelrySilverId && a.Status != "Failed");
         }
 
         public bool IsJewelryInAuctionGoldDiamond(int? jewelryGoldDiaId)
         {
-            return _context.Auctions.Any(a => a.JewelryGolddiaId == jewelryGoldDiaId);
+            return _context.Auctions.Any(a => a.JewelryGolddiaId == jewelryGoldDiaId && a.Status != "Failed");
         }
     }
 }

@@ -10,7 +10,8 @@ namespace DAL.Enums
     {
         UnActive,
         Active,
-        Completed,
+        Successful,
+        Failed,
         Cancelled
     }
 }
