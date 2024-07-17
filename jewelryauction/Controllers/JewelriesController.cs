@@ -83,19 +83,20 @@ namespace jewelryauction.Controllers
         }
         private readonly Dictionary<string, float> goldPricesPerOunce = new Dictionary<string, float>
     {
-        { "24K", 1950 },
-        { "22K", 1800 },
-        { "18K", 1500 },
-        { "14K", 1200 },
-        { "10K", 900 }
+        { "Gold24", 1950 },
+        { "Gold22", 1800 },
+        { "Gold18", 1500 },
+        { "Gold14", 1200 },
+        { "Gold10", 900 }
+       
     };
 
         private readonly Dictionary<string, (float buying, float selling)> silverPricesPerOunce = new Dictionary<string, (float buying, float selling)>
     {
-        { "99.99", (1950, 2000) },
-        { "99.9", (1910, 1950) },
-        { "92.5", (0, 1820) },
-        { "plated", (0, 1450) }
+        { "PureSilver999", (1950, 2000) },
+        { "PureSilver958", (1910, 1950) },
+        { "PureSilver925", (0, 1820) },
+        { "PureSilver900", (0, 1450) } 
     };
 
         private readonly Dictionary<string, float> diamondPricesPerCarat = new Dictionary<string, float>
