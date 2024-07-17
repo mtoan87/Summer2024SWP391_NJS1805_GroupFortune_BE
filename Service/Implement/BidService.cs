@@ -144,7 +144,8 @@ namespace Service.Implement
                 existingBid.Datetime = DateTime.Now;
 
                 var bidRecord = new BidRecord
-                {
+                {   
+                    AccountId = bidDto.AccountId,
                     BidId = existingBid.BidId,
                     BidAmount = newMaxPrice,
                     BidStep = bidDto.BidStep
