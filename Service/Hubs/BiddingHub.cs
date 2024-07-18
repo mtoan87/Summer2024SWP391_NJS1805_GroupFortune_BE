@@ -26,6 +26,12 @@ namespace Service.Hubs
 
             await _biddingHub.Clients.All.SendAsync("HighestPrice", bids);
         }
+        public async Task GetBidStep()
+        {
+            var bids = await _bidRecordService.GetAllBids();
+
+            await _biddingHub.Clients.All.SendAsync("BidStep", bids);
+        }
         public Task JoinRoom(string roomName)
         {
             return Groups.AddToGroupAsync(Context.ConnectionId, roomName);

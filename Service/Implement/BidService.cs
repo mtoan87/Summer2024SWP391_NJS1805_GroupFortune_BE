@@ -155,6 +155,7 @@ namespace Service.Implement
             }
 
             await _biddingHubContext.Clients.Group(existingBid.BidId.ToString()).SendAsync("HighestPrice", newMaxPrice).ConfigureAwait(true);
+            await _biddingHubContext.Clients.Group(existingBid.BidId.ToString()).SendAsync("BidStep", bidDto.BidStep).ConfigureAwait(true);
 
             await _bidRepository.SaveChangesAsync();
             await _bidRecordRepository.SaveChangesAsync();

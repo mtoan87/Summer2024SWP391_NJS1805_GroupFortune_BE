@@ -11,7 +11,7 @@ namespace DAL.DTO.JewelryDTO.Silver
     public class UpdateJewelrySilverStaffDTO
     {
         public int? AccountId { get; set; }
-        public string JewelryImg { get; set; }
+       // public string JewelryImg { get; set; }
         public string Name { get; set; } = null!;
         [EnumDataType(typeof(Material))]
         public string Materials { get; set; } = null!;
