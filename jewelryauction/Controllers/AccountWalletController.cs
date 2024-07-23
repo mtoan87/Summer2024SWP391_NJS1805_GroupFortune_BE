@@ -1,5 +1,6 @@
 ﻿using DAL.DTO.AccountDTO;
 using DAL.DTO.AccountWalletDTO;
+using DAL.DTO.WalletTransaction;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Service.Implement;
@@ -37,7 +38,7 @@ namespace jewelryauction.Controllers
         }
         [HttpPost]
         [Route("CreateAccountWallet")]
-        public async Task<IActionResult> CreateAccountWallet(CreateAccountWalletDTO createAccountWalletDTO)
+        public async Task<IActionResult> CreateAccountWallet(WalletTransactionDTO createAccountWalletDTO)
         {
             var result = await _accountWalletService.CreateAccountWallet(createAccountWalletDTO);
             return Ok(result);
