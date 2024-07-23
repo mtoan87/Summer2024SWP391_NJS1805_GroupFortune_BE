@@ -49,7 +49,7 @@ builder.Services.AddSignalR()
     {
         options.PayloadSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
     });
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddScoped<IJewelryGoldRepository, JewelryGoldRepository>();
 builder.Services.AddScoped<IJewelryGoldService, JewelryGoldService>();
 builder.Services.AddScoped<IJewelryGoldDiamondRepository, JewelryGoldDiaRepository>();
@@ -67,6 +67,8 @@ builder.Services.AddScoped<IAccountWalletService, AccountWalletService>();
 builder.Services.AddScoped<IAccountWalletRepository, AccountWalletRepository>();
 builder.Services.AddScoped<IAuctionResultRepository, AuctionResultRepository>();
 builder.Services.AddScoped<IAuctionResultService, AuctionResultService>();
+builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
+builder.Services.AddScoped<ITransactionService, TransactionService>();
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<BiddingHub>();
 builder.Services.AddScoped<RequestAuctionRepository>();

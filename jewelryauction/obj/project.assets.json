@@ -13151,11 +13151,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\SWP391\\BE\\Summer2024SWP391_NJS1805_GroupFortune_BE\\jewelryauction\\jewelryauction.csproj",
+      "projectUniqueName": "D:\\SWP391\\BE\\be\\Summer2024SWP391_NJS1805_GroupFortune_BE\\jewelryauction\\jewelryauction.csproj",
       "projectName": "jewelryauction",
-      "projectPath": "D:\\SWP391\\BE\\Summer2024SWP391_NJS1805_GroupFortune_BE\\jewelryauction\\jewelryauction.csproj",
+      "projectPath": "D:\\SWP391\\BE\\be\\Summer2024SWP391_NJS1805_GroupFortune_BE\\jewelryauction\\jewelryauction.csproj",
       "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-      "outputPath": "D:\\SWP391\\BE\\Summer2024SWP391_NJS1805_GroupFortune_BE\\jewelryauction\\obj\\",
+      "outputPath": "D:\\SWP391\\BE\\be\\Summer2024SWP391_NJS1805_GroupFortune_BE\\jewelryauction\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -13173,11 +13173,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\SWP391\\BE\\Summer2024SWP391_NJS1805_GroupFortune_BE\\DAO\\DAL.csproj": {
-              "projectPath": "D:\\SWP391\\BE\\Summer2024SWP391_NJS1805_GroupFortune_BE\\DAO\\DAL.csproj"
+            "D:\\SWP391\\BE\\be\\Summer2024SWP391_NJS1805_GroupFortune_BE\\DAO\\DAL.csproj": {
+              "projectPath": "D:\\SWP391\\BE\\be\\Summer2024SWP391_NJS1805_GroupFortune_BE\\DAO\\DAL.csproj"
             },
-            "D:\\SWP391\\BE\\Summer2024SWP391_NJS1805_GroupFortune_BE\\Service\\Service.csproj": {
-              "projectPath": "D:\\SWP391\\BE\\Summer2024SWP391_NJS1805_GroupFortune_BE\\Service\\Service.csproj"
+            "D:\\SWP391\\BE\\be\\Summer2024SWP391_NJS1805_GroupFortune_BE\\Service\\Service.csproj": {
+              "projectPath": "D:\\SWP391\\BE\\be\\Summer2024SWP391_NJS1805_GroupFortune_BE\\Service\\Service.csproj"
             }
           }
         }

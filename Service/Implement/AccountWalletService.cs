@@ -1,5 +1,7 @@
-﻿using DAL.DTO.AccountDTO;
+﻿using Azure.Core;
+using DAL.DTO.AccountDTO;
 using DAL.DTO.AccountWalletDTO;
+using DAL.DTO.WalletTransaction;
 using DAL.Models;
 using Repository.Implement;
 using Repository.Interface;
@@ -15,9 +17,11 @@ namespace Service.Implement
     public class AccountWalletService : IAccountWalletService
     {
         private readonly IAccountWalletRepository _accountWalletRepository;
-        public AccountWalletService(IAccountWalletRepository accountWalletRepository)
+        private readonly ITransactionService _transactionService;
+        public AccountWalletService(IAccountWalletRepository accountWalletRepository, ITransactionService transactionService)
         {
             _accountWalletRepository = accountWalletRepository;
+            _transactionService = transactionService;
         }
 
         public async Task<IEnumerable<AccountWallet>> GetAccountWallet()
@@ -34,7 +38,7 @@ namespace Service.Implement
             return await _accountWalletRepository.GetByAccountIdAsync(id);
         }
 
-        public async Task<AccountWallet> CreateAccountWallet(CreateAccountWalletDTO createAccountWallet)
+        public async Task<AccountWallet> CreateAccountWallet(WalletTransactionDTO createAccountWallet)
         {
 
             var newAccountWallet = new AccountWallet
@@ -42,11 +46,16 @@ namespace Service.Implement
                 AccountId = createAccountWallet.AccountId,
                 BankName = createAccountWallet.BankName,
                 BankNo = createAccountWallet.BankNo,
-                Budget = createAccountWallet.Budget,
+                Budget = createAccountWallet.Amount,
 
             };
             await _accountWalletRepository.AddAsync(newAccountWallet);
-            
+            var transaction = new WalletTransaction
+            {
+                AccountwalletId = newAccountWallet.AccountwalletId, 
+                Amount = createAccountWallet.Amount,
+                DateTime = DateTime.Now
+            };
             return newAccountWallet;
         }
 

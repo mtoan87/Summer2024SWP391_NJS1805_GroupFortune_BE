@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\SWP391\\BE\\Summer2024SWP391_NJS1805_GroupFortune_BE\\Repository\\Repository.csproj": {}
+    "D:\\SWP391\\BE\\be\\Summer2024SWP391_NJS1805_GroupFortune_BE\\Repository\\Repository.csproj": {}
   },
   "projects": {
-    "D:\\SWP391\\BE\\Summer2024SWP391_NJS1805_GroupFortune_BE\\DAO\\DAL.csproj": {
+    "D:\\SWP391\\BE\\be\\Summer2024SWP391_NJS1805_GroupFortune_BE\\DAO\\DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\SWP391\\BE\\Summer2024SWP391_NJS1805_GroupFortune_BE\\DAO\\DAL.csproj",
+        "projectUniqueName": "D:\\SWP391\\BE\\be\\Summer2024SWP391_NJS1805_GroupFortune_BE\\DAO\\DAL.csproj",
         "projectName": "DAL",
-        "projectPath": "D:\\SWP391\\BE\\Summer2024SWP391_NJS1805_GroupFortune_BE\\DAO\\DAL.csproj",
+        "projectPath": "D:\\SWP391\\BE\\be\\Summer2024SWP391_NJS1805_GroupFortune_BE\\DAO\\DAL.csproj",
         "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "D:\\SWP391\\BE\\Summer2024SWP391_NJS1805_GroupFortune_BE\\DAO\\obj\\",
+        "outputPath": "D:\\SWP391\\BE\\be\\Summer2024SWP391_NJS1805_GroupFortune_BE\\DAO\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -99,14 +99,14 @@
         }
       }
     },
-    "D:\\SWP391\\BE\\Summer2024SWP391_NJS1805_GroupFortune_BE\\Repository\\Repository.csproj": {
+    "D:\\SWP391\\BE\\be\\Summer2024SWP391_NJS1805_GroupFortune_BE\\Repository\\Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\SWP391\\BE\\Summer2024SWP391_NJS1805_GroupFortune_BE\\Repository\\Repository.csproj",
+        "projectUniqueName": "D:\\SWP391\\BE\\be\\Summer2024SWP391_NJS1805_GroupFortune_BE\\Repository\\Repository.csproj",
         "projectName": "Repository",
-        "projectPath": "D:\\SWP391\\BE\\Summer2024SWP391_NJS1805_GroupFortune_BE\\Repository\\Repository.csproj",
+        "projectPath": "D:\\SWP391\\BE\\be\\Summer2024SWP391_NJS1805_GroupFortune_BE\\Repository\\Repository.csproj",
         "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "D:\\SWP391\\BE\\Summer2024SWP391_NJS1805_GroupFortune_BE\\Repository\\obj\\",
+        "outputPath": "D:\\SWP391\\BE\\be\\Summer2024SWP391_NJS1805_GroupFortune_BE\\Repository\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -124,8 +124,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\SWP391\\BE\\Summer2024SWP391_NJS1805_GroupFortune_BE\\DAO\\DAL.csproj": {
-                "projectPath": "D:\\SWP391\\BE\\Summer2024SWP391_NJS1805_GroupFortune_BE\\DAO\\DAL.csproj"
+              "D:\\SWP391\\BE\\be\\Summer2024SWP391_NJS1805_GroupFortune_BE\\DAO\\DAL.csproj": {
+                "projectPath": "D:\\SWP391\\BE\\be\\Summer2024SWP391_NJS1805_GroupFortune_BE\\DAO\\DAL.csproj"
               }
             }
           }

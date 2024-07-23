@@ -71,7 +71,11 @@ namespace Service.Implement
             {
                 throw new Exception($"Jewelry with ID {id} not found.");
             }
-            
+            if (await _jewelryGoldRepository.JewelryGoldExistsInAuction(id))
+            {
+                throw new Exception("$Jewelry is register in auction can not update!");
+            }
+
             if (updateJewelry.JewelryImg == null)
             {
                 updateJewelry.JewelryImg = updjewelry.JewelryImg;
@@ -84,7 +88,9 @@ namespace Service.Implement
             updjewelry.Category = updateJewelry.Category;
             updjewelry.Weight = updateJewelry.Weight;
             updjewelry.GoldAge = updateJewelry.Goldage;
-      
+            updjewelry.Price = 0;
+            updjewelry.Status = JewelryStatus.Unverified.ToString();
+            updjewelry.Shipment = JewelryShipment.Delivering.ToString();
             await _jewelryGoldRepository.UpdateAsync(updjewelry);
             return updjewelry;
         }

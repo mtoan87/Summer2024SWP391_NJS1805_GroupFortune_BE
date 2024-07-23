@@ -85,9 +85,9 @@ namespace jewelryauction.Controllers
     {
         { "Gold24", 1950 },
         { "Gold22", 1800 },
-        { "Gold18", 1500 },
-        { "Gold14", 1200 },
-        { "Gold10", 900 }
+        { "Gold20", 1500 },
+        { "Gold18", 1200 },
+        { "Gold14", 900 }
        
     };
 
