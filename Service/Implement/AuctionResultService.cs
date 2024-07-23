@@ -15,9 +15,13 @@ namespace Service.Implement
     public class AuctionResultService : IAuctionResultService
     {
         private readonly IAuctionResultRepository _repository;
-        public AuctionResultService(IAuctionResultRepository repository)
+        private readonly IAccountWalletRepository _accountwalletRepo;
+        private readonly ITransactionRepository _transactionRepo;
+        public AuctionResultService(IAuctionResultRepository repository, IAccountWalletRepository accountwalletRepo, ITransactionRepository transactionRepo)
         {
             _repository = repository;
+            _accountwalletRepo = accountwalletRepo;
+            _transactionRepo = transactionRepo;
         }
         public async Task<IEnumerable<AuctionResult>> GetAllAuctionResults()
         {
@@ -29,7 +33,17 @@ namespace Service.Implement
         }
         public async Task<AuctionResult> CreateAuctionRs(CreateAuctionRsDTO createAuctionRs)
         {
+            var accountWallet = await _accountwalletRepo.GetByAccountIdAsync(createAuctionRs.AccountId);
+            if (accountWallet == null)
+            {
+                throw new Exception($"Account wallet for account ID {createAuctionRs.AccountId} not found.");
+            }
 
+            if (accountWallet.Budget < createAuctionRs.Price)
+            {
+                throw new Exception("Insufficient budget.");
+            }
+            accountWallet.Budget -= createAuctionRs.Price;
 
             var newAuctionRs = new AuctionResult
             {
@@ -42,7 +56,14 @@ namespace Service.Implement
 
             };
             await _repository.AddAsync(newAuctionRs);
-           
+            await _accountwalletRepo.UpdateAsync(accountWallet);
+            var walletTransaction = new WalletTransaction
+            {
+                AccountwalletId = accountWallet.AccountwalletId,
+                Amount = -createAuctionRs.Price,
+                DateTime = DateTime.Now
+            };
+            await _transactionRepo.AddAsync(walletTransaction);
             return newAuctionRs;
         }
         public async Task<AuctionResult> UpdateAuctionRs(int id, UpdateAuctionRsDTO updateAuctionRs)

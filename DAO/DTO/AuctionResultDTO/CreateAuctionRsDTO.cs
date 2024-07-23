@@ -12,7 +12,7 @@ namespace DAL.DTO.AuctionResultDTO
         public DateTime Date { get; set; }
         public string Status { get; set; } = null!;
         public double Price { get; set; }
-        public int? AccountId { get; set; }
+        public int AccountId { get; set; }
 
     }
 }
