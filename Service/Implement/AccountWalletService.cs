@@ -17,8 +17,8 @@ namespace Service.Implement
     public class AccountWalletService : IAccountWalletService
     {
         private readonly IAccountWalletRepository _accountWalletRepository;
-        private readonly ITransactionService _transactionService;
-        public AccountWalletService(IAccountWalletRepository accountWalletRepository, ITransactionService transactionService)
+        private readonly ITransactionRepository _transactionService;
+        public AccountWalletService(IAccountWalletRepository accountWalletRepository, ITransactionRepository transactionService)
         {
             _accountWalletRepository = accountWalletRepository;
             _transactionService = transactionService;
@@ -56,6 +56,7 @@ namespace Service.Implement
                 Amount = createAccountWallet.Amount,
                 DateTime = DateTime.Now
             };
+            await _transactionService.AddAsync(transaction);
             return newAccountWallet;
         }
 
