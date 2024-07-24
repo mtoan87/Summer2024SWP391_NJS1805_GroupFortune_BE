@@ -11,8 +11,9 @@ namespace Service.Interface
     public interface IAuctionResultService
     {
         Task<IEnumerable<AuctionResult>> GetAllAuctionResults();
+        Task<IEnumerable<AuctionResult>> GetResultsByJoinauctionIdAsync(int joinAuctionId);
         Task<AuctionResult> GetAuctionResultById(int id);
-        Task<AuctionResult> CreateAuctionRs(CreateAuctionRsDTO createAuctionRs);
+        Task<AuctionResult> CreateAuctionRs(CreateAuctionRsDTO createAuctionResultDto);
 
         Task<AuctionResult> UpdateAuctionRs(int id, UpdateAuctionRsDTO updateAuctionRs);
 

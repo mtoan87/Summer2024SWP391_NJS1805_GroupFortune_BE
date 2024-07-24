@@ -1,4 +1,5 @@
 ﻿using DAL.Models;
+using Microsoft.EntityFrameworkCore;
 using Repository.Interface;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,13 @@ namespace Repository.Implement
         {
             
         }
-       
+
+        public async Task<IEnumerable<AuctionResult>> GetResultsByJoinauctionIdAsync(int joinAuctionId)
+        {
+            return await _context.AuctionResults
+                .Where(a => a.AccountId == joinAuctionId)
+                .ToListAsync();
+        }
         
     }
 }

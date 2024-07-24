@@ -48,6 +48,10 @@ namespace Service.Implement
             return await _joinAuctionRepository.GetByIdAsync(id);
         }
 
+        public async Task<IEnumerable<JoinAuction>> GetAuctionByJoinauctionIdAsync(int joinAuctionId) 
+        {
+            return await _joinAuctionRepository.GetAuctionByJoinauctionIdAsync(joinAuctionId);
+        }
         public async Task<JoinAuction> CreateJoinAuction(CreateJoinAuctionDTO createJoinAuction)
         {
             var newJoinAuction = new JoinAuction
