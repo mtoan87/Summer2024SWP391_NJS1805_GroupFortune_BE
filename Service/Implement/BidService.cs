@@ -190,7 +190,7 @@ namespace Service.Implement
             var existingBid = await _bidRepository.GetByIdAsync(bidDto.BidId);
 
             double? newMaxPrice;
-            var bidRecords = new List<BidRecord>();
+            var bidRecords = (List<BidRecord>)(await _bidRecordRepository.GetBidRecordByBidId(bidDto.BidId));
 
             if (existingBid == null)
             {
@@ -233,7 +233,6 @@ namespace Service.Implement
                 await _bidRecordRepository.AddAsync(bidRecord);
                 bidRecords.Add(bidRecord);
             }
-
             await _biddingHubContext.Clients.Group(existingBid.BidId.ToString()).SendAsync("HighestPrice", newMaxPrice).ConfigureAwait(true);
             await _biddingHubContext.Clients.Group(existingBid.BidId.ToString()).SendAsync("BidStep", bidRecords).ConfigureAwait(true);
 

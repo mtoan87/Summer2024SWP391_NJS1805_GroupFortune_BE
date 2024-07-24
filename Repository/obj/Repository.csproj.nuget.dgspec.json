@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\SWP391\\BE\\be\\Summer2024SWP391_NJS1805_GroupFortune_BE\\Repository\\Repository.csproj": {}
+    "D:\\Software engineering\\summer2024\\SWP391\\Summer2024SWP391_NJS1805_GroupFortune_BE\\Repository\\Repository.csproj": {}
   },
   "projects": {
-    "D:\\SWP391\\BE\\be\\Summer2024SWP391_NJS1805_GroupFortune_BE\\DAO\\DAL.csproj": {
+    "D:\\Software engineering\\summer2024\\SWP391\\Summer2024SWP391_NJS1805_GroupFortune_BE\\DAO\\DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\SWP391\\BE\\be\\Summer2024SWP391_NJS1805_GroupFortune_BE\\DAO\\DAL.csproj",
+        "projectUniqueName": "D:\\Software engineering\\summer2024\\SWP391\\Summer2024SWP391_NJS1805_GroupFortune_BE\\DAO\\DAL.csproj",
         "projectName": "DAL",
-        "projectPath": "D:\\SWP391\\BE\\be\\Summer2024SWP391_NJS1805_GroupFortune_BE\\DAO\\DAL.csproj",
-        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "D:\\SWP391\\BE\\be\\Summer2024SWP391_NJS1805_GroupFortune_BE\\DAO\\obj\\",
+        "projectPath": "D:\\Software engineering\\summer2024\\SWP391\\Summer2024SWP391_NJS1805_GroupFortune_BE\\DAO\\DAL.csproj",
+        "packagesPath": "C:\\Users\\ACER\\.nuget\\packages\\",
+        "outputPath": "D:\\Software engineering\\summer2024\\SWP391\\Summer2024SWP391_NJS1805_GroupFortune_BE\\DAO\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ACER\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -35,11 +34,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -95,21 +89,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\SWP391\\BE\\be\\Summer2024SWP391_NJS1805_GroupFortune_BE\\Repository\\Repository.csproj": {
+    "D:\\Software engineering\\summer2024\\SWP391\\Summer2024SWP391_NJS1805_GroupFortune_BE\\Repository\\Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\SWP391\\BE\\be\\Summer2024SWP391_NJS1805_GroupFortune_BE\\Repository\\Repository.csproj",
+        "projectUniqueName": "D:\\Software engineering\\summer2024\\SWP391\\Summer2024SWP391_NJS1805_GroupFortune_BE\\Repository\\Repository.csproj",
         "projectName": "Repository",
-        "projectPath": "D:\\SWP391\\BE\\be\\Summer2024SWP391_NJS1805_GroupFortune_BE\\Repository\\Repository.csproj",
-        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "D:\\SWP391\\BE\\be\\Summer2024SWP391_NJS1805_GroupFortune_BE\\Repository\\obj\\",
+        "projectPath": "D:\\Software engineering\\summer2024\\SWP391\\Summer2024SWP391_NJS1805_GroupFortune_BE\\Repository\\Repository.csproj",
+        "packagesPath": "C:\\Users\\ACER\\.nuget\\packages\\",
+        "outputPath": "D:\\Software engineering\\summer2024\\SWP391\\Summer2024SWP391_NJS1805_GroupFortune_BE\\Repository\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ACER\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -117,15 +111,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\SWP391\\BE\\be\\Summer2024SWP391_NJS1805_GroupFortune_BE\\DAO\\DAL.csproj": {
-                "projectPath": "D:\\SWP391\\BE\\be\\Summer2024SWP391_NJS1805_GroupFortune_BE\\DAO\\DAL.csproj"
+              "D:\\Software engineering\\summer2024\\SWP391\\Summer2024SWP391_NJS1805_GroupFortune_BE\\DAO\\DAL.csproj": {
+                "projectPath": "D:\\Software engineering\\summer2024\\SWP391\\Summer2024SWP391_NJS1805_GroupFortune_BE\\DAO\\DAL.csproj"
               }
             }
           }
@@ -134,11 +127,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -166,7 +154,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }
