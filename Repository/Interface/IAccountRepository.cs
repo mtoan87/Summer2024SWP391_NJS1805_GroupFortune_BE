@@ -10,8 +10,10 @@ namespace Repository.Interface
     public interface IAccountRepository : IRepositoryGeneric<Account>
     {
         Task<bool> CheckExistingGmailAsync(string gmail);
-        void AddAccount(Account account);
+       
         Task<Account?> GetAccountByEmailAsync(string email);
         Task<Account?> GetAccountById(int id);
+
+        Account CheckLogin(string gmail, string password);
     }
 }

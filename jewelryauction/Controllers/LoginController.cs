@@ -26,28 +26,22 @@ namespace jewelryauction.Controllers
     [Route("api/[controller]")]
     public class LoginController : ControllerBase
     {
-        private readonly IAccountService _accountService;
-        private readonly AuthService _authService;
-        private readonly IAccountRepository _accountRepository;
-        private readonly ILogger<LoginController> _logger;
-        public LoginController(IAccountService accountService, ILogger<LoginController> logger, IAccountRepository accountRepository)
+        private readonly IAccountService _accountService;      
+        public LoginController(IAccountService accountService)
         {
             _accountService = accountService;
-            _logger = logger;
-            _accountRepository = accountRepository;
         }
 
         [HttpPost]
         [Route("login")]
-        public async Task<IActionResult> Login(LoginModel request)
+        public IActionResult Login(LoginModel request)
         {
 
-            var account = await _accountRepository.GetAccountByEmailAsync(request.AccountEmail);
-            if (account == null || account.AccountPassword != request.AccountPassword)
+            var account = _accountService.CheckLogin(request.AccountEmail, request.AccountPassword);
+            if (account == null)
             {
-                return BadRequest("Invalid email or password.");
+                return BadRequest("Invalid Email or Password");
             }
-
             var accountInfo = new
             {
 
@@ -68,7 +62,7 @@ namespace jewelryauction.Controllers
         [Route("register")]
         public async Task<IActionResult> Register(RegisterAccountDTO registerAccount)
         {
-            if (await _accountRepository.CheckExistingGmailAsync(registerAccount.AccountEmail))
+            if (await _accountService.CheckExistingGmailAsync(registerAccount.AccountEmail))
             {
                 return BadRequest("Email already exists.");
             }
@@ -85,5 +79,5 @@ namespace jewelryauction.Controllers
 
     }
 }
-    
+
 

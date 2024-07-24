@@ -4837,6 +4837,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
+          "BCrypt.Net-Next": "4.0.3",
           "DAL": "1.0.0"
         },
         "compile": {

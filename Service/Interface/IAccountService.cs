@@ -16,5 +16,7 @@ namespace Service.Interface
         Task RegisterAccount(RegisterAccountDTO registerAccount);
         Task<Account> UpdateAccount(int id, UpdateAccountDTO updateAccount);
         Task<Account> DeleteAccount(int id);
+        Account CheckLogin(string gmail, string password);
+        Task<bool> CheckExistingGmailAsync(string gmail);
     }
 }

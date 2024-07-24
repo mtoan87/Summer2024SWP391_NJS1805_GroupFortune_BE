@@ -12,6 +12,7 @@ namespace DAL.Enums
         Active,
         Successful,
         Failed,
+        Complete,
         Cancelled
     }
 }

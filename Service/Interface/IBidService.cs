@@ -17,6 +17,7 @@ namespace Service.Interface
         //Task<IEnumerable<Bid>> GetBidRecordByAccountId(int accountId);
         Task<Bid> CreateBid(CreateBidDTO createBid);
         Task<Bid> UpdateBid(int id, UpdateBidDTO updateBid);
-        Task<bool> PlaceBid(BiddingDTO bidDto);
+        //Task<bool> PlaceBid(BiddingDTO bidDto);
+        Task<List<BidRecord>> PlaceBid(BiddingDTO bidDto);
     }
 }

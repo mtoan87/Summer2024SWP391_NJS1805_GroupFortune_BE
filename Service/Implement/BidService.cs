@@ -81,15 +81,94 @@ namespace Service.Implement
             return bid;
 
         }
-        public async Task<bool> PlaceBid(BiddingDTO bidDto)
-        {
+        //public async Task<bool> PlaceBid(BiddingDTO bidDto)
+        //{
 
+        //    var jewelryGold = await _jewelryGoldRepository.GetJewelryGoldByAuctionId(bidDto.AuctionId);
+        //    var jewelryGoldDiamond = await _jewelryGoldDiaRepository.GetJewelryGoldDiamondByAuctionId(bidDto.AuctionId);
+        //    var jewelrySilver = await _jewelrySilverRepository.GetJewelrySilverByAuctionId(bidDto.AuctionId);
+
+        //    double? minPrice = 0;
+
+
+        //    if (jewelryGold != null)
+        //    {
+        //        minPrice = jewelryGold.Price ?? 0;
+        //    }
+        //    else if (jewelryGoldDiamond != null)
+        //    {
+        //        minPrice = jewelryGoldDiamond.Price ?? 0;
+        //    }
+        //    else if (jewelrySilver != null)
+        //    {
+        //        minPrice = jewelrySilver.Price ?? 0;
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+
+
+        //    var existingBid = await _bidRepository.GetByIdAsync(bidDto.BidId);
+
+        //    double? newMaxPrice;
+        //    if (existingBid == null)
+        //    {
+
+        //        newMaxPrice = minPrice + bidDto.BidStep;
+        //        var newBid = new Bid
+        //        {
+        //            AuctionId = bidDto.AuctionId,
+        //            Minprice = minPrice,
+        //            Maxprice = minPrice,
+        //            Datetime = DateTime.Now
+        //        };
+
+        //        await _bidRepository.AddAsync(newBid);
+        //        await _bidRepository.SaveChangesAsync();
+
+        //        var bidRecord = new BidRecord
+        //        {
+        //           BidId=bidDto.BidId,
+        //            BidAmount = newMaxPrice,
+        //            BidStep = bidDto.BidStep
+        //        };
+
+        //        await _bidRecordRepository.AddAsync(bidRecord);
+        //    }
+        //    else
+        //    {
+
+        //        newMaxPrice = existingBid.Maxprice + bidDto.BidStep;
+        //        existingBid.Maxprice = newMaxPrice;
+        //        existingBid.Datetime = DateTime.Now;
+
+        //        var bidRecord = new BidRecord
+        //        {   
+        //            AccountId = bidDto.AccountId,
+        //            BidId = existingBid.BidId,
+        //            BidAmount = newMaxPrice,
+        //            BidStep = bidDto.BidStep
+        //        };
+
+        //        await _bidRecordRepository.AddAsync(bidRecord);
+        //    }
+
+        //    await _biddingHubContext.Clients.Group(existingBid.BidId.ToString()).SendAsync("HighestPrice", newMaxPrice).ConfigureAwait(true);
+        //    await _biddingHubContext.Clients.Group(existingBid.BidId.ToString()).SendAsync("BidStep", bidDto.BidStep).ConfigureAwait(true);
+
+        //    await _bidRepository.SaveChangesAsync();
+        //    await _bidRecordRepository.SaveChangesAsync();
+
+        //    return true;
+        //}
+        public async Task<List<BidRecord>> PlaceBid(BiddingDTO bidDto)
+        {
             var jewelryGold = await _jewelryGoldRepository.GetJewelryGoldByAuctionId(bidDto.AuctionId);
             var jewelryGoldDiamond = await _jewelryGoldDiaRepository.GetJewelryGoldDiamondByAuctionId(bidDto.AuctionId);
             var jewelrySilver = await _jewelrySilverRepository.GetJewelrySilverByAuctionId(bidDto.AuctionId);
 
             double? minPrice = 0;
-
 
             if (jewelryGold != null)
             {
@@ -105,16 +184,16 @@ namespace Service.Implement
             }
             else
             {
-                return false;
+                return null;
             }
-
 
             var existingBid = await _bidRepository.GetByIdAsync(bidDto.BidId);
 
             double? newMaxPrice;
+            var bidRecords = new List<BidRecord>();
+
             if (existingBid == null)
             {
-
                 newMaxPrice = minPrice + bidDto.BidStep;
                 var newBid = new Bid
                 {
@@ -129,22 +208,22 @@ namespace Service.Implement
 
                 var bidRecord = new BidRecord
                 {
-                   BidId=bidDto.BidId,
+                    BidId = newBid.BidId,
                     BidAmount = newMaxPrice,
                     BidStep = bidDto.BidStep
                 };
 
                 await _bidRecordRepository.AddAsync(bidRecord);
+                bidRecords.Add(bidRecord);
             }
             else
             {
-
                 newMaxPrice = existingBid.Maxprice + bidDto.BidStep;
                 existingBid.Maxprice = newMaxPrice;
                 existingBid.Datetime = DateTime.Now;
 
                 var bidRecord = new BidRecord
-                {   
+                {
                     AccountId = bidDto.AccountId,
                     BidId = existingBid.BidId,
                     BidAmount = newMaxPrice,
@@ -152,19 +231,18 @@ namespace Service.Implement
                 };
 
                 await _bidRecordRepository.AddAsync(bidRecord);
+                bidRecords.Add(bidRecord);
             }
 
             await _biddingHubContext.Clients.Group(existingBid.BidId.ToString()).SendAsync("HighestPrice", newMaxPrice).ConfigureAwait(true);
-            await _biddingHubContext.Clients.Group(existingBid.BidId.ToString()).SendAsync("BidStep", bidDto.BidStep).ConfigureAwait(true);
+            await _biddingHubContext.Clients.Group(existingBid.BidId.ToString()).SendAsync("BidStep", bidRecords).ConfigureAwait(true);
 
             await _bidRepository.SaveChangesAsync();
             await _bidRecordRepository.SaveChangesAsync();
 
-            return true;
+            return bidRecords;
         }
 
-
-
-
+       
     }
 }
