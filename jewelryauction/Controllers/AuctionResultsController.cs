@@ -41,7 +41,7 @@ namespace jewelryauction.Controllers
         [Route("CreateAuctionResult")]
         public IActionResult CreateAuctionResult(CreateAuctionRsDTO createAuctionRs)
         {
-            var rs =  _service.CreateAuctionRs(createAuctionRs);
+            var rs =  _service.CreateAuctionResult(createAuctionRs);
             return Ok(rs);
         }
         [HttpDelete]

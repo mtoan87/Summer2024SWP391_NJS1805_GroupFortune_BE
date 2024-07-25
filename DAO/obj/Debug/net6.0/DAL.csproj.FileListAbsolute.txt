@@ -42,18 +42,3 @@ D:\Software engineering\summer2024\SWP391\Summer2024SWP391_NJS1805_GroupFortune_
 D:\Software engineering\summer2024\SWP391\Summer2024SWP391_NJS1805_GroupFortune_BE\DAO\obj\Debug\net6.0\DAL.pdb
 D:\Software engineering\summer2024\SWP391\Summer2024SWP391_NJS1805_GroupFortune_BE\DAO\obj\Debug\net6.0\DAL.genruntimeconfig.cache
 D:\Software engineering\summer2024\SWP391\Summer2024SWP391_NJS1805_GroupFortune_BE\DAO\obj\Debug\net6.0\ref\DAL.dll
-D:\SWP391\BE\backend\Summer2024SWP391_NJS1805_GroupFortune_BE\DAO\bin\Debug\net6.0\DAL.deps.json
-D:\SWP391\BE\backend\Summer2024SWP391_NJS1805_GroupFortune_BE\DAO\bin\Debug\net6.0\DAL.runtimeconfig.json
-D:\SWP391\BE\backend\Summer2024SWP391_NJS1805_GroupFortune_BE\DAO\bin\Debug\net6.0\DAL.dll
-D:\SWP391\BE\backend\Summer2024SWP391_NJS1805_GroupFortune_BE\DAO\bin\Debug\net6.0\DAL.pdb
-D:\SWP391\BE\backend\Summer2024SWP391_NJS1805_GroupFortune_BE\DAO\obj\Debug\net6.0\DAL.csproj.AssemblyReference.cache
-D:\SWP391\BE\backend\Summer2024SWP391_NJS1805_GroupFortune_BE\DAO\obj\Debug\net6.0\DAL.GeneratedMSBuildEditorConfig.editorconfig
-D:\SWP391\BE\backend\Summer2024SWP391_NJS1805_GroupFortune_BE\DAO\obj\Debug\net6.0\DAL.AssemblyInfoInputs.cache
-D:\SWP391\BE\backend\Summer2024SWP391_NJS1805_GroupFortune_BE\DAO\obj\Debug\net6.0\DAL.AssemblyInfo.cs
-D:\SWP391\BE\backend\Summer2024SWP391_NJS1805_GroupFortune_BE\DAO\obj\Debug\net6.0\DAL.csproj.CoreCompileInputs.cache
-D:\SWP391\BE\backend\Summer2024SWP391_NJS1805_GroupFortune_BE\DAO\obj\Debug\net6.0\DAL.sourcelink.json
-D:\SWP391\BE\backend\Summer2024SWP391_NJS1805_GroupFortune_BE\DAO\obj\Debug\net6.0\DAL.dll
-D:\SWP391\BE\backend\Summer2024SWP391_NJS1805_GroupFortune_BE\DAO\obj\Debug\net6.0\refint\DAL.dll
-D:\SWP391\BE\backend\Summer2024SWP391_NJS1805_GroupFortune_BE\DAO\obj\Debug\net6.0\DAL.pdb
-D:\SWP391\BE\backend\Summer2024SWP391_NJS1805_GroupFortune_BE\DAO\obj\Debug\net6.0\DAL.genruntimeconfig.cache
-D:\SWP391\BE\backend\Summer2024SWP391_NJS1805_GroupFortune_BE\DAO\obj\Debug\net6.0\ref\DAL.dll

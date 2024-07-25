@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Authenticate
 {
-    internal class RevokedToken
+    public class RevokedToken
     {
     }
 }

@@ -93,6 +93,6 @@ namespace Service.Implement
             return await _repository.GetResultsByJoinauctionIdAsync(joinAuctionId);
         }
 
-        
+       
     }
 }
