@@ -134,5 +134,48 @@ namespace Repository.Implement
         {
             return _context.Auctions.Any(a => a.JewelryGolddiaId == jewelryGoldDiaId && a.Status != "Failed");
         }
+
+        public bool ProcessAuctionResult(AuctionResult auctionResult)
+        {
+            // Ensure the auction result has a status of "Win"
+            if (auctionResult.Status != "Win")
+                return false;
+
+            // Find the winning account's wallet
+            var winningAccountWallet = _context.AccountWallets
+                .FirstOrDefault(aw => aw.AccountId == auctionResult.AccountId);
+
+            if (winningAccountWallet == null)
+                return false;
+
+            // Find the auction associated with the result
+            var auction = _context.Auctions
+                .FirstOrDefault(a => a.AuctionId == auctionResult.Joinauction.AuctionId);
+
+            if (auction == null)
+                return false;
+
+            // Find the auction owner's wallet
+            var auctionOwnerWallet = _context.AccountWallets
+                .FirstOrDefault(aw => aw.AccountId == auction.AccountId);
+
+            if (auctionOwnerWallet == null)
+                return false;
+
+            // Ensure the winning account has sufficient budget
+            if (winningAccountWallet.Budget < auctionResult.Price)
+                return false;
+
+            // Deduct the price from the winning account's budget
+            winningAccountWallet.Budget -= auctionResult.Price;
+
+            // Add the price to the auction owner's budget
+            auctionOwnerWallet.Budget += auctionResult.Price;
+
+            // Save the changes
+            _context.SaveChanges();
+
+            return true;
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using DAL.DTO.AuctionDTO;
 using DAL.DTO.AuctionResultDTO;
 using DAL.Models;
+using Microsoft.EntityFrameworkCore;
 using Repository.Implement;
 using Repository.Interface;
 using Service.Interface;
@@ -18,12 +19,14 @@ namespace Service.Implement
         private readonly IAccountWalletRepository _accountwalletRepo;
         private readonly ITransactionRepository _transactionRepo;
         private readonly IJoinAuctionRepository _joinAuctionRepository;
-        public AuctionResultService(IAuctionResultRepository repository, IAccountWalletRepository accountwalletRepo, ITransactionRepository transactionRepo, IJoinAuctionRepository joinAuctionRepository)
+        private readonly IAuctionRepository _auctionRepository;
+        public AuctionResultService(IAuctionResultRepository repository, IAccountWalletRepository accountwalletRepo, ITransactionRepository transactionRepo, IJoinAuctionRepository joinAuctionRepository, IAuctionRepository auctionService)
         {
             _repository = repository;
             _accountwalletRepo = accountwalletRepo;
             _transactionRepo = transactionRepo;
             _joinAuctionRepository = joinAuctionRepository;
+            _auctionRepository = auctionService;
         }
         public async Task<IEnumerable<AuctionResult>> GetAllAuctionResults()
         {
@@ -33,95 +36,27 @@ namespace Service.Implement
         {
             return await _repository.GetByIdAsync(id);
         }
-        public async Task<AuctionResult> CreateAuctionRs(CreateAuctionRsDTO createAuctionResultDto)
+        private AuctionResult ConvertDtoToEntity(CreateAuctionRsDTO dto)
         {
-           
-            var joinAuctions = await _joinAuctionRepository.GetAuctionByJoinauctionIdAsync(createAuctionResultDto.JoinauctionId);
-            var auction = joinAuctions.FirstOrDefault()?.Auction; 
-            if (auction == null)
+            return new AuctionResult
             {
-                throw new Exception($"Auction not found for Joinauction ID {createAuctionResultDto.JoinauctionId}.");
-            }
-
-          
-            if (!auction.AccountId.HasValue)
-            {
-                throw new Exception($"Auction does not have an AccountId.");
-            }
-
-            var auctionOwnerWallet = await _accountwalletRepo.GetByAccountIdAsync(auction.AccountId.Value);
-            if (auctionOwnerWallet == null)
-            {
-                throw new Exception($"Account wallet for auction owner account ID {auction.AccountId.Value} not found.");
-            }
-
-          
-            var auctionResults = await _repository.GetResultsByJoinauctionIdAsync(createAuctionResultDto.JoinauctionId);
-            var winningResult = auctionResults.FirstOrDefault(result => result.Status == "Win");
-
-            if (winningResult == null)
-            {
-                throw new Exception("No winning result found for the specified auction.");
-            }
-
-           
-            if (!winningResult.AccountId.HasValue)
-            {
-                throw new Exception($"Winning result does not have an AccountId.");
-            }
-
-            var winnerWallet = await _accountwalletRepo.GetByAccountIdAsync(winningResult.AccountId.Value);
-            if (winnerWallet == null)
-            {
-                throw new Exception($"Account wallet for winner account ID {winningResult.AccountId.Value} not found.");
-            }
-
-            
-            if (winnerWallet.Budget < winningResult.Price)
-            {
-                throw new Exception("Insufficient budget for the winner.");
-            }
-            winnerWallet.Budget -= winningResult.Price;
-
-          
-            var winnerTransaction = new WalletTransaction
-            {
-                AccountwalletId = winnerWallet.AccountwalletId,
-                Amount = -winningResult.Price, 
-                DateTime = DateTime.Now
+                JoinauctionId = dto.JoinauctionId,
+                Date = dto.Date,
+                Status = dto.Status,
+                Price = dto.Price,
+                AccountId = dto.AccountId
             };
-            await _transactionRepo.AddAsync(winnerTransaction);
+        }
 
-            
-            auctionOwnerWallet.Budget += winningResult.Price;
-
-            
-            var ownerTransaction = new WalletTransaction
-            {
-                AccountwalletId = auctionOwnerWallet.AccountwalletId,
-                Amount = winningResult.Price, 
-                DateTime = DateTime.Now
-            };
-            await _transactionRepo.AddAsync(ownerTransaction);
-
-            
-            var newAuctionResult = new AuctionResult
-            {
-                JoinauctionId = createAuctionResultDto.JoinauctionId,
-                Date = createAuctionResultDto.Date,
-                Status = createAuctionResultDto.Status,
-                Price = createAuctionResultDto.Price,
-                AccountId = createAuctionResultDto.AccountId
-            };
-
-            
-            await _repository.AddAsync(newAuctionResult);
-
-            
-            await _accountwalletRepo.UpdateAsync(winnerWallet);
-            await _accountwalletRepo.UpdateAsync(auctionOwnerWallet);
-
-            return newAuctionResult;
+        public  bool CreateAuctionResult(CreateAuctionRsDTO auctionResultDto)
+        {            
+            var auctionResult = ConvertDtoToEntity(auctionResultDto);           
+            _repository.AddAsync(auctionResult);                    
+            bool processed = _auctionRepository.ProcessAuctionResult(auctionResult);
+            if (!processed)
+                return false;          
+            _repository.SaveChangesAsync();
+            return true;
         }
 
 

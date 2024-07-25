@@ -39,9 +39,9 @@ namespace jewelryauction.Controllers
         }
         [HttpPost]
         [Route("CreateAuctionResult")]
-        public async Task<ActionResult<AuctionResult>> CreateAuctionResult(CreateAuctionRsDTO createAuctionRs)
+        public IActionResult CreateAuctionResult(CreateAuctionRsDTO createAuctionRs)
         {
-            var rs = await _service.CreateAuctionRs(createAuctionRs);
+            var rs =  _service.CreateAuctionRs(createAuctionRs);
             return Ok(rs);
         }
         [HttpDelete]
