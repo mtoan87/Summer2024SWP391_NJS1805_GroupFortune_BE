@@ -10,5 +10,7 @@ namespace Repository.Interface
     public interface IPaymentRepository : IRepositoryGeneric<Payment>
     {
         Task<IEnumerable<Payment>> GetPaymentByAccountId(int accountId);
+
+        Task<bool> ProcessPaymentAsync(Payment payment);
     }
 }

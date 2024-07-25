@@ -50,7 +50,7 @@ namespace jewelryauction.Controllers
         [Route("CreatePayment")]
         public async Task<IActionResult> CreatePayment(CreatePaymentDTO createPayment)
         {
-            var rs = await _service.CreatePayment(createPayment);
+            var rs = await _service.CreatePaymentAsync(createPayment);
             return Ok(rs);
         }
 

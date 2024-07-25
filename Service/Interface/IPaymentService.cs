@@ -15,5 +15,6 @@ namespace Service.Interface
         Task<IEnumerable<Payment>> GetPaymentByAccountId(int id);
         Task<Payment> CreatePayment(CreatePaymentDTO createPayment);
         Task<Payment> UpdatePayment(int id, UpdatePaymentDTO updatePayment);
+        Task<IEnumerable<Payment>> CreatePaymentAsync(CreatePaymentDTO paymentdto);
     }
 }

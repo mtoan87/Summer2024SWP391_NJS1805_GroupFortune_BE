@@ -1,4 +1,5 @@
-﻿using DAL.DTO.BidDTO;
+﻿using DAL.DTO.AuctionResultDTO;
+using DAL.DTO.BidDTO;
 using DAL.DTO.PaymentDTO;
 using DAL.Models;
 using Repository.Implement;
@@ -35,6 +36,27 @@ namespace Service.Implement
             return await _paymentRepository.GetPaymentByAccountId(id);
         }
 
+        private Payment ConvertDtoToEntity(CreatePaymentDTO dto)
+        {
+            return new Payment
+            {
+                AuctionResultId = dto.AuctionResultId,
+                Date = DateTime.Now,
+                Status = dto.Status,               
+                AccountId = dto.AccountId,
+                Paymentmethod = "Wallet"
+            };
+        }
+        public async Task<IEnumerable<Payment>> CreatePaymentAsync(CreatePaymentDTO paymentdto)
+        {
+            var payment = ConvertDtoToEntity(paymentdto);
+            await _paymentRepository.AddAsync(payment);
+            bool processed = await _paymentRepository.ProcessPaymentAsync(payment);
+            if (!processed) 
+                return Enumerable.Empty<Payment>();
+            await _paymentRepository.SaveChangesAsync();
+            return await _paymentRepository.GetAllAsync();  
+        }
         public async Task<Payment> CreatePayment(CreatePaymentDTO createPayment)
         {
             var newPayment = new Payment
@@ -42,11 +64,11 @@ namespace Service.Implement
                 AccountId = createPayment.AccountId,
                 AuctionResultId = createPayment.AuctionResultId,
                 Status = createPayment.Status,
-                Paymentmethod = createPayment.Paymentmethod,
-                Date = createPayment.Date, 
-                Price = createPayment.Price,
-                Totalprice = createPayment.Totalprice,
-                Fee = createPayment.Fee,
+               // Paymentmethod = createPayment.Paymentmethod,
+               // Date = createPayment.Date, 
+                //Price = createPayment.Price,
+                //Totalprice = createPayment.Totalprice,
+               // Fee = createPayment.Fee,
                 
             };
             await _paymentRepository.AddAsync(newPayment);

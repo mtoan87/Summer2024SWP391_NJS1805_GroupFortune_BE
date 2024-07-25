@@ -22,5 +22,66 @@ namespace Repository.Implement
                 .Where(a => a.AccountId == accountId)
                 .ToListAsync();
         }
+        public async Task<bool> ProcessPaymentAsync(Payment payment)
+        {
+            // Validate the payment and retrieve related data
+            var auctionResult = await _context.AuctionResults
+                .Include(ar => ar.Joinauction)
+                .FirstOrDefaultAsync(ar => ar.AuctionresultId == payment.AuctionResultId);
+
+            if (auctionResult == null || auctionResult.Status != "Win")
+                throw new InvalidOperationException("Invalid auction result or status.");
+
+            var winningAccountWallet = await _context.AccountWallets
+                .FirstOrDefaultAsync(aw => aw.AccountId == auctionResult.AccountId);
+
+            var auction = await _context.Auctions
+                .FirstOrDefaultAsync(a => a.AuctionId == auctionResult.Joinauction.AuctionId);
+
+            if (auction == null)
+                throw new InvalidOperationException("Auction not found.");
+
+            var auctionOwnerWallet = await _context.AccountWallets
+                .FirstOrDefaultAsync(aw => aw.AccountId == auction.AccountId);
+
+            if (auctionOwnerWallet == null || winningAccountWallet == null)
+                throw new InvalidOperationException("Invalid account wallets.");
+
+            // Set the price, total price with 30% increase, and fee
+            payment.Price = auctionResult.Price;
+            payment.Totalprice = payment.Price * 1.3;
+            payment.Fee = payment.Totalprice - payment.Price;
+
+            // Ensure the winning account has sufficient budget
+            if (winningAccountWallet.Budget < payment.Totalprice)
+                throw new InvalidOperationException("Insufficient budget.");
+
+            // Update the wallets
+            winningAccountWallet.Budget -= payment.Totalprice;
+            auctionOwnerWallet.Budget += payment.Price;
+
+            // Record the wallet transactions
+            var winningAccountTransaction = new WalletTransaction
+            {
+                AccountwalletId = winningAccountWallet.AccountwalletId,
+                Amount = -payment.Totalprice,
+                DateTime = DateTime.UtcNow
+            };
+
+            var auctionOwnerTransaction = new WalletTransaction
+            {
+                AccountwalletId = auctionOwnerWallet.AccountwalletId,
+                Amount = payment.Price,
+                DateTime = DateTime.UtcNow
+            };
+
+            await _context.WalletTransactions.AddRangeAsync(winningAccountTransaction, auctionOwnerTransaction);
+
+            // Save the changes
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
+
     }
 }

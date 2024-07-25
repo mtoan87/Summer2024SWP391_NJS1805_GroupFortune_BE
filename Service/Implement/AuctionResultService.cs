@@ -49,31 +49,9 @@ namespace Service.Implement
         }
 
         public async Task<IEnumerable<AuctionResult>> CreateAuctionResultAsync(CreateAuctionRsDTO auctionResultDto)
-        {
-            // Convert DTO to entity
-            var auctionResult = ConvertDtoToEntity(auctionResultDto);
-
-            // Add the auction result to the repository
-            await _repository.AddAsync(auctionResult);
-
-            // Include related data
-            auctionResult.Joinauction = await _joinAuctionRepository.GetByIdAsync(auctionResultDto.JoinauctionId);
-
-            if (auctionResult.Joinauction == null)
-            {
-                throw new InvalidOperationException("Joinauction not found for the given JoinauctionId.");
-            }
-
-            // Process the auction result to update budgets if necessary
-            bool processed = await _auctionRepository.ProcessAuctionResultAsync(auctionResult);
-
-            if (!processed)
-                return Enumerable.Empty<AuctionResult>();
-
-            // Save the changes
-            await _repository.SaveChangesAsync();
-
-            // Return the updated list of auction results
+        {         
+            var auctionResult = ConvertDtoToEntity(auctionResultDto);           
+            await _repository.AddAsync(auctionResult);                      
             return await _repository.GetAllAsync();
         }
 

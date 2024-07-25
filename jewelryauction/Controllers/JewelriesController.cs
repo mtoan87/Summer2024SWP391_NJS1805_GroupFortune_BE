@@ -198,7 +198,7 @@ namespace jewelryauction.Controllers
             return weight * conversionRates[unit];
         }
         //1 gram = 0.035274 ounces
-        //1 oz ~~ 28grams
+        
         //
     }
 }
