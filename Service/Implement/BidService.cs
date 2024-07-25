@@ -233,6 +233,7 @@ namespace Service.Implement
                 await _bidRecordRepository.AddAsync(bidRecord);
                 bidRecords.Add(bidRecord);
             }
+            bidRecords = bidRecords.OrderByDescending(b => b.BidAmount).Take(5).ToList();
             await _biddingHubContext.Clients.Group(existingBid.BidId.ToString()).SendAsync("HighestPrice", newMaxPrice).ConfigureAwait(true);
             await _biddingHubContext.Clients.Group(existingBid.BidId.ToString()).SendAsync("BidStep", bidRecords).ConfigureAwait(true);
 

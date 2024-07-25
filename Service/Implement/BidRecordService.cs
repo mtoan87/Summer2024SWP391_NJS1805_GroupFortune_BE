@@ -25,7 +25,9 @@ namespace Service.Implement
 
         public async Task<IEnumerable<BidRecord>> GetBidRecordByBidId(int BidId)
         {
-            return await _repository.GetBidRecordByBidId(BidId);
+            var bidRecords = await _repository.GetBidRecordByBidId(BidId);
+            bidRecords = bidRecords.OrderByDescending(b => b.BidAmount).ToList();
+            return bidRecords;
         }
 
         public async Task<IEnumerable<BidRecord>> GetBidRecordByAccountId(int AccountId)
