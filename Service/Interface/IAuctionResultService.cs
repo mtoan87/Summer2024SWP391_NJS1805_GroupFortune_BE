@@ -13,7 +13,7 @@ namespace Service.Interface
         Task<IEnumerable<AuctionResult>> GetAllAuctionResults();
         Task<IEnumerable<AuctionResult>> GetResultsByJoinauctionIdAsync(int joinAuctionId);
         Task<AuctionResult> GetAuctionResultById(int id);
-        bool CreateAuctionResult(CreateAuctionRsDTO auctionResultDto);
+        Task<IEnumerable<AuctionResult>> CreateAuctionResultAsync(CreateAuctionRsDTO auctionResultDto);
 
         Task<AuctionResult> UpdateAuctionRs(int id, UpdateAuctionRsDTO updateAuctionRs);
 

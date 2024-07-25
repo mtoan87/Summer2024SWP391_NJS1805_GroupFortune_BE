@@ -17,7 +17,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<JewelryAuctionContext>(options =>
 {
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnectionStringDB");
-    options.UseSqlServer(connectionString);
+    options.UseSqlServer(connectionString).EnableSensitiveDataLogging();
 });
 
 builder.Services.AddCors(opt =>

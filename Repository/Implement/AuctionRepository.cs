@@ -135,36 +135,40 @@ namespace Repository.Implement
             return _context.Auctions.Any(a => a.JewelryGolddiaId == jewelryGoldDiaId && a.Status != "Failed");
         }
 
-        public bool ProcessAuctionResult(AuctionResult auctionResult)
+        public async Task<bool> ProcessAuctionResultAsync(AuctionResult auctionResult)
         {
             // Ensure the auction result has a status of "Win"
             if (auctionResult.Status != "Win")
                 return false;
 
+            // Ensure auctionResult and its related properties are not null
+            if (auctionResult == null || auctionResult.Joinauction == null)
+                throw new ArgumentNullException(nameof(auctionResult), "AuctionResult or its related Joinauction is null.");
+
             // Find the winning account's wallet
-            var winningAccountWallet = _context.AccountWallets
-                .FirstOrDefault(aw => aw.AccountId == auctionResult.AccountId);
+            var winningAccountWallet = await _context.AccountWallets
+                .FirstOrDefaultAsync(aw => aw.AccountId == auctionResult.AccountId);
 
             if (winningAccountWallet == null)
-                return false;
+                throw new InvalidOperationException("Winning account's wallet not found.");
 
             // Find the auction associated with the result
-            var auction = _context.Auctions
-                .FirstOrDefault(a => a.AuctionId == auctionResult.Joinauction.AuctionId);
+            var auction = await _context.Auctions
+                .FirstOrDefaultAsync(a => a.AuctionId == auctionResult.Joinauction.AuctionId);
 
             if (auction == null)
-                return false;
+                throw new InvalidOperationException("Auction associated with the auction result not found.");
 
             // Find the auction owner's wallet
-            var auctionOwnerWallet = _context.AccountWallets
-                .FirstOrDefault(aw => aw.AccountId == auction.AccountId);
+            var auctionOwnerWallet = await _context.AccountWallets
+                .FirstOrDefaultAsync(aw => aw.AccountId == auction.AccountId);
 
             if (auctionOwnerWallet == null)
-                return false;
+                throw new InvalidOperationException("Auction owner's wallet not found.");
 
             // Ensure the winning account has sufficient budget
             if (winningAccountWallet.Budget < auctionResult.Price)
-                return false;
+                throw new InvalidOperationException("Winning account does not have sufficient budget.");
 
             // Deduct the price from the winning account's budget
             winningAccountWallet.Budget -= auctionResult.Price;
@@ -173,7 +177,7 @@ namespace Repository.Implement
             auctionOwnerWallet.Budget += auctionResult.Price;
 
             // Save the changes
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return true;
         }

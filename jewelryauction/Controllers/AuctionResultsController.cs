@@ -39,10 +39,14 @@ namespace jewelryauction.Controllers
         }
         [HttpPost]
         [Route("CreateAuctionResult")]
-        public IActionResult CreateAuctionResult(CreateAuctionRsDTO createAuctionRs)
+        public async Task<IActionResult> CreateAuctionResult(CreateAuctionRsDTO createAuctionRs)
         {
-            var rs =  _service.CreateAuctionResult(createAuctionRs);
-            return Ok(rs);
+            var result = await _service.CreateAuctionResultAsync(createAuctionRs);
+            if (result == null)
+            {
+                return BadRequest("Failed to process auction result.");
+            }
+            return Ok(result);
         }
         [HttpDelete]
         [Route("DeleteAuctionRs")]
