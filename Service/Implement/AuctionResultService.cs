@@ -41,7 +41,7 @@ namespace Service.Implement
             return new AuctionResult
             {
                 JoinauctionId = dto.JoinauctionId,
-                Date = dto.Date,
+                Date = DateTime.Now,
                 Status = dto.Status,
                 Price = dto.Price,
                 AccountId = dto.AccountId
