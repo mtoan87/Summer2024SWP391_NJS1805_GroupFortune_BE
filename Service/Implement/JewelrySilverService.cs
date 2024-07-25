@@ -15,9 +15,11 @@ namespace Service.Implement
     public class JewelrySilverService : IJewelrySilverService
     {
         private readonly IJewelrySilverRepository _jewelrySilverRepository;
-        public JewelrySilverService(IJewelrySilverRepository jewelrySilverRepository)
+        private readonly IAuctionRepository _auctionRepository;
+        public JewelrySilverService(IJewelrySilverRepository jewelrySilverRepository, IAuctionRepository auctionRepository)
         {
             _jewelrySilverRepository = jewelrySilverRepository;
+            _auctionRepository = auctionRepository;
         }
         public async Task<IEnumerable<JewelrySilver>> GetAllSilverJewelries()
         {
@@ -69,7 +71,7 @@ namespace Service.Implement
             {
                 throw new Exception($"Jewelry with ID {id} not found.");
             }
-            if (await _jewelrySilverRepository.JewelrySilverExistsInAuction(id))
+            if ( _auctionRepository.IsJewelryInAuctionSilver(id))
             {
                 throw new Exception("$Jewelry is register in auction can not update!");
             }

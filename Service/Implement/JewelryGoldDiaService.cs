@@ -15,9 +15,11 @@ namespace Service.Implement
     public class JewelryGoldDiaService : IJewelryGoldDiamondService
     {
         private readonly IJewelryGoldDiamondRepository _jewelryGoldDiaRepository;
-        public JewelryGoldDiaService(IJewelryGoldDiamondRepository jewelryGoldDiaRepository)
+        private readonly IAuctionRepository _auctionRepository;
+        public JewelryGoldDiaService(IJewelryGoldDiamondRepository jewelryGoldDiaRepository, IAuctionRepository auctionRepository)
         {
             _jewelryGoldDiaRepository = jewelryGoldDiaRepository;
+            _auctionRepository = auctionRepository;
         }
         public async Task<IEnumerable<JewelryGoldDiamond>> GetAllGoldDiaJewelries()
         {
@@ -72,7 +74,7 @@ namespace Service.Implement
             {
                 throw new Exception($"Jewelry with ID {id} not found.");
             }
-            if (await _jewelryGoldDiaRepository.JewelryGoldDiaExistsInAuction(id))
+            if ( _auctionRepository.IsJewelryInAuctionGoldDiamond(id))
             {
                 throw new Exception("$Jewelry is register in auction can not update!");
             }
