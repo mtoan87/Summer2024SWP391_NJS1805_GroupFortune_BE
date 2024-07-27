@@ -10,6 +10,8 @@ using System.Transactions;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using DAL.DTO.BidDTO;
+using Microsoft.AspNetCore.SignalR;
+using Service.Hubs;
 
 namespace Service.Implement
 {
@@ -21,6 +23,7 @@ namespace Service.Implement
         private readonly IJewelrySilverRepository _jewelrySilverRepository;
         private readonly IBidRepository _bidRepository;
         private readonly ILogger<AuctionService> _logger;
+        private readonly IHubContext<AuctionHub> _hubContext;
 
         public AuctionService(
             IAuctionRepository auctionRepository,
@@ -28,7 +31,8 @@ namespace Service.Implement
             IJewelryGoldDiamondRepository jewelryGoldDiaRepository,
             IJewelrySilverRepository jewelrySilverRepository,
             IBidRepository bidRepository,
-            ILogger<AuctionService> logger)
+            ILogger<AuctionService> logger,
+            IHubContext<AuctionHub> hubContext)
         {
             _auctionRepository = auctionRepository;
             _jewelryDiaRepository = jewelryGoldDiaRepository;
@@ -36,6 +40,7 @@ namespace Service.Implement
             _jewelrySilverRepository = jewelrySilverRepository;
             _bidRepository = bidRepository;
             _logger = logger;
+            _hubContext = hubContext;
         }
 
         public async Task<IEnumerable<Auction>> GetAllAuctions()
@@ -274,6 +279,17 @@ namespace Service.Implement
         public IEnumerable<Auction> GetJewelryActiveAuctions()
         {
             return _auctionRepository.GetJewelryActiveAuctions();
+        }
+
+        public IEnumerable<object> GetAuctionsWithRemainingTime()
+        {
+            return _auctionRepository.GetAuctionsWithRemainingTime();
+        }
+
+        public async Task BroadcastRemainingTimeUpdates()
+        {
+            var auctions = GetAuctionsWithRemainingTime();
+            await _hubContext.Clients.All.SendAsync("TimeRemaining", auctions);
         }
     }
 }

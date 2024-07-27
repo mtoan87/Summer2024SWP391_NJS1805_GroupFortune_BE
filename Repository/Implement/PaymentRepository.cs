@@ -82,6 +82,40 @@ namespace Repository.Implement
 
             return true;
         }
+        public double GetTotalFees()
+        {
+            return _context.Payments.Sum(p => p.Fee);
+        }
 
+        public double GetTotalPrice()
+        {
+            return _context.Payments.Sum(p => p.Totalprice);
+        }
+        public IEnumerable<object> GetFeesStatisticsByDate()
+        {
+            return _context.Payments
+                .GroupBy(p => p.Date.Date)
+                .Select(g => new
+                {
+                    Date = g.Key,
+                    TotalFees = g.Sum(p => p.Fee),
+                    TotalPrice = g.Sum(p => p.Totalprice)
+                })
+                .ToList();
+        }
+
+        public IEnumerable<object> GetFeesStatisticsByMonth()
+        {
+            return _context.Payments
+                .GroupBy(p => new { p.Date.Year, p.Date.Month })
+                .Select(g => new
+                {
+                    Year = g.Key.Year,
+                    Month = g.Key.Month,
+                    TotalFees = g.Sum(p => p.Fee),
+                    TotalPrice = g.Sum(p => p.Totalprice)
+                })
+                .ToList();
+        }
     }
 }

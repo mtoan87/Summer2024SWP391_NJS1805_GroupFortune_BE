@@ -27,5 +27,7 @@ namespace Service.Interface
         Task<IEnumerable<Auction>> GetAuctionAndJewelrySilverByAccountIdAsync(int accountId);
         int GetAccountCountInAuction(int auctionId);
         IEnumerable<Auction> GetJewelryActiveAuctions();
+        IEnumerable<object> GetAuctionsWithRemainingTime();
+        Task BroadcastRemainingTimeUpdates();
     }
 }

@@ -24,5 +24,7 @@ namespace Repository.Interface
         bool IsJewelryInAuctionGoldDiamond(int? jewelryGoldDiaId);
         Task<IEnumerable<Auction>> GetAuctionByAccountId(int accountId);
         Task<bool> ProcessAuctionResultAsync(AuctionResult auctionResult);
+
+        IEnumerable<object> GetAuctionsWithRemainingTime();
     }
 }

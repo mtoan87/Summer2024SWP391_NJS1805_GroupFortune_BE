@@ -96,5 +96,27 @@ namespace Service.Implement
             return payment;
 
         }
+
+        public IEnumerable<object> GetFeesStatisticsByMonth()
+        {
+           return _paymentRepository.GetFeesStatisticsByMonth();
+        }
+
+        public IEnumerable<object> GetFeesStatisticsByDate()
+        {
+            return _paymentRepository.GetFeesStatisticsByDate();
+        }
+
+        public double GetTotalPrice()
+        {
+           return _paymentRepository.GetTotalPrice();
+        }
+
+        public double GetTotalFees()
+        {
+            return _paymentRepository.GetTotalFees();
+        }
+
+        
     }
 }

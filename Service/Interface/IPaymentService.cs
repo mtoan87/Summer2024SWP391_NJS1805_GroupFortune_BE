@@ -1,5 +1,6 @@
 ﻿using DAL.DTO.PaymentDTO;
 using DAL.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,5 +17,11 @@ namespace Service.Interface
         Task<Payment> CreatePayment(CreatePaymentDTO createPayment);
         Task<Payment> UpdatePayment(int id, UpdatePaymentDTO updatePayment);
         Task<IEnumerable<Payment>> CreatePaymentAsync(CreatePaymentDTO paymentdto);
+        IEnumerable<object> GetFeesStatisticsByMonth();
+        IEnumerable<object> GetFeesStatisticsByDate();
+
+        double GetTotalPrice();
+        double GetTotalFees();
+        
     }
 }

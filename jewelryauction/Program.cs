@@ -106,6 +106,7 @@ app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();
     endpoints.MapHub<BiddingHub>("/bidding-hub");
+    endpoints.MapHub<AuctionHub>("/auctionHub");
 
 });
 

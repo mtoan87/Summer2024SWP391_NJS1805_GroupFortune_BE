@@ -62,5 +62,33 @@ namespace jewelryauction.Controllers
             return Ok(rs);
         }
 
+        [HttpGet("total-fees")]
+        public IActionResult GetTotalFees()
+        {
+            var totalFees = _service.GetTotalFees();
+            return Ok(totalFees);
+        }
+
+        [HttpGet("total-price")]
+        public IActionResult GetTotalPrice()
+        {
+            var totalPrice = _service.GetTotalPrice();
+            return Ok(totalPrice);
+        }
+
+        [HttpGet("fees-statistics-by-date")]
+        public IActionResult GetFeesStatisticsByDate()
+        {
+            var stats = _service.GetFeesStatisticsByDate();
+            return Ok(stats);
+        }
+
+        [HttpGet("fees-statistics-by-month")]
+        public IActionResult GetFeesStatisticsByMonth()
+        {
+            var stats = _service.GetFeesStatisticsByMonth();
+            return Ok(stats);
+        }
+
     }
 }

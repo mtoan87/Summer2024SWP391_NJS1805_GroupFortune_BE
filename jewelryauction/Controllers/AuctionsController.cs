@@ -146,5 +146,17 @@ namespace jewelryauction.Controllers
             }
         }
 
+        [HttpGet("remaining-time")]
+        public IActionResult GetAuctionsWithRemainingTime()
+        {
+            var auctions = _auctionService.GetAuctionsWithRemainingTime();
+            return Ok(auctions);
+        }
+        [HttpPost("broadcast-updates")]
+        public async Task<IActionResult> BroadcastRemainingTimeUpdates()
+        {
+            await _auctionService.BroadcastRemainingTimeUpdates();
+            return Ok();
+        }
     }
 }

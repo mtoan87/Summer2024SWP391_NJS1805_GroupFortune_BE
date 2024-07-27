@@ -134,7 +134,18 @@ namespace Repository.Implement
         {
             return _context.Auctions.Any(a => a.JewelryGolddiaId == jewelryGoldDiaId && a.Status != "Failed");
         }
-
+        public IEnumerable<object> GetAuctionsWithRemainingTime()
+        {
+            return _context.Auctions
+                .Select(a => new
+                {
+                    AuctionId = a.AuctionId,
+                    StartTime = a.Starttime,
+                    EndTime = a.Endtime,                  
+                    RemainingTime = (a.Endtime > DateTime.Now) ? a.Endtime - DateTime.Now : TimeSpan.Zero
+                })
+                .ToList();
+        }
         public async Task<bool> ProcessAuctionResultAsync(AuctionResult auctionResult)
         {
             // Ensure the auction result has a status of "Win"
