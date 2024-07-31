@@ -39,10 +39,11 @@ namespace Service.Implement
                 .ToListAsync();
         }
 
-        public BidRecord GetBidRecordByAccountAndBidId(int accountId, int bidId)
+        public List<BidRecord> GetBidRecordByAccountAndBidId(int accountId, int bidId)
         {
             return _context.BidRecords
-                           .FirstOrDefault(b => b.AccountId == accountId && b.BidId == bidId);
+                       .Where(b => b.AccountId == accountId && b.BidId == bidId)
+                       .ToList();
         }
 
     }

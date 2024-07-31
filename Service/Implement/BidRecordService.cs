@@ -40,9 +40,9 @@ namespace Service.Implement
             return await _repository.GetBidAndBidRecorsByAccountId(AccountId);
         }
 
-        public BidRecord GetBidRecordByAccountAndBidId(int accountId, int bidId)
+        public List<BidRecord> GetBidRecordByAccountAndBidId(int accountId, int bidId)
         {
-            return  _repository.GetBidRecordByAccountAndBidId(accountId, bidId);
+           return _repository.GetBidRecordByAccountAndBidId(accountId, bidId);
         }
     }
 }

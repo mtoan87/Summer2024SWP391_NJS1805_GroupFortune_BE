@@ -16,6 +16,6 @@ namespace Service.Interface
 
         Task<IEnumerable<BidRecord>> GetBidRecordAndBidByAccountId(int AccountId);
 
-        BidRecord GetBidRecordByAccountAndBidId(int accountId, int bidId);
+        List<BidRecord> GetBidRecordByAccountAndBidId(int accountId, int bidId);
     }
 }
