@@ -39,6 +39,11 @@ namespace Service.Implement
                 .ToListAsync();
         }
 
+        public BidRecord GetBidRecordByAccountAndBidId(int accountId, int bidId)
+        {
+            return _context.BidRecords
+                           .FirstOrDefault(b => b.AccountId == accountId && b.BidId == bidId);
+        }
 
     }
 }

@@ -30,6 +30,13 @@ namespace jewelryauction.Controllers
             return Ok(rs);
         }
         [HttpGet]
+        [Route("GetBidRecordByAccountIdAndBidId")]
+        public IActionResult GetBidRecordByAccountIdAndBidId(int accountId, int bidId)
+        {
+            var rs =  _bidRecordService.GetBidRecordByAccountAndBidId(accountId,bidId);
+            return Ok(rs);
+        }
+        [HttpGet]
         [Route("GetBidRecordByAccountId")]
         public async Task<IActionResult> GetBidRecordByAccountId(int AccountId)
         {

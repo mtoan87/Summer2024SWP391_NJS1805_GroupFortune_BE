@@ -12,5 +12,6 @@ namespace Repository.Interface
         Task<IEnumerable<BidRecord>> GetBidRecordByBidId(int bidId);
         Task<IEnumerable<BidRecord>> GetBidByAccountId(int accountId);
         Task<IEnumerable<BidRecord>> GetBidAndBidRecorsByAccountId(int accountId);
+        BidRecord GetBidRecordByAccountAndBidId(int accountId, int bidId);
     }
 }
