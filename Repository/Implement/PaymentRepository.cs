@@ -91,6 +91,11 @@ namespace Repository.Implement
         {
             return _context.Payments.Sum(p => p.Totalprice);
         }
+
+        public double GetPrice()
+        {
+            return _context.Payments.Sum(p => p.Price);
+        }
         public IEnumerable<object> GetFeesStatisticsByDate()
         {
             return _context.Payments

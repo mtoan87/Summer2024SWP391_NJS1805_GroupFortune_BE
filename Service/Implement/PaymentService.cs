@@ -118,6 +118,9 @@ namespace Service.Implement
             return _paymentRepository.GetTotalFees();
         }
 
-        
+        public double GetPrice()
+        {
+           return _paymentRepository.GetPrice();
+        }
     }
 }

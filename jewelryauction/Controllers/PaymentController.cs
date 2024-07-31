@@ -75,6 +75,12 @@ namespace jewelryauction.Controllers
             var totalPrice = _service.GetTotalPrice();
             return Ok(totalPrice);
         }
+        [HttpGet("price")]
+        public IActionResult GetPrice()
+        {
+            var price = _service.GetPrice();
+            return Ok(price);
+        }
 
         [HttpGet("fees-statistics-by-date")]
         public IActionResult GetFeesStatisticsByDate()

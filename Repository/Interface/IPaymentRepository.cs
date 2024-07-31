@@ -15,7 +15,7 @@ namespace Repository.Interface
 
         double GetTotalFees();
         double GetTotalPrice();
-
+        double GetPrice();
         IEnumerable<object> GetFeesStatisticsByDate();
 
         IEnumerable<object> GetFeesStatisticsByMonth();
