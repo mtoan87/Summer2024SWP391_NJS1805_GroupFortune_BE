@@ -10,7 +10,7 @@ namespace DAL.DTO.PaymentDTO
     {
         public int? AccountId { get; set; }
         public int? AuctionResultId { get; set; }
-        public string Status { get; set; } = null!;
+        
         
        
     }

@@ -10,5 +10,7 @@ namespace Repository.Interface
     public interface IAuctionResultRepository : IRepositoryGeneric<AuctionResult>
     {
         Task<IEnumerable<AuctionResult>> GetResultsByJoinauctionIdAsync(int joinAuctionId);
+
+        Task<IEnumerable<AuctionResult>> GetAuctionResultsByAccountIdAsync(int accountId);
     }
 }

@@ -88,6 +88,9 @@ namespace Service.Implement
             return await _repository.GetResultsByJoinauctionIdAsync(joinAuctionId);
         }
 
-       
+        public async Task<IEnumerable<AuctionResult>> GetAuctionResultsByAccountIdAsync(int accountId)
+        {
+            return await _repository.GetAuctionResultsByAccountIdAsync(accountId);
+        }
     }
 }

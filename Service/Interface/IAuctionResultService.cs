@@ -18,5 +18,7 @@ namespace Service.Interface
         Task<AuctionResult> UpdateAuctionRs(int id, UpdateAuctionRsDTO updateAuctionRs);
 
         Task<AuctionResult> DeleteAuction(int id);
+
+        Task<IEnumerable<AuctionResult>> GetAuctionResultsByAccountIdAsync(int accountId);
     }
 }

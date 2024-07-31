@@ -22,6 +22,11 @@ namespace Repository.Implement
                 .Where(a => a.AccountId == joinAuctionId)
                 .ToListAsync();
         }
-        
+        public async Task<IEnumerable<AuctionResult>> GetAuctionResultsByAccountIdAsync(int accountId)
+        {
+            return await _context.AuctionResults
+                .Where(ar => ar.AccountId == accountId)
+                .ToListAsync();
+        }
     }
 }

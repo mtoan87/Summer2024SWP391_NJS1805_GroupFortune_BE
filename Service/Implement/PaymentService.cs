@@ -1,6 +1,7 @@
 ﻿using DAL.DTO.AuctionResultDTO;
 using DAL.DTO.BidDTO;
 using DAL.DTO.PaymentDTO;
+using DAL.Enums;
 using DAL.Models;
 using Repository.Implement;
 using Repository.Interface;
@@ -42,7 +43,7 @@ namespace Service.Implement
             {
                 AuctionResultId = dto.AuctionResultId,
                 Date = DateTime.Now,
-                Status = dto.Status,               
+                Status = AuctionStatus.Successful.ToString(),               
                 AccountId = dto.AccountId,
                 Paymentmethod = "Wallet"
             };
@@ -63,7 +64,7 @@ namespace Service.Implement
             {
                 AccountId = createPayment.AccountId,
                 AuctionResultId = createPayment.AuctionResultId,
-                Status = createPayment.Status,
+               
                // Paymentmethod = createPayment.Paymentmethod,
                // Date = createPayment.Date, 
                 //Price = createPayment.Price,
