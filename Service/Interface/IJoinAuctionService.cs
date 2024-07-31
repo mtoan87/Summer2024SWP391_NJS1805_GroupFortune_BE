@@ -12,6 +12,7 @@ namespace Service.Interface
     {
         Task<IEnumerable<JoinAuction>> GetAllJoinAuctions();
         Task<IEnumerable<JoinAuction>> GetAuctionByJoinauctionIdAsync(int joinAuctionId);
+        Task<IEnumerable<JoinAuction>> GetJoinAuctionByAccountIdAsync(int accountId);
         Task<JoinAuction> GetJoinAuctionById(int id);
         Task<JoinAuction> CreateJoinAuction(CreateJoinAuctionDTO createJoinAuction);
         Task<bool> CanJoinAuction(int accountId, int auctionId);

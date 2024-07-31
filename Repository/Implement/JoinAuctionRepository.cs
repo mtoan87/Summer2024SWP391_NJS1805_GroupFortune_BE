@@ -33,6 +33,11 @@ namespace Repository.Implement
             // If needed, map the result to your desired return type
             return result.Select(r => r.JoinAuction);
         }
-
+        public async Task<IEnumerable<JoinAuction>> GetJoinAuctionByAccountIdAsync(int accountId)
+        {
+            return await _context.JoinAuctions
+                .Where(ar => ar.AccountId == accountId)
+                .ToListAsync();
+        }
     }
 }

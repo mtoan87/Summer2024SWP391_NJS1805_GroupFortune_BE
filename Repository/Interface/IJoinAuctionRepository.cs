@@ -10,5 +10,6 @@ namespace Repository.Interface
     public interface IJoinAuctionRepository : IRepositoryGeneric<JoinAuction>
     {
         Task<IEnumerable<JoinAuction>> GetAuctionByJoinauctionIdAsync(int joinAuctionId);
+        Task<IEnumerable<JoinAuction>> GetJoinAuctionByAccountIdAsync(int accountId);
     }
 }

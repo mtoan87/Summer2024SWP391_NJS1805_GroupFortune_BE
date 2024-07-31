@@ -143,6 +143,11 @@ namespace Service.Implement
             await _joinAuctionRepository.RemoveAsync(auction);
             return auction;
         }
+
+        public Task<IEnumerable<JoinAuction>> GetJoinAuctionByAccountIdAsync(int accountId)
+        {
+            return _joinAuctionRepository.GetJoinAuctionByAccountIdAsync(accountId);
+        }
     }
 }
 

@@ -33,6 +33,13 @@ namespace jewelryauction.Controllers
             return Ok(jewelry);
         }
 
+        [HttpGet("GetByAccountId/{accountId}")]
+        public async Task<IActionResult> GetJoinAuctionByAccountId(int accountId)
+        {
+            var jewelry = await _joinAuctionService.GetJoinAuctionByAccountIdAsync(accountId);
+            return Ok(jewelry);
+        }
+
         [HttpPost]
         [Route("CreateJoinAuction")]
         public async Task<ActionResult<JoinAuction>> CreateJoinAuction(CreateJoinAuctionDTO joinauction)
