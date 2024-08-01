@@ -1,4 +1,5 @@
-﻿using DAL.Models;
+﻿using DAL.Enums;
+using DAL.Models;
 using Microsoft.EntityFrameworkCore;
 using Repository.Interface;
 using System;
@@ -24,6 +25,12 @@ namespace Repository.Implement
         }
         public async Task<bool> ProcessPaymentAsync(Payment payment)
         {
+            // Check if the auction result has already been paid
+            bool isAlreadyPaid = await _context.Payments
+                .AnyAsync(p => p.AuctionResultId == payment.AuctionResultId && p.Status == AuctionStatus.Successful.ToString());
+
+            if (isAlreadyPaid)
+                throw new InvalidOperationException("This auction result has already been paid.");
             // Validate the payment and retrieve related data
             var auctionResult = await _context.AuctionResults
                 .Include(ar => ar.Joinauction)
