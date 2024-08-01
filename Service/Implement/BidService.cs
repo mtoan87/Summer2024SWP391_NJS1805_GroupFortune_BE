@@ -15,6 +15,7 @@ namespace Service.Implement
         private readonly IJewelryGoldDiamondRepository _jewelryGoldDiaRepository;
         private readonly IBidRecordRepository _bidRecordRepository;
         private readonly IAuctionRepository _auctionRepository;
+        private readonly IAccountWalletRepository _accountWalletRepository;
         private readonly IHubContext<BiddingHub> _biddingHubContext;
         public BidService(IBidRepository bidRepository, IJewelryGoldRepository jewelryGoldRepository, IJewelrySilverRepository jewelrySilverRepository, IJewelryGoldDiamondRepository jewelryGoldDiaRepository, IBidRecordRepository bidRecordRepository, IHubContext<BiddingHub> hubContext)
         {
@@ -188,6 +189,7 @@ namespace Service.Implement
             }
 
             var existingBid = await _bidRepository.GetByIdAsync(bidDto.BidId);
+
 
             double? newMaxPrice;
             var bidRecords = (List<BidRecord>)(await _bidRecordRepository.GetBidRecordByBidId(bidDto.BidId));

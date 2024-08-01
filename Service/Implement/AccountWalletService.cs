@@ -60,22 +60,43 @@ namespace Service.Implement
             return newAccountWallet;
         }
 
-        public  async Task<AccountWallet> UpdateAccountWallet(int id,UpdateAccountWalletDTO updateAccountWallet)
+        public async Task<AccountWallet> UpdateAccountWallet(int id, UpdateAccountWalletDTO updateAccountWallet)
         {
             var account = await _accountWalletRepository.GetByIdAsync(id);
-            if(account == null)
+            if (account == null)
             {
-                throw new Exception($"AccountWallet with ID{id} not found");
+                throw new Exception($"AccountWallet with ID {id} not found");
             }
+
+            // Calculate the difference in budget
+            double? budgetChange = updateAccountWallet.Budget - account.Budget;
+
+            // Update the account wallet fields
             account.BankName = updateAccountWallet.BankName;
             account.BankNo = updateAccountWallet.BankNo;
             account.Budget = updateAccountWallet.Budget;
+
+            // Update the account wallet in the repository
             await _accountWalletRepository.UpdateAsync(account);
+
+            // Record the budget change in a new WalletTransaction
+            if (budgetChange != 0)
+            {
+                var walletTransaction = new WalletTransaction
+                {
+                    AccountwalletId = account.AccountwalletId,
+                    Amount = budgetChange, // Store the numeric change directly
+                    DateTime = DateTime.Now
+                };
+
+                // Save the transaction to the repository
+                await _transactionService.AddAsync(walletTransaction);
+            }
+
             return account;
-            
         }
 
-        
+
     }
 }
     
