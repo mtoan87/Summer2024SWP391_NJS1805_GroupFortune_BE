@@ -19,6 +19,7 @@ namespace Service.Interface
         Task<IEnumerable<Payment>> CreatePaymentAsync(CreatePaymentDTO paymentdto);
         IEnumerable<object> GetFeesStatisticsByMonth();
         IEnumerable<object> GetFeesStatisticsByDate();
+        Task<Payment> DeletePayment(int id);
         double GetPrice();
         double GetTotalPrice();
         double GetTotalFees();

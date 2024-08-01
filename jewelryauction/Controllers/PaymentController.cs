@@ -61,7 +61,13 @@ namespace jewelryauction.Controllers
             var rs = await _service.UpdatePayment(id, updatePayment);
             return Ok(rs);
         }
-
+        [HttpDelete]
+        [Route("DeletePayment")]
+        public async Task<IActionResult> DeletePayment(int id  )
+        {
+            var rs = await _service.DeletePayment(id);
+            return Ok(rs);
+        }
         [HttpGet("total-fees")]
         public IActionResult GetTotalFees()
         {

@@ -97,7 +97,17 @@ namespace Service.Implement
             return payment;
 
         }
+        public async Task<Payment> DeletePayment(int id)
+        {
+            var account = await _paymentRepository.GetByIdAsync(id);
+            if (account == null)
+            {
+                throw new Exception($"Payment with ID {id} not found.");
+            }
 
+            await _paymentRepository.RemoveAsync(account);
+            return account;
+        }
         public IEnumerable<object> GetFeesStatisticsByMonth()
         {
            return _paymentRepository.GetFeesStatisticsByMonth();
