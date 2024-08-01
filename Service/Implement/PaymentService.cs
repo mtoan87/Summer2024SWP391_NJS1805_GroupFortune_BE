@@ -39,6 +39,7 @@ namespace Service.Implement
 
         private Payment ConvertDtoToEntity(CreatePaymentDTO dto)
         {
+            
             return new Payment
             {
                 AuctionResultId = dto.AuctionResultId,
@@ -51,6 +52,10 @@ namespace Service.Implement
         public async Task<IEnumerable<Payment>> CreatePaymentAsync(CreatePaymentDTO paymentdto)
         {
             var payment = ConvertDtoToEntity(paymentdto);
+            if (IsAuctionAlreadyPaid(paymentdto.AuctionResultId))
+            {
+                throw new Exception("This auction already paid!");
+            }
             await _paymentRepository.AddAsync(payment);
             bool processed = await _paymentRepository.ProcessPaymentAsync(payment);
             if (!processed) 
@@ -131,6 +136,11 @@ namespace Service.Implement
         public double GetPrice()
         {
            return _paymentRepository.GetPrice();
+        }
+
+        public bool IsAuctionAlreadyPaid(int? auctionRsId)
+        {
+            return _paymentRepository.IsAuctionAlreadyPaid(auctionRsId);
         }
     }
 }

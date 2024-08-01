@@ -12,7 +12,7 @@ namespace Repository.Interface
         Task<IEnumerable<Payment>> GetPaymentByAccountId(int accountId);
 
         Task<bool> ProcessPaymentAsync(Payment payment);
-
+        bool IsAuctionAlreadyPaid(int? auctionRsId);
         double GetTotalFees();
         double GetTotalPrice();
         double GetPrice();

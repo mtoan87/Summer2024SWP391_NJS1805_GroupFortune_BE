@@ -23,14 +23,15 @@ namespace Repository.Implement
                 .Where(a => a.AccountId == accountId)
                 .ToListAsync();
         }
+        public bool IsAuctionAlreadyPaid(int? auctionRsId)
+        {
+            return _context.Payments.Any(a => a.AuctionResultId == auctionRsId && a.Status != "Failed");
+        }
         public async Task<bool> ProcessPaymentAsync(Payment payment)
         {
+           
             // Check if the auction result has already been paid
-            bool isAlreadyPaid = await _context.Payments
-                .AnyAsync(p => p.AuctionResultId == payment.AuctionResultId && p.Status == AuctionStatus.Successful.ToString());
-
-            if (isAlreadyPaid)
-                throw new InvalidOperationException("This auction result has already been paid.");
+            
             // Validate the payment and retrieve related data
             var auctionResult = await _context.AuctionResults
                 .Include(ar => ar.Joinauction)
