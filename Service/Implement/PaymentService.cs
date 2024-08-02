@@ -52,10 +52,10 @@ namespace Service.Implement
         public async Task<IEnumerable<Payment>> CreatePaymentAsync(CreatePaymentDTO paymentdto)
         {
             var payment = ConvertDtoToEntity(paymentdto);
-            if (IsAuctionAlreadyPaid(paymentdto.AuctionResultId))
-            {
-                throw new Exception("This auction already paid!");
-            }
+            //if (IsAuctionAlreadyPaid(paymentdto.AuctionResultId))
+            //{
+            //    throw new Exception("This auction already paid!");
+            //}
             await _paymentRepository.AddAsync(payment);
             bool processed = await _paymentRepository.ProcessPaymentAsync(payment);
             if (!processed) 
