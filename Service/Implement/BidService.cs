@@ -163,6 +163,12 @@ namespace Service.Implement
 
         //    return true;
         //}
+
+        public async Task<bool> IsAuctionActive(int auctionId)
+        {
+            var auction = await _auctionRepository.GetByIdAsync(auctionId);
+            return auction?.Status == "Active";
+        }
         public async Task<List<BidRecord>> PlaceBid(BiddingDTO bidDto)
         {
             var jewelryGold = await _jewelryGoldRepository.GetJewelryGoldByAuctionId(bidDto.AuctionId);

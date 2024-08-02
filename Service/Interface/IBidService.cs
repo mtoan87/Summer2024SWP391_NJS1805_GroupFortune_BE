@@ -15,6 +15,7 @@ namespace Service.Interface
         Task<IEnumerable<Bid>> GetAllBids();
         Task<IEnumerable<Bid>> GetBidByAuctionId(int auctionId);
         //Task<IEnumerable<Bid>> GetBidRecordByAccountId(int accountId);
+        Task<bool> IsAuctionActive(int auctionId);
         Task<Bid> CreateBid(CreateBidDTO createBid);
         Task<Bid> UpdateBid(int id, UpdateBidDTO updateBid);
         //Task<bool> PlaceBid(BiddingDTO bidDto);
